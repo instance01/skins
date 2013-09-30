@@ -73,47 +73,22 @@ public class Main extends JavaPlugin implements Listener {
 				BufferedImage Image2;
 				try {
 					Image2 = ConvertUtil.convert4(Image1);
-					
-					// test
 					File outputfile = new File(args[0] + "_.png");
 				    ImageIO.write(Image2, "png", outputfile);
-					// test
-				    
-					//int[][] result = convertTo2DWithoutUsingGetRGB(Image2);
-				    /*int[] pixel = null;
-				    ArrayList<Color> ac = new ArrayList<Color>();
-				    for (int y = 0; y < Image2.getHeight(); y++) {
-				        for (int x = 0; x < Image2.getWidth(); x++) {
-				            pixel = Image2.getRaster().getPixel(x, y, new int[3]);
-				            //System.out.println(pixel[0] + " - " + pixel[1] + " - " + pixel[2] + " - " + (Image2.getWidth() * y + x));
-				            //System.out.print("\r" + (Image2.getWidth() * y + x));
-				            Color c = new Color(Image2.getRGB(x, y));
-				        }
-				    }*/
-				    
-				    // build skin
 				    build(p, Image2);
-				    
-					//Color c = new Color(result[9][9]);
-					/*Block change = p.getWorld().getBlockAt(p.getLocation().getBlockX(),p.getLocation().getBlockY(),p.getLocation().getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());*/
 				} catch (IOException e) {
 					e.printStackTrace();
 				}	
-			}else{
+			}else{ // just for testing purposes
 				Player p = (Player)sender;
 				BufferedImage Image1;
 				BufferedImage Image2;
 				try {					
 					Image1 = ImageIO.read(new File("ped4.png"));
-					
 					Image2 = ConvertUtil.convert4(Image1);
 					
-					// test
 					File outputfile = new File("ped4_.png");
 				    ImageIO.write(Image2, "png", outputfile);
-					// test
 				    
 					//int[][] result = convertTo2DWithoutUsingGetRGB(Image2);
 				    /*int[] pixel = null;
@@ -130,10 +105,6 @@ public class Main extends JavaPlugin implements Listener {
 				    // build skin
 				    build(p, Image2);
 				    
-					//Color c = new Color(result[9][9]);
-					/*Block change = p.getWorld().getBlockAt(p.getLocation().getBlockX(),p.getLocation().getBlockY(),p.getLocation().getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());*/
 				} catch (IOException e) {
 					e.printStackTrace();
 				}	
@@ -169,11 +140,18 @@ public class Main extends JavaPlugin implements Listener {
 		buildPartOfImage(p, Image2, 48, 52, 20, 32, "arm1_right");
 		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm1_behind");
 		// arm2
-		buildPartOfImage(p, Image2, 0, 4, 20, 32, "arm2_left");
-		buildPartOfImage(p, Image2, 4, 8, 20, 32, "arm2_front");
-		buildPartOfImage(p, Image2, 8, 12, 20, 32, "arm2_right");
-		buildPartOfImage(p, Image2, 12, 16, 20, 32, "arm2_behind");
+		//TODO: arm2
+		buildPartOfImage(p, Image2, 40, 44, 20, 32, "arm2_left");
+		buildPartOfImage(p, Image2, 44, 48, 20, 32, "arm2_front");
+		buildPartOfImage(p, Image2, 48, 52, 20, 32, "arm2_right");
+		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm2_behind");
 		// head
+		//TODO: head
+		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_left");
+		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_front");
+		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_right");
+		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_behind");
+		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_top");
 	}
 	
 	private void buildPartOfImage(Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
@@ -562,47 +540,4 @@ public class Main extends JavaPlugin implements Listener {
 		return ret;
 	}
 	
-	
-	private static int[][] convertTo2DWithoutUsingGetRGB(BufferedImage image) {
-
-	      final byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
-	      final int width = image.getWidth();
-	      final int height = image.getHeight();
-	      final boolean hasAlphaChannel = image.getAlphaRaster() != null;
-
-	      int[][] result = new int[height][width];
-	      if (hasAlphaChannel) {
-	         final int pixelLength = 4;
-	         for (int pixel = 0, row = 0, col = 0; pixel < pixels.length; pixel += pixelLength) {
-	            int argb = 0;
-	            argb += (((int) pixels[pixel] & 0xff) << 24); // alpha
-	            argb += ((int) pixels[pixel + 1] & 0xff); // blue
-	            argb += (((int) pixels[pixel + 2] & 0xff) << 8); // green
-	            argb += (((int) pixels[pixel + 3] & 0xff) << 16); // red
-	            result[row][col] = argb;
-	            col++;
-	            if (col == width) {
-	               col = 0;
-	               row++;
-	            }
-	         }
-	      } else {
-	         final int pixelLength = 3;
-	         for (int pixel = 0, row = 0, col = 0; pixel < pixels.length; pixel += pixelLength) {
-	            int argb = 0;
-	            argb += -16777216; // 255 alpha
-	            argb += ((int) pixels[pixel] & 0xff); // blue
-	            argb += (((int) pixels[pixel + 1] & 0xff) << 8); // green
-	            argb += (((int) pixels[pixel + 2] & 0xff) << 16); // red
-	            result[row][col] = argb;
-	            col++;
-	            if (col == width) {
-	               col = 0;
-	               row++;
-	            }
-	         }
-	      }
-
-	      return result;
-	   }
 }
