@@ -1,0 +1,8 @@
+name: Skins
+main: com.comze_instancelabs.skins.Main
+version: 1.0
+author: instancelabs
+commands:
+   skin:
+      description: Shows vote links
+      usage: /skin
