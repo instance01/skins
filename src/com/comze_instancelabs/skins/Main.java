@@ -1,10 +1,12 @@
 package com.comze_instancelabs.skins;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,43 +60,86 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("skin")){
-			Player p = (Player)sender;
-			BufferedImage Image1;
-			BufferedImage Image2;
-			try {
-				//TODO download image;
+			if(args.length > 0){
+				BufferedImage Image1 = null;
+				try {
+				    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+				    Image1 = ImageIO.read(url);
+				} catch (IOException e) {
+				}
 				
-				Image1 = ImageIO.read(new File("ped4.png"));
-				
-				Image2 = ConvertUtil.convert4(Image1);
-				
-				// test
-				File outputfile = new File("ped4_.png");
-			    ImageIO.write(Image2, "png", outputfile);
-				// test
-			    
-				//int[][] result = convertTo2DWithoutUsingGetRGB(Image2);
-			    /*int[] pixel = null;
-			    ArrayList<Color> ac = new ArrayList<Color>();
-			    for (int y = 0; y < Image2.getHeight(); y++) {
-			        for (int x = 0; x < Image2.getWidth(); x++) {
-			            pixel = Image2.getRaster().getPixel(x, y, new int[3]);
-			            //System.out.println(pixel[0] + " - " + pixel[1] + " - " + pixel[2] + " - " + (Image2.getWidth() * y + x));
-			            //System.out.print("\r" + (Image2.getWidth() * y + x));
-			            Color c = new Color(Image2.getRGB(x, y));
-			        }
-			    }*/
-			    
-			    // build skin
-			    build(p, Image2);
-			    
-				//Color c = new Color(result[9][9]);
-				/*Block change = p.getWorld().getBlockAt(p.getLocation().getBlockX(),p.getLocation().getBlockY(),p.getLocation().getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.BLACK.getData());*/
-			} catch (IOException e) {
-				e.printStackTrace();
+				Player p = (Player)sender;
+				BufferedImage Image2;
+				try {
+					Image2 = ConvertUtil.convert4(Image1);
+					
+					// test
+					File outputfile = new File(args[0] + "_.png");
+				    ImageIO.write(Image2, "png", outputfile);
+					// test
+				    
+					//int[][] result = convertTo2DWithoutUsingGetRGB(Image2);
+				    /*int[] pixel = null;
+				    ArrayList<Color> ac = new ArrayList<Color>();
+				    for (int y = 0; y < Image2.getHeight(); y++) {
+				        for (int x = 0; x < Image2.getWidth(); x++) {
+				            pixel = Image2.getRaster().getPixel(x, y, new int[3]);
+				            //System.out.println(pixel[0] + " - " + pixel[1] + " - " + pixel[2] + " - " + (Image2.getWidth() * y + x));
+				            //System.out.print("\r" + (Image2.getWidth() * y + x));
+				            Color c = new Color(Image2.getRGB(x, y));
+				        }
+				    }*/
+				    
+				    // build skin
+				    build(p, Image2);
+				    
+					//Color c = new Color(result[9][9]);
+					/*Block change = p.getWorld().getBlockAt(p.getLocation().getBlockX(),p.getLocation().getBlockY(),p.getLocation().getBlockZ());
+					change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());*/
+				} catch (IOException e) {
+					e.printStackTrace();
+				}	
+			}else{
+				Player p = (Player)sender;
+				BufferedImage Image1;
+				BufferedImage Image2;
+				try {
+					//TODO download image;
+					
+					Image1 = ImageIO.read(new File("ped4.png"));
+					
+					Image2 = ConvertUtil.convert4(Image1);
+					
+					// test
+					File outputfile = new File("ped4_.png");
+				    ImageIO.write(Image2, "png", outputfile);
+					// test
+				    
+					//int[][] result = convertTo2DWithoutUsingGetRGB(Image2);
+				    /*int[] pixel = null;
+				    ArrayList<Color> ac = new ArrayList<Color>();
+				    for (int y = 0; y < Image2.getHeight(); y++) {
+				        for (int x = 0; x < Image2.getWidth(); x++) {
+				            pixel = Image2.getRaster().getPixel(x, y, new int[3]);
+				            //System.out.println(pixel[0] + " - " + pixel[1] + " - " + pixel[2] + " - " + (Image2.getWidth() * y + x));
+				            //System.out.print("\r" + (Image2.getWidth() * y + x));
+				            Color c = new Color(Image2.getRGB(x, y));
+				        }
+				    }*/
+				    
+				    // build skin
+				    build(p, Image2);
+				    
+					//Color c = new Color(result[9][9]);
+					/*Block change = p.getWorld().getBlockAt(p.getLocation().getBlockX(),p.getLocation().getBlockY(),p.getLocation().getBlockZ());
+					change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());*/
+				} catch (IOException e) {
+					e.printStackTrace();
+				}	
 			}
+			
 			
 			return true;
 		}
@@ -111,7 +156,8 @@ public class Main extends JavaPlugin implements Listener {
 		// leg2
 		buildPartOfImage(p, Image2, 0, 4, 20, 32, "leg2_left");
 		buildPartOfImage(p, Image2, 4, 8, 20, 32, "leg2_front");
-		buildPartOfImage(p, Image2, 8, 12, 20, 32, "leg2_right");
+		//buildPartOfImage(p, Image2, 8, 12, 20, 32, "leg2_right");
+		buildPartOfImage(p, Image2, 0, 4, 20, 32, "leg2_right");
 		buildPartOfImage(p, Image2, 12, 16, 20, 32, "leg2_behind");
 		// body
 		buildPartOfImage(p, Image2, 16, 20, 20, 32, "body_left");
@@ -193,8 +239,8 @@ public class Main extends JavaPlugin implements Listener {
 		}else if(component.equalsIgnoreCase("leg1_behind")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() - 12, p.getLocation().getBlockZ());
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 4);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() - 12, p.getLocation().getBlockZ() + 3);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 7);
 			
 			getLogger().info(start.toString());
 			getLogger().info(end.toString());
@@ -205,7 +251,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
@@ -235,7 +281,7 @@ public class Main extends JavaPlugin implements Listener {
 					change.setData(DyeColor.BLACK.getData());
 					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
 		    	}
-		    }	
+		    }
 		}else if(component.equalsIgnoreCase("leg2_front")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
@@ -251,7 +297,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x + 3);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
@@ -272,12 +318,13 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y, start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
 		    	}
-		    }
+		    }	
 		}else if(component.equalsIgnoreCase("leg2_behind")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
