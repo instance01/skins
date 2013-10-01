@@ -4,5 +4,5 @@ version: 1.0
 author: instancelabs
 commands:
    skin:
-      description: Shows vote links
+      description: Builds a statue of the player
       usage: /skin

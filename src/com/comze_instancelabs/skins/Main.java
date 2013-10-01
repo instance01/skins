@@ -63,23 +63,32 @@ public class Main extends JavaPlugin implements Listener {
 			if(args.length > 0){
 				sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
 				BufferedImage Image1 = null;
+				boolean cont = true;
 				try {
 				    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
 				    Image1 = ImageIO.read(url);
 				} catch (IOException e) {
+					cont = false;
 				}
 				
 				Player p = (Player)sender;
-				BufferedImage Image2;
-				try {
+				if(cont){
+					BufferedImage Image2;
 					Image2 = ConvertUtil.convert4(Image1);
-					File outputfile = new File(args[0] + "_.png");
-				    ImageIO.write(Image2, "png", outputfile);
+					build(p, Image2);
+				}else{
+					p.sendMessage("§4Playername not found!");
+				}
+				
+				/*try {
+					Image2 = ConvertUtil.convert4(Image1);
+					//File outputfile = new File(args[0] + "_.png");
+				    //ImageIO.write(Image2, "png", outputfile);
 				    build(p, Image2);
 				} catch (IOException e) {
 					e.printStackTrace();
-				}	
-			}else{ // just for testing purposes
+				}*/
+			}/*else{ // just for testing purposes
 				Player p = (Player)sender;
 				BufferedImage Image1;
 				BufferedImage Image2;
@@ -89,18 +98,7 @@ public class Main extends JavaPlugin implements Listener {
 					
 					File outputfile = new File("ped4_.png");
 				    ImageIO.write(Image2, "png", outputfile);
-				    
-					//int[][] result = convertTo2DWithoutUsingGetRGB(Image2);
-				    /*int[] pixel = null;
-				    ArrayList<Color> ac = new ArrayList<Color>();
-				    for (int y = 0; y < Image2.getHeight(); y++) {
-				        for (int x = 0; x < Image2.getWidth(); x++) {
-				            pixel = Image2.getRaster().getPixel(x, y, new int[3]);
-				            //System.out.println(pixel[0] + " - " + pixel[1] + " - " + pixel[2] + " - " + (Image2.getWidth() * y + x));
-				            //System.out.print("\r" + (Image2.getWidth() * y + x));
-				            Color c = new Color(Image2.getRGB(x, y));
-				        }
-				    }*/
+
 				    
 				    // build skin
 				    build(p, Image2);
@@ -108,7 +106,7 @@ public class Main extends JavaPlugin implements Listener {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}	
-			}
+			}*/
 			
 			
 			return true;
@@ -152,6 +150,7 @@ public class Main extends JavaPlugin implements Listener {
 		buildPartOfImage(p, Image2, 16, 24, 8, 16, "head_right");
 		buildPartOfImage(p, Image2, 24, 32, 8, 16, "head_behind");
 		buildPartOfImage(p, Image2, 8, 16, 0, 8, "head_top");
+		buildPartOfImage(p, Image2, 16, 24, 0, 8, "head_bottom");
 	}
 	
 	private void buildPartOfImage(Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
@@ -647,7 +646,6 @@ public class Main extends JavaPlugin implements Listener {
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("head_right")){
-			//TODO: wrong direction
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
@@ -685,6 +683,48 @@ public class Main extends JavaPlugin implements Listener {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("head_top")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
+					getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("head_bottom")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
+					getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
 		    	}
