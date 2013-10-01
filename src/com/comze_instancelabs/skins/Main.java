@@ -147,11 +147,11 @@ public class Main extends JavaPlugin implements Listener {
 		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm2_behind");
 		// head
 		//TODO: head
-		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_left");
-		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_front");
-		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_right");
-		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_behind");
-		buildPartOfImage(p, Image2, 0, 0, 0, 0, "head_top");
+		buildPartOfImage(p, Image2, 0, 8, 8, 16, "head_left");
+		buildPartOfImage(p, Image2, 8, 16, 8, 16, "head_front");
+		buildPartOfImage(p, Image2, 16, 24, 8, 16, "head_right");
+		buildPartOfImage(p, Image2, 24, 32, 8, 16, "head_behind");
+		buildPartOfImage(p, Image2, 8, 16, 0, 8, "head_top");
 	}
 	
 	private void buildPartOfImage(Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
@@ -466,7 +466,6 @@ public class Main extends JavaPlugin implements Listener {
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("arm1_right")){
-			//TODO: right arm wrong direction!
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 2, p.getLocation().getBlockY(), p.getLocation().getBlockZ() - 1);
@@ -515,8 +514,8 @@ public class Main extends JavaPlugin implements Listener {
 		if(component.equalsIgnoreCase("arm2_left")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 8);
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 11);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 11);
 			
 			//getLogger().info(start.toString());
 			//getLogger().info(end.toString());
@@ -527,7 +526,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX() -  + max_x,end.getBlockY() - j + max_y,start.getBlockZ());
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 					change.setData(DyeColor.BLACK.getData());
@@ -607,11 +606,11 @@ public class Main extends JavaPlugin implements Listener {
 		if(component.equalsIgnoreCase("head_left")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());;
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());;
 			
-			getLogger().info(start.toString());
-			getLogger().info(end.toString());
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -629,8 +628,8 @@ public class Main extends JavaPlugin implements Listener {
 		}else if(component.equalsIgnoreCase("head_front")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
 			//getLogger().info(start.toString());
 			//getLogger().info(end.toString());
@@ -648,10 +647,11 @@ public class Main extends JavaPlugin implements Listener {
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("head_right")){
+			//TODO: wrong direction
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 7);
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);;
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);;
 			
 			//getLogger().info(start.toString());
 			//getLogger().info(end.toString());
@@ -662,7 +662,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x - 7,end.getBlockY() - j + max_y,start.getBlockZ() );
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
@@ -671,8 +671,8 @@ public class Main extends JavaPlugin implements Listener {
 		}else if(component.equalsIgnoreCase("head_behind")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
 			//getLogger().info(start.toString());
 			//getLogger().info(end.toString());
@@ -683,7 +683,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x);
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
