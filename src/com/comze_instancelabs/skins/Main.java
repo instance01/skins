@@ -469,11 +469,11 @@ public class Main extends JavaPlugin implements Listener {
 			//TODO: right arm wrong direction!
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() - 1);
-			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() - 1);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 2, p.getLocation().getBlockY(), p.getLocation().getBlockZ() - 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() - 1);
 			
-			getLogger().info(start.toString());
-			getLogger().info(end.toString());
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -481,7 +481,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
@@ -509,6 +509,188 @@ public class Main extends JavaPlugin implements Listener {
 		    	}
 		    }	
 		}
+		
+		
+		
+		if(component.equalsIgnoreCase("arm2_left")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 8);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 8);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() -  + max_x,end.getBlockY() - j + max_y,start.getBlockZ());
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }
+		}else if(component.equalsIgnoreCase("arm2_front")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 2, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 8);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 2, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 12);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x + 3);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm2_right")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 8);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 8);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x - 3,end.getBlockY() - j + max_y, start.getBlockZ());
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm2_behind")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 8);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 12);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}
+		
+		
+		
+		
+		
+		if(component.equalsIgnoreCase("head_left")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());;
+			
+			getLogger().info(start.toString());
+			getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,p.getLocation().getBlockZ());
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }
+		}else if(component.equalsIgnoreCase("head_front")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("head_right")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);;
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }
+		}else if(component.equalsIgnoreCase("head_behind")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 8, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}
+
 	}
 	
 	
