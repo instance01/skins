@@ -38,6 +38,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 
+
+
 /**
  * 
  * @author instancelabs
@@ -45,16 +47,27 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 
 public class Main extends JavaPlugin implements Listener {
-
-	
-	
-	//TODO: BUGS
-	// right leg is identical to left one and not rotated -> fail
 	
 	
 	@Override
 	public void onEnable(){
 		getServer().getPluginManager().registerEvents(this, this);
+		
+		
+		getConfig().addDefault("config.auto_updating", true);
+		getConfig().options().copyDefaults(true);
+		this.saveConfig();
+		
+		try {
+			Metrics metrics = new Metrics(this);
+			metrics.start();
+		} catch (IOException e) {
+			// Failed to submit the stats :(
+		}
+		
+		if(getConfig().getBoolean("config.auto_updating")){
+        	Updater updater = new Updater(this, "skin-statue-builder", this.getFile(), Updater.UpdateType.DEFAULT, false);
+        }
 	}
 	
 	@Override
@@ -88,13 +101,13 @@ public class Main extends JavaPlugin implements Listener {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}*/
-			}/*else{ // just for testing purposes
+			}else{ // just for testing purposes
 				Player p = (Player)sender;
 				BufferedImage Image1;
 				BufferedImage Image2;
 				try {					
 					Image1 = ImageIO.read(new File("ped4.png"));
-					Image2 = ConvertUtil.convert4(Image1);
+					Image2 = ConvertUtil.convert8(Image1);
 					
 					File outputfile = new File("ped4_.png");
 				    ImageIO.write(Image2, "png", outputfile);
@@ -106,7 +119,7 @@ public class Main extends JavaPlugin implements Listener {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}	
-			}*/
+			}
 			
 			
 			return true;
@@ -138,13 +151,11 @@ public class Main extends JavaPlugin implements Listener {
 		buildPartOfImage(p, Image2, 48, 52, 20, 32, "arm1_right");
 		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm1_behind");
 		// arm2
-		//TODO: arm2
 		buildPartOfImage(p, Image2, 40, 44, 20, 32, "arm2_left");
 		buildPartOfImage(p, Image2, 44, 48, 20, 32, "arm2_front");
 		buildPartOfImage(p, Image2, 48, 52, 20, 32, "arm2_right");
 		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm2_behind");
 		// head
-		//TODO: head
 		buildPartOfImage(p, Image2, 0, 8, 8, 16, "head_left");
 		buildPartOfImage(p, Image2, 8, 16, 8, 16, "head_front");
 		buildPartOfImage(p, Image2, 16, 24, 8, 16, "head_right");
@@ -703,7 +714,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
-					getLogger().info(change.getLocation().toString());
+					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
 		    	}
@@ -724,7 +735,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
-					getLogger().info(change.getLocation().toString());
+					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
 		    	}
@@ -734,7 +745,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	public String getStringFromColor(Color c){
+	public String getStringFromColor4(Color c){
 		String ret = "";
 
 		if(c.equals(Color.BLACK)){
@@ -755,6 +766,31 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PINK";
 		}else if(c.equals(new Color(128, 0, 0))){ // DARK RED
 			ret = "RED";
+		}else{
+			ret = "WHITE";
+		}
+		
+		return ret;
+	}
+	
+	
+	
+	public String getStringFromColor(Color c){
+		String ret = "";
+
+		Integer r = c.getRed();
+		Integer g = c.getGreen();
+		Integer b = c.getBlue();
+		
+		float[] hsbvals = new float[3];
+		c.RGBtoHSB(r, g, b, hsbvals);
+		getLogger().info(Float.toString(hsbvals[0]) + " " + Float.toString(hsbvals[1]) + " " + Float.toString(hsbvals[2]));
+		
+		
+		if(r.equals(0) && g.equals(0) && b > 0){
+			ret = "BLUE";
+		}else if(r.equals(0) && g > 0 && b.equals(0)){
+			ret = "GREEN";
 		}else{
 			ret = "WHITE";
 		}
