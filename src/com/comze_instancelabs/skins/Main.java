@@ -38,8 +38,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 
-
-
 /**
  * 
  * @author instancelabs
@@ -86,9 +84,10 @@ public class Main extends JavaPlugin implements Listener {
 				
 				Player p = (Player)sender;
 				if(cont){
-					BufferedImage Image2;
-					Image2 = ConvertUtil.convert4(Image1);
-					build(p, Image2);
+					//BufferedImage Image2;
+					//Image2 = ConvertUtil.convert4(Image1);
+					//build(p, Image2);
+					build(p, Image1);
 				}else{
 					p.sendMessage("§4Playername not found!");
 				}
@@ -107,18 +106,18 @@ public class Main extends JavaPlugin implements Listener {
 				BufferedImage Image2;
 				try {					
 					Image1 = ImageIO.read(new File("ped4.png"));
-					Image2 = ConvertUtil.convert8(Image1);
+					//Image2 = ConvertUtil.convert32(Image1);
 					
-					File outputfile = new File("ped4_.png");
-				    ImageIO.write(Image2, "png", outputfile);
+					//File outputfile = new File("ped4_.png");
+				    //ImageIO.write(Image2, "png", outputfile);
 
 				    
 				    // build skin
-				    build(p, Image2);
+				    build(p, Image1);
 				    
 				} catch (IOException e) {
 					e.printStackTrace();
-				}	
+				}
 			}
 			
 			
@@ -177,7 +176,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,p.getLocation().getBlockZ());
@@ -199,7 +198,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -220,7 +219,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
@@ -241,7 +240,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x);
@@ -265,7 +264,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,p.getLocation().getBlockZ());
@@ -287,7 +286,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x + 3);
@@ -308,7 +307,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y, start.getBlockZ());
@@ -330,7 +329,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -355,7 +354,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,p.getLocation().getBlockZ());
@@ -377,7 +376,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -398,7 +397,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ());
@@ -419,7 +418,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -444,7 +443,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
@@ -466,7 +465,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -487,7 +486,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
@@ -508,7 +507,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x);
@@ -533,7 +532,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
@@ -555,7 +554,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x + 3);
@@ -576,7 +575,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x - 3,end.getBlockY() - j + max_y, start.getBlockZ());
@@ -598,7 +597,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -625,7 +624,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,p.getLocation().getBlockZ());
@@ -647,7 +646,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -668,7 +667,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x - 7,end.getBlockY() - j + max_y,start.getBlockZ() );
@@ -689,7 +688,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
@@ -710,7 +709,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
@@ -731,7 +730,7 @@ public class Main extends JavaPlugin implements Listener {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		pixel = bi.getRaster().getPixel(i, j, new int[3]);
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
@@ -778,21 +777,67 @@ public class Main extends JavaPlugin implements Listener {
 	public String getStringFromColor(Color c){
 		String ret = "";
 
-		Integer r = c.getRed();
-		Integer g = c.getGreen();
-		Integer b = c.getBlue();
+		Integer r = c.getRed(); // RED
+		Integer g = c.getGreen(); // GREEN
+		Integer b = c.getBlue(); // BLUE
 		
-		float[] hsbvals = new float[3];
-		c.RGBtoHSB(r, g, b, hsbvals);
-		getLogger().info(Float.toString(hsbvals[0]) + " " + Float.toString(hsbvals[1]) + " " + Float.toString(hsbvals[2]));
+		float[] hsb = new float[3];
+		c.RGBtoHSB(r, g, b, hsb);
+		//getLogger().info(Float.toString(hsb[0]) + " " + Float.toString(hsb[1]) + " " + Float.toString(hsb[2]));
 		
+		float h = hsb[0]; // HUE
+		float s = hsb[1]; // SATURATION
+		float v = hsb[2]; // BRIGHTNESS
 		
-		if(r.equals(0) && g.equals(0) && b > 0){
-			ret = "BLUE";
-		}else if(r.equals(0) && g > 0 && b.equals(0)){
+		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+			ret = "RED";
+		}else if(s > 0.4 && v > 0.5 && h > 0.0333333333 && h < 0.1138888888){
+			ret = "ORANGE";
+		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h < 0.07){
+			ret = "BROWN";
+		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h > 0.969){
+			ret = "BROWN";
+		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
+			ret = "YELLOW";
+		}else if(s > 0.4 && v > 0.2 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "GREEN";
-		}else{
+		}else if(s > 0.4 && v > 0.8 && h > 0.1916666666 && h < 0.3805555555){
+			ret = "LIME";
+		}else if(s > 0.4 && v > 0.4 && h > 0.3805555555 && h < 0.5194444444){
+			ret = "LIGHT_BLUE";
+		}else if(s > 0.4 && v > 0.4 && h > 0.5194444444 && h < 0.6027777777){
+			ret = "CYAN";
+		}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
+			ret = "BLUE";
+		}else if(s > 0.4 && v > 0.4 && h > 0.6944444444 && h < 0.8305555555){
+			ret = "PURPLE";
+		}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
+			ret = "MAGENTA";
+		}else if(s > 0.4 && v > 0.4 && h > 0.8777777777 && h < 0.9361111111){
+			ret = "PINK";
+		}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
+			ret = "RED";
+		}else if(s < 0.0000001 && v > 0.93){
 			ret = "WHITE";
+		}else if(s < 0.0000001 && v < 0.94 && v > 0.7){
+			ret = "SILVER";
+		}else if(s < 0.0000001 && v < 0.71 && v > 0.2){
+			ret = "GRAY";
+		}else if(s < 0.0000001 && v < 0.21){
+			ret = "BLACK";
+		}else if(s < 0.3 && v < 0.3 && v > 0.1){
+			ret = "GRAY";
+		}else if(s < 0.3 && v < 0.11){
+			ret = "BLACK";
+		}else if(s < 0.3 && v < 0.11){
+			ret = "BLACK";
+		}else if(s > 0.29 && s < 0.8 && v < 0.11){
+			ret = "GRAY";
+		}else if(s > 0.29 && s < 0.6 && v < 0.2){
+			ret = "GRAY";
+		}else{
+			ret = "WHITE"; // nothing matched
+			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
