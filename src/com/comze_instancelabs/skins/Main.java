@@ -728,7 +728,7 @@ public class Main extends JavaPlugin implements Listener {
 		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 9,end.getBlockY(), start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 		    		change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
@@ -778,33 +778,34 @@ public class Main extends JavaPlugin implements Listener {
 		
 		float[] hsb = new float[3];
 		c.RGBtoHSB(r, g, b, hsb);
-		//getLogger().info(Float.toString(hsb[0]) + " " + Float.toString(hsb[1]) + " " + Float.toString(hsb[2]));
 		
 		float h = hsb[0]; // HUE
 		float s = hsb[1]; // SATURATION
 		float v = hsb[2]; // BRIGHTNESS
 		
-		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+		if(s > 0.4 && v > 0.5 && h < 0.03333333333){
 			ret = "RED";
 		}else if(s > 0.4 && v > 0.5 && h > 0.0333333333 && h < 0.1138888888){
 			ret = "ORANGE";
-		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h < 0.07){
+		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h < 0.1){
 			ret = "BROWN";
 		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h > 0.969){
 			ret = "BROWN";
 		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
 			ret = "YELLOW";
-		}else if(s > 0.4 && v > 0.2 && h > 0.1916666666 && h < 0.3805555555){
+		}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "GREEN";
 		}else if(s > 0.4 && v > 0.8 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "LIME";
 		}else if(s > 0.4 && v > 0.4 && h > 0.3805555555 && h < 0.5194444444){
 			ret = "LIGHT_BLUE";
-		}else if(s > 0.4 && v > 0.4 && h > 0.5194444444 && h < 0.6027777777){
+		}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
 			ret = "CYAN";
 		}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
 			ret = "BLUE";
-		}else if(s > 0.4 && v > 0.4 && h > 0.6944444444 && h < 0.8305555555){
+		}else if(s > 0.6 && v > 0.2 && h > 0.6027777777 && h < 0.6944444444){
+			ret = "BLUE";
+		}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
 			ret = "PURPLE";
 		}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
 			ret = "MAGENTA";
@@ -812,19 +813,21 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PINK";
 		}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
 			ret = "RED";
-		}else if(s < 0.0000001 && v > 0.93){
+		}else if(s < 0.1 && v > 0.9){
 			ret = "WHITE";
-		}else if(s < 0.0000001 && v < 0.94 && v > 0.7){
+		}else if(s < 0.1 && v < 0.91 && v > 0.7){
 			ret = "SILVER";
-		}else if(s < 0.0000001 && v < 0.71 && v > 0.2){
-			ret = "GRAY";
-		}else if(s < 0.0000001 && v < 0.21){
+		}else if(s < 0.1 && v < 0.71 && v > 0.2){
+			ret = "SILVER";
+		}else if(s < 0.1 && v < 0.21){
 			ret = "BLACK";
 		}else if(s < 0.3 && v < 0.3 && v > 0.1){
 			ret = "GRAY";
 		}else if(s < 0.3 && v < 0.11){
 			ret = "BLACK";
-		}else if(s < 0.3 && v < 0.11){
+		}else if(s < 0.7 && v < 0.6){
+			ret = "BLACK";
+		}else if(v < 0.05){
 			ret = "BLACK";
 		}else if(s > 0.29 && s < 0.8 && v < 0.11){
 			ret = "GRAY";
@@ -837,5 +840,6 @@ public class Main extends JavaPlugin implements Listener {
 		
 		return ret;
 	}
+
 	
 }
