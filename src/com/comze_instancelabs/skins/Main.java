@@ -70,56 +70,51 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		if(cmd.getName().equalsIgnoreCase("skin") && sender.hasPermission("skins.build")){
-			if(args.length > 0){
-				sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
-				BufferedImage Image1 = null;
-				boolean cont = true;
-				try {
-				    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-				    Image1 = ImageIO.read(url);
-				} catch (IOException e) {
-					cont = false;
-				}
-				
-				Player p = (Player)sender;
-				if(cont){
-					//BufferedImage Image2;
-					//Image2 = ConvertUtil.convert4(Image1);
-					//build(p, Image2);
-					build(p, Image1);
-				}else{
-					p.sendMessage("§4Playername not found!");
-				}
-				
-				/*try {
-					Image2 = ConvertUtil.convert4(Image1);
-					//File outputfile = new File(args[0] + "_.png");
-				    //ImageIO.write(Image2, "png", outputfile);
-				    build(p, Image2);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}*/
-			}else{ // just for testing purposes
-				Player p = (Player)sender;
-				BufferedImage Image1;
-				BufferedImage Image2;
-				try {					
-					Image1 = ImageIO.read(new File("ped4.png"));
-					//Image2 = ConvertUtil.convert32(Image1);
-					
-					//File outputfile = new File("ped4_.png");
-				    //ImageIO.write(Image2, "png", outputfile);
-
-				    
-				    // build skin
-				    build(p, Image1);
-				    
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+		if(cmd.getName().equalsIgnoreCase("skin") || cmd.getName().equalsIgnoreCase("statue")){
 			
+			if(sender.hasPermission("skins.build")){
+				if(args.length > 0){
+					sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+					BufferedImage Image1 = null;
+					boolean cont = true;
+					try {
+					    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+					    Image1 = ImageIO.read(url);
+					} catch (IOException e) {
+						cont = false;
+					}
+					
+					Player p = (Player)sender;
+					if(cont){
+						//BufferedImage Image2;
+						//Image2 = ConvertUtil.convert4(Image1);
+						//build(p, Image2);
+						build(p, Image1);
+					}else{
+						p.sendMessage("§4Playername not found!");
+					}
+				}/*else{ // just for testing purposes
+					Player p = (Player)sender;
+					BufferedImage Image1;
+					BufferedImage Image2;
+					try {					
+						Image1 = ImageIO.read(new File("ped4.png"));
+						//Image2 = ConvertUtil.convert32(Image1);
+						
+						//File outputfile = new File("ped4_.png");
+					    //ImageIO.write(Image2, "png", outputfile);
+	
+					    
+					    // build skin
+					    build(p, Image1);
+					    
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}*/	
+			}else{
+				sender.sendMessage("§4You don't have permission.");
+			}
 			
 			return true;
 		}
