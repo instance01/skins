@@ -89,7 +89,7 @@ public class Main extends JavaPlugin implements Listener {
 						//BufferedImage Image2;
 						//Image2 = ConvertUtil.convert4(Image1);
 						//build(p, Image2);
-						build(p, Image1);
+						build(p, Image1, "east");
 					}else{
 						p.sendMessage("§4Playername not found!");
 					}
@@ -122,43 +122,76 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	private void build(Player p, BufferedImage Image2){
-		// leg1
-		buildPartOfImage(p, Image2, 0, 4, 20, 32, "leg1_left");
-		buildPartOfImage(p, Image2, 4, 8, 20, 32, "leg1_front");
-		//buildPartOfImage(p, Image2, 8, 12, 20, 32, "leg1_right"); // no need, is IN the statue, not seen from outside
-		buildPartOfImage(p, Image2, 12, 16, 20, 32, "leg1_behind");
-		// leg2
-		buildPartOfImage(p, Image2, 0, 4, 20, 32, "leg2_left");
-		buildPartOfImage(p, Image2, 4, 8, 20, 32, "leg2_front");
-		//buildPartOfImage(p, Image2, 8, 12, 20, 32, "leg2_right");
-		buildPartOfImage(p, Image2, 0, 4, 20, 32, "leg2_right");
-		buildPartOfImage(p, Image2, 12, 16, 20, 32, "leg2_behind");
-		// body
-		buildPartOfImage(p, Image2, 16, 20, 20, 32, "body_left");
-		buildPartOfImage(p, Image2, 20, 28, 20, 32, "body_front");
-		buildPartOfImage(p, Image2, 28, 32, 20, 32, "body_right");
-		buildPartOfImage(p, Image2, 32, 40, 20, 32, "body_behind");
-		// arm1
-		buildPartOfImage(p, Image2, 40, 44, 20, 32, "arm1_left");
-		buildPartOfImage(p, Image2, 44, 48, 20, 32, "arm1_front");
-		buildPartOfImage(p, Image2, 48, 52, 20, 32, "arm1_right");
-		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm1_behind");
-		// arm2
-		buildPartOfImage(p, Image2, 40, 44, 20, 32, "arm2_left");
-		buildPartOfImage(p, Image2, 44, 48, 20, 32, "arm2_front");
-		buildPartOfImage(p, Image2, 48, 52, 20, 32, "arm2_right");
-		buildPartOfImage(p, Image2, 52, 56, 20, 32, "arm2_behind");
-		// head
-		buildPartOfImage(p, Image2, 0, 8, 8, 16, "head_left");
-		buildPartOfImage(p, Image2, 8, 16, 8, 16, "head_front");
-		buildPartOfImage(p, Image2, 16, 24, 8, 16, "head_right");
-		buildPartOfImage(p, Image2, 24, 32, 8, 16, "head_behind");
-		buildPartOfImage(p, Image2, 8, 16, 0, 8, "head_top");
-		buildPartOfImage(p, Image2, 16, 24, 0, 8, "head_bottom");
+	
+	private void smooth(Player p, BufferedImage Image2){
+		
+		//this function only builds skin blocks (wood instead of orange wool)
+		//needs the location of a skin
+		
+		//TODO: smooth function
+		/*
+		 * /skin [name] -g smooth
+		 * 
+		 */
 	}
 	
-	private void buildPartOfImage(Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+	
+	private void build(Player p, BufferedImage Image2, String direction){
+		
+		if(direction.equalsIgnoreCase("east")){
+			// leg1
+			buildPartOfImageEast(p, Image2, 0, 4, 20, 32, "leg1_left");
+			buildPartOfImageEast(p, Image2, 4, 8, 20, 32, "leg1_front");
+			//buildPartOfImageEast(p, Image2, 8, 12, 20, 32, "leg1_right"); // no need, is IN the statue, not seen from outside
+			buildPartOfImageEast(p, Image2, 12, 16, 20, 32, "leg1_behind");
+			// leg2
+			buildPartOfImageEast(p, Image2, 0, 4, 20, 32, "leg2_left");
+			buildPartOfImageEast(p, Image2, 4, 8, 20, 32, "leg2_front");
+			//buildPartOfImageEast(p, Image2, 8, 12, 20, 32, "leg2_right");
+			buildPartOfImageEast(p, Image2, 0, 4, 20, 32, "leg2_right");
+			buildPartOfImageEast(p, Image2, 12, 16, 20, 32, "leg2_behind");
+			// body
+			buildPartOfImageEast(p, Image2, 16, 20, 20, 32, "body_left");
+			buildPartOfImageEast(p, Image2, 20, 28, 20, 32, "body_front");
+			buildPartOfImageEast(p, Image2, 28, 32, 20, 32, "body_right");
+			buildPartOfImageEast(p, Image2, 32, 40, 20, 32, "body_behind");
+			// arm1
+			buildPartOfImageEast(p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			buildPartOfImageEast(p, Image2, 44, 48, 16, 20, "arm1_top");
+			buildPartOfImageEast(p, Image2, 40, 44, 20, 32, "arm1_left");
+			buildPartOfImageEast(p, Image2, 44, 48, 20, 32, "arm1_front");
+			buildPartOfImageEast(p, Image2, 48, 52, 20, 32, "arm1_right");
+			buildPartOfImageEast(p, Image2, 52, 56, 20, 32, "arm1_behind");
+			// arm2
+			buildPartOfImageEast(p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			buildPartOfImageEast(p, Image2, 44, 48, 16, 20, "arm2_top");
+			buildPartOfImageEast(p, Image2, 40, 44, 20, 32, "arm2_left");
+			buildPartOfImageEast(p, Image2, 44, 48, 20, 32, "arm2_front");
+			buildPartOfImageEast(p, Image2, 48, 52, 20, 32, "arm2_right");
+			buildPartOfImageEast(p, Image2, 52, 56, 20, 32, "arm2_behind");
+			// head
+			buildPartOfImageEast(p, Image2, 0, 8, 8, 16, "head_left");
+			buildPartOfImageEast(p, Image2, 8, 16, 8, 16, "head_front");
+			buildPartOfImageEast(p, Image2, 16, 24, 8, 16, "head_right");
+			buildPartOfImageEast(p, Image2, 24, 32, 8, 16, "head_behind");
+			buildPartOfImageEast(p, Image2, 8, 16, 0, 8, "head_top");
+			buildPartOfImageEast(p, Image2, 16, 24, 0, 8, "head_bottom");	
+		}else if(direction.equalsIgnoreCase("west")){
+			
+		}else if(direction.equalsIgnoreCase("north")){
+			
+		}else if(direction.equalsIgnoreCase("south")){
+			
+		}
+		//TODO: directions
+		/*
+		 * /skin [name] -d NORTH/EAST/WEST/SOUTH
+		 * /skin [name] -r 90/180/270/360
+		 * 
+		 */
+	}
+	
+	private void buildPartOfImageEast(Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		if(component.equalsIgnoreCase("leg1_left")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
@@ -426,7 +459,51 @@ public class Main extends JavaPlugin implements Listener {
 		
 		
 		
-		if(component.equalsIgnoreCase("arm1_left")){
+		if(component.equalsIgnoreCase("arm1_bottom")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 4);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm1_top")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 4);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm1_left")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() - 4);
@@ -515,7 +592,51 @@ public class Main extends JavaPlugin implements Listener {
 		
 		
 		
-		if(component.equalsIgnoreCase("arm2_left")){
+		if(component.equalsIgnoreCase("arm2_bottom")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 11);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 11);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm2_top")){
+			Location current = p.getLocation();
+			getLogger().info("Building " + component);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 11);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 11);
+			
+			//getLogger().info(start.toString());
+			//getLogger().info(end.toString());
+			
+			int[] pixel;
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		pixel = bi.getRaster().getPixel(i, j, new int[6]);
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
+					//getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+					change.setData(DyeColor.BLACK.getData());
+					change.setData(DyeColor.valueOf(getStringFromColor(c)).getData());
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm2_left")){
 			Location current = p.getLocation();
 			getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY(), p.getLocation().getBlockZ() + 11);
@@ -835,7 +956,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GRAY";
 		}else{
 			ret = "WHITE"; // nothing matched
-			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
