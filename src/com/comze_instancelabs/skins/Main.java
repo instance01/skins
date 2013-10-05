@@ -53,9 +53,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//TODO:
 	//FEATURES:
-	// [HIGH] undo [DONE]
-	// [HIGH] Hat layers [DONE]
-	// [HIGH] cover all colors
+	// [HIGH] cover all colors (1.6 Mio to go)
 	// [MEDIUM] directions
 	// [MEDIUM] Smooth
 	
@@ -158,6 +156,8 @@ public class Main extends JavaPlugin implements Listener {
 		}else if(cmd.getName().equalsIgnoreCase("colortest")){ // /colortest
 			if(args.length > 0){
 				if(args[0].equalsIgnoreCase("start")){ // /colortest start
+					poscount = 0;
+					negcount = 0;
 					Runnable r = new Runnable() {
 				        public void run() {
 				        	colorTest();
@@ -1175,19 +1175,25 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BROWN";
 		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
 			ret = "YELLOW";
+		}else if(s > 0.4 && v < 0.51 && v > 0.1 && h > 0.1138888888 && h < 0.1916666666){ // new
+			ret = "BROWN";
 		}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "GREEN";
 		}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "LIME";
 		}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "LIME";
-		}else if(s > 0.4 && v > 0.4 && h > 0.3805555555 && h < 0.5194444444){
+		}else if(s > 0.4 && v > 0.6 && h > 0.3805555555 && h < 0.5194444444){ // v > 0.4
 			ret = "LIGHT_BLUE";
+		}else if(s > 0.4 && v < 0.61 && v > 0.2 && h > 0.3805555555 && h < 0.6027777777){ // new
+			ret = "CYAN";
 		}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
 			ret = "CYAN";
 		}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
 			ret = "BLUE";
-		}else if(s > 0.6 && v > 0.2 && h > 0.6027777777 && h < 0.6944444444){
+		}else if(s > 0.2 && s < 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){ // new
+			ret = "LIGHT_BLUE";
+		}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
 			ret = "BLUE";
 		}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
 			ret = "PURPLE";
@@ -1211,7 +1217,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BLACK";
 		}else if(s < 0.7 && v < 0.6){
 			ret = "BLACK";
-		}else if(v < 0.05){
+		}else if(v < 0.1){ // 0.05
 			ret = "BLACK";
 		}else if(s > 0.29 && s < 0.8 && v < 0.11){
 			ret = "GRAY";
@@ -1228,9 +1234,28 @@ public class Main extends JavaPlugin implements Listener {
 	
 	int poscount;
 	int negcount;
-	
+
 
 	public void colorTest(){
+		for(int r = 0; r <= 255; r++){
+			for(int g = 0; g <= 255; g++){
+				for(int b = 0; b <= 255; b++){
+					Color c = new Color(r, g, b);
+					if(getStringFromColorTEST(c)){
+						poscount += 1;
+					}else{
+						negcount += 1;
+					}
+				}
+			}
+		}
+		
+		getLogger().info("Colortest finished.");
+	}
+	
+	
+	
+	public void colorTestLog(){
 		File log = new File("colors.txt");
         if (!log.exists()){
         	try {
@@ -1300,19 +1325,25 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
 			ret = true;
+		}else if(s > 0.4 && v < 0.51 && v > 0.1 && h > 0.1138888888 && h < 0.1916666666){ // new
+			ret = true;
 		}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
 			ret = true;
 		}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
 			ret = true;
 		}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
 			ret = true;
-		}else if(s > 0.4 && v > 0.4 && h > 0.3805555555 && h < 0.5194444444){
+		}else if(s > 0.4 && v > 0.6 && h > 0.3805555555 && h < 0.5194444444){
+			ret = true;
+		}else if(s > 0.4 && v < 0.61 && v > 0.2 && h > 0.3805555555 && h < 0.6027777777){ // new
 			ret = true;
 		}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
 			ret = true;
 		}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
 			ret = true;
-		}else if(s > 0.6 && v > 0.2 && h > 0.6027777777 && h < 0.6944444444){
+		}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
+			ret = true;
+		}else if(s > 0.2 && s < 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){ // new
 			ret = true;
 		}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
 			ret = true;
@@ -1336,7 +1367,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(s < 0.7 && v < 0.6){
 			ret = true;
-		}else if(v < 0.05){
+		}else if(v < 0.1){
 			ret = true;
 		}else if(s > 0.29 && s < 0.8 && v < 0.11){
 			ret = true;
