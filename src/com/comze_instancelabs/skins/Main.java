@@ -904,19 +904,25 @@ public class Main extends JavaPlugin implements Listener {
 		float s = hsb[1]; // SATURATION
 		float v = hsb[2]; // BRIGHTNESS
 		
-		if(s > 0.4 && v > 0.5 && h < 0.03333333333){
+		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
 			ret = "RED";
 		}else if(s > 0.4 && v > 0.5 && h > 0.0333333333 && h < 0.1138888888){
 			ret = "ORANGE";
-		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h < 0.1){
+		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h > 0.02 && h < 0.15){
 			ret = "BROWN";
-		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h > 0.969){
+		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
+			ret = "BROWN";
+		}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
+			ret = "BROWN";
+		}else if(s > 0.8 && v < 0.15 && v > 0.05 && h > 0.079999999 && h < 0.1222222){
 			ret = "BROWN";
 		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
 			ret = "YELLOW";
 		}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "GREEN";
-		}else if(s > 0.4 && v > 0.8 && h > 0.1916666666 && h < 0.3805555555){
+		}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
+			ret = "LIME";
+		}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
 			ret = "LIME";
 		}else if(s > 0.4 && v > 0.4 && h > 0.3805555555 && h < 0.5194444444){
 			ret = "LIGHT_BLUE";
@@ -930,7 +936,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PURPLE";
 		}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
 			ret = "MAGENTA";
-		}else if(s > 0.4 && v > 0.4 && h > 0.8777777777 && h < 0.9361111111){
+		}else if(s > 0.3 && v > 0.4 && h > 0.8777777777 && h < 0.9611111111){
 			ret = "PINK";
 		}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
 			ret = "RED";
@@ -956,7 +962,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GRAY";
 		}else{
 			ret = "WHITE"; // nothing matched
-			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
