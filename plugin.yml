@@ -9,3 +9,6 @@ commands:
    statue:
       description: Builds a statue of the player
       usage: /statue
+   colortest:
+      description: Runs a colortest to determine all currently supported colors
+      usage: /colortest
