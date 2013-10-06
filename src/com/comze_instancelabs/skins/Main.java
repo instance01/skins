@@ -55,7 +55,6 @@ public class Main extends JavaPlugin implements Listener {
 	//FEATURES:
 	// [HIGH] cover all colors (1.6 Mio to go)
 	// [MEDIUM] directions
-	// [MEDIUM] Smooth [DONE]
 	
 	
 	
@@ -64,6 +63,8 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public static HashMap<Player, Location> undoloc = new HashMap<Player, Location>();
 	public static HashMap<Player, String> undoskin = new HashMap<Player, String>();
+	public static HashMap<Player, String> undodir = new HashMap<Player, String>();
+	
 	
 	@Override
 	public void onEnable(){
@@ -89,7 +90,6 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("skin") || cmd.getName().equalsIgnoreCase("statue")){
-			
 			if(sender.hasPermission("skins.build")){
 				if(args.length > 0){
 					String action = args[0];
@@ -141,7 +141,23 @@ public class Main extends JavaPlugin implements Listener {
 						}
 					}else{
 						if(args.length > 1){ // /skin [name] [direction]
-							//TODO: DIRECTIONS
+							String direction = args[1];
+							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+							BufferedImage Image1 = null;
+							boolean cont = true;
+							try {
+							    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+							    Image1 = ImageIO.read(url);
+							} catch (IOException e) {
+								cont = false;
+							}
+							
+							Player p = (Player)sender;
+							if(cont){
+								build(p, Image1, args[0], direction);
+							}else{
+								p.sendMessage("§4Playername not found!");
+							}
 						}else{ // /skin [name]
 							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
 							BufferedImage Image1 = null;
@@ -371,11 +387,51 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");
 			//SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
+		}else if(direction.equalsIgnoreCase("south")){
+			// leg1
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 0, 4, 20, 32, "leg1_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 4, 8, 20, 32, "leg1_front");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 12, 16, 20, 32, "leg1_behind");
+			// leg2
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 0, 4, 20, 32, "leg2_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 4, 8, 20, 32, "leg2_front");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 0, 4, 20, 32, "leg2_right");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 12, 16, 20, 32, "leg2_behind");
+			// body
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 16, 20, 20, 32, "body_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 20, 28, 20, 32, "body_front");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 28, 32, 20, 32, "body_right");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 32, 40, 20, 32, "body_behind");
+			// arm1
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 44, 20, 32, "arm1_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 20, 32, "arm1_front");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 20, 32, "arm1_right");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 52, 56, 20, 32, "arm1_behind");
+			// arm2
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 44, 20, 32, "arm2_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 20, 32, "arm2_front");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 20, 32, "arm2_right");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 52, 56, 20, 32, "arm2_behind");
+			// head
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 0, 8, 8, 16, "head_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 16, 24, 8, 16, "head_right");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 24, 32, 8, 16, "head_behind");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 8, 16, "head_front");
+			// hat layers
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 32, 40, 8, 16, "hat_left");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 56, 8, 16, "hat_right");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 8, 16, "hat_front");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
 		}else if(direction.equalsIgnoreCase("west")){
 			
 		}else if(direction.equalsIgnoreCase("north")){
-			
-		}else if(direction.equalsIgnoreCase("south")){
 			
 		}
 		//TODO: directions
@@ -388,9 +444,7 @@ public class Main extends JavaPlugin implements Listener {
 		p.sendMessage("§2Finished building the skin!");
 	}
 	
-	
-	
-	
+
 	public String getStringFromColor(Color c){
 		String ret = "";
 
@@ -407,9 +461,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
 			ret = "RED";
-		}else if(s > 0.4 && v > 0.5 && h > 0.0333333333 && h < 0.1138888888){
+		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 			ret = "ORANGE";
-		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h > 0.02 && h < 0.15){
+		}else if(s > 0.4 && v < 0.801 && v > 0.2 && h > 0.02 && h < 0.15){ // v < 0.5
 			ret = "BROWN";
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = "BROWN";
@@ -469,7 +523,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GRAY";
 		}else{
 			ret = "WHITE"; // nothing matched
-			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
@@ -557,9 +611,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
 			ret = true;
-		}else if(s > 0.4 && v > 0.5 && h > 0.0333333333 && h < 0.1138888888){
+		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){
 			ret = true;
-		}else if(s > 0.4 && v < 0.5 && v > 0.2 && h > 0.02 && h < 0.15){
+		}else if(s > 0.4 && v < 0.801 && v > 0.2 && h > 0.02 && h < 0.15){
 			ret = true;
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = true;
@@ -617,6 +671,8 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(s > 0.29 && s < 0.6 && v < 0.2){
 			ret = true;
+		}else if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // TEST
+			ret = true; // HUMAN SKIN
 		}else{
 			ret = false; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -641,11 +697,11 @@ public class Main extends JavaPlugin implements Listener {
 		float s = hsb[1]; // SATURATION
 		float v = hsb[2]; // BRIGHTNESS
 		
-		if(h > 0.072222 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.8){
+		if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // h > 0.722222
 			ret = true;
 		}else{
 			ret = false; // nothing matched
-			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
