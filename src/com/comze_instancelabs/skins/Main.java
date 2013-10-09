@@ -12,8 +12,10 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -141,8 +143,16 @@ public class Main extends JavaPlugin implements Listener {
 						}
 					}else{
 						if(args.length > 1){ // /skin [name] [direction]
+							Player p = null;
+							try{
+								p = (Player)sender;	
+							}catch(Exception e){
+								sender.sendMessage("§4Please execute this command ingame.");
+								return true;
+							}
+							
 							String direction = args[1];
-							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+							sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
 							BufferedImage Image1 = null;
 							boolean cont = true;
 							try {
@@ -152,13 +162,25 @@ public class Main extends JavaPlugin implements Listener {
 								cont = false;
 							}
 							
-							Player p = (Player)sender;
 							if(cont){
-								build(p, Image1, args[0], direction);
+								List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
+								if(places.contains(direction)){
+									build(p, Image1, args[0], direction);
+								}else{
+									sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+								}
 							}else{
 								p.sendMessage("§4Playername not found!");
 							}
 						}else{ // /skin [name]
+							Player p = null;
+							try{
+								p = (Player)sender;	
+							}catch(Exception e){
+								sender.sendMessage("§4Please execute this command ingame.");
+								return true;
+							}
+							
 							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
 							BufferedImage Image1 = null;
 							boolean cont = true;
@@ -169,7 +191,6 @@ public class Main extends JavaPlugin implements Listener {
 								cont = false;
 							}
 							
-							Player p = (Player)sender;
 							if(cont){
 								build(p, Image1, args[0], "east");
 							}else{
@@ -355,9 +376,9 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 0, 4, 20, 32, "leg2_right");
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 12, 16, 20, 32, "leg2_behind");
 			// body
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 16, 20, 20, 32, "body_left");
+			//SkinBuild.buildPartOfImageEast(this, p, Image2, 16, 20, 20, 32, "body_left"); // no need, not seen
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 20, 28, 20, 32, "body_front");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 28, 32, 20, 32, "body_right");
+			//SkinBuild.buildPartOfImageEast(this, p, Image2, 28, 32, 20, 32, "body_right"); // no need, not seen
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 20, 32, "body_behind");
 			// arm1
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
@@ -398,9 +419,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 0, 4, 20, 32, "leg2_right");
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 12, 16, 20, 32, "leg2_behind");
 			// body
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 16, 20, 20, 32, "body_left");
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 20, 28, 20, 32, "body_front");
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 28, 32, 20, 32, "body_right");
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 32, 40, 20, 32, "body_behind");
 			// arm1
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
@@ -436,8 +455,8 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		//TODO: directions
 		/*
-		 * /skin [name] -d NORTH/EAST/WEST/SOUTH
-		 * /skin [name] -r 90/180/270/360
+		 * /skin [name] NORTH/EAST/WEST/SOUTH
+		 * /skin [name] 90/180/270/360
 		 * 
 		 */
 		

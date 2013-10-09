@@ -10,6 +10,31 @@ public class Blocks {
 	
 	// maybe for later use
 	
+	
+	/*
+	 * Hardened clay:
+		955B42
+		251711 black
+		4A3B5B blue
+		4C3223 brown
+		555A5A cyan
+		3B2C24 gray
+		5C532A green
+		706C8A light_blue
+		677433 lime
+		95586D magenta
+		A05325 orange
+		A45150 pink
+		734454 purple
+		8E3B2F red
+		866A61 silver
+		D1B1A1 white
+		BD8824 yellow
+		
+		82E4E0 Diamond_block
+		FFF144 Gold_BLOCK
+	 */
+	
 	public static Color white_clay = new Color(221, 221, 221);
 	public static Color orange_clay = new Color(219, 125, 62);
 	public static Color magenta_clay = new Color(179, 80, 188);
