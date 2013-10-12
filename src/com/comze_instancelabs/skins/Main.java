@@ -85,7 +85,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		if(getConfig().getBoolean("config.auto_updating")){
-        	Updater updater = new Updater(this, "skin-statue-builder", this.getFile(), Updater.UpdateType.DEFAULT, false);
+        	Updater updater = new Updater(this, 66523, this.getFile(), Updater.UpdateType.DEFAULT, false);
         }
 	}
 	
@@ -466,7 +466,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 8, 16, "hat_front");
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
 		}else if(direction.equalsIgnoreCase("west")){
-			// leg1
+			/*// leg1
 			SkinBuild.buildPartOfImageWest(this, p, Image2, 0, 4, 20, 32, "leg1_left");
 			SkinBuild.buildPartOfImageWest(this, p, Image2, 4, 8, 20, 32, "leg1_front");
 			SkinBuild.buildPartOfImageWest(this, p, Image2, 12, 16, 20, 32, "leg1_behind");
@@ -504,7 +504,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 56, 8, 16, "hat_right");
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");*/
 		}else if(direction.equalsIgnoreCase("north")){
 			
 		}
