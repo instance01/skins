@@ -688,4 +688,185 @@ public class SkinUndo {
 		}
 
 	}
+	
+	
+	
+	
+	// EAST FRONT/BEHIND CUBOID
+	public static void undoEastFront(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + i);
+	    		change.setType(Material.AIR);	
+			}
+		}
+	}
+	
+	// EAST FRONT/BEHIND CUBOID INVERTED
+	public static void undoEastFrontInvert(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+	    		change.setType(Material.AIR);
+			}
+		}
+	}
+	
+	// EAST RIGHT/LEFT CUBOID
+	public static void undoEastSide(Player p, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+				change.setType(Material.AIR);	
+			}
+		}
+	}
+	
+	
+	
+	
+	// WEST FRONT/BEHIND CUBOID
+	public static void undoWestFront(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
+	    		change.setType(Material.AIR);	
+			}
+		}
+	}
+	
+	// WEST FRONT/BEHIND CUBOID INVERTED
+	public static void undoWestFrontInvert(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+	    		change.setType(Material.AIR);	
+			}
+		}
+	}
+	
+	// WEST RIGHT/LEFT CUBOID
+	public static void undoWestSide(Player p, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
+				change.setType(Material.AIR);	
+			}
+		}
+	}
+	
+	
+	
+	// SOUTH FRONT/BEHIND CUBOID
+	public static void undoSouthFront(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
+	    		change.setType(Material.AIR);	
+			}
+		}
+	}
+	
+	// SOUTH FRONT/BEHIND CUBOID INVERTED
+	public static void undoSouthFrontInvert(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
+	    		change.setType(Material.AIR);
+			}
+		}
+	}
+	
+	// SOUTH RIGHT/LEFT CUBOID
+	public static void undoSouthSide(Player p, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+				change.setType(Material.AIR);
+			}
+		}
+	}
+	
+	
+	
+
+	// NORTH FRONT/BEHIND CUBOID
+	public static void undoNorthFront(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
+	    		change.setType(Material.AIR);
+			}
+		}
+	}
+	
+	// NORTH FRONT/BEHIND CUBOID INVERTED
+	public static void undoNorthFrontInvert(Player p, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+	    		change.setType(Material.AIR);
+			}
+		}
+	}
+	
+	// NORTH RIGHT/LEFT CUBOID
+	public static void undoNorthSide(Player p, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+				change.setType(Material.AIR);
+			}
+		}
+	}
+	
+
 }

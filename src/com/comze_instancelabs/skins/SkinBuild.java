@@ -561,12 +561,12 @@ public class SkinBuild {
 		
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
-				if(!isTransparent(bi, min_x + i, min_y + j)){
+				//if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + i);
 		    		change.setType(Material.WOOL);
 					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
-				}
+				//}
 			}
 		}
 	}
@@ -579,12 +579,12 @@ public class SkinBuild {
 		
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
-				if(!isTransparent(bi, min_x + i, min_y + j)){
+				//if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
 		    		change.setType(Material.WOOL);
 					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
-				}
+				//}
 			}
 		}
 	}
@@ -597,12 +597,12 @@ public class SkinBuild {
 		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if(!isTransparent(bi, min_x + i, min_y + j)){
+				//if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
 					change.setType(Material.WOOL);
 					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
-				}
+				//}
 			}
 		}
 	}
