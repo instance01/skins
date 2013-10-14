@@ -20,9 +20,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -37,9 +34,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -54,9 +48,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ() );
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -74,9 +65,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -98,9 +86,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -120,9 +105,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() - i + min_x + 3);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -141,9 +123,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y, start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -163,9 +142,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -188,9 +164,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -210,9 +183,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -231,9 +201,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -252,9 +219,6 @@ public class SkinUndo {
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
-		    		
-		    		
-		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX(),end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
@@ -1554,13 +1518,13 @@ public class SkinUndo {
 	public static void undoFullSouth(Location start) {
 		
 		int width = 16;
-		int length = 8;
+		int length = 10;
 		int height = 34;
 		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
-					Block change = start.getWorld().getBlockAt(start.getBlockX() - i + 4, start.getBlockY() + j, start.getBlockZ() + k);
+					Block change = start.getWorld().getBlockAt(start.getBlockX() - i + 4, start.getBlockY() + j, start.getBlockZ() + k - 1);
 					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
 						change.setType(Material.AIR);
 					}
@@ -1575,13 +1539,13 @@ public class SkinUndo {
 	public static void undoFullWest(Location start) {
 		
 		int width = 16;
-		int length = 8;
+		int length = 10;
 		int height = 34;
 		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
-					Block change = start.getWorld().getBlockAt(start.getBlockX() - k, start.getBlockY() + j, start.getBlockZ() - i + 4);
+					Block change = start.getWorld().getBlockAt(start.getBlockX() - k + 1, start.getBlockY() + j, start.getBlockZ() - i + 4);
 					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
 						change.setType(Material.AIR);
 					}
@@ -1596,13 +1560,13 @@ public class SkinUndo {
 	public static void undoFullNorth(Location start) {
 		
 		int width = 16;
-		int length = 8;
+		int length = 10;
 		int height = 34;
 		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
-					Block change = start.getWorld().getBlockAt(start.getBlockX() + i - 4, start.getBlockY() + j, start.getBlockZ() - k);
+					Block change = start.getWorld().getBlockAt(start.getBlockX() + i - 4, start.getBlockY() + j, start.getBlockZ() - k - 1);
 					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
 						change.setType(Material.AIR);
 					}

@@ -56,7 +56,6 @@ public class Main extends JavaPlugin implements Listener {
 	//TODO:
 	//FEATURES:
 	// [HIGH] cover all colors (1.6 Mio to go)
-	// [MEDIUM] directions
 	
 	
 	
@@ -152,11 +151,18 @@ public class Main extends JavaPlugin implements Listener {
 							}
 							
 							String direction = args[1];
+							String name = args[0];
 							sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
 							BufferedImage Image1 = null;
 							boolean cont = true;
 							try {
-							    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+								URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+							    /*if(name.equalsIgnoreCase("steve")){
+							    	url = new URL("http://minecraft.net/images/char.png");
+							    }else{
+							    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+							    }*/
+								
 							    Image1 = ImageIO.read(url);
 							} catch (IOException e) {
 								cont = false;
@@ -181,11 +187,18 @@ public class Main extends JavaPlugin implements Listener {
 								return true;
 							}
 							
+							String name = args[0];
 							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
 							BufferedImage Image1 = null;
 							boolean cont = true;
 							try {
-							    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+								URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+							    /*if(name.equalsIgnoreCase("steve")){
+							    	url = new URL("http://minecraft.net/images/char.png");
+							    }else{
+							    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+							    }*/
+							    
 							    Image1 = ImageIO.read(url);
 							} catch (IOException e) {
 								cont = false;
@@ -535,10 +548,15 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildSouthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 8, 16, "hat_front");
+			// hat_left
+			SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
+			// hat_right
+			SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
+			// hat_behind
+			SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
+			// hat_front
+			SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+			// hat_top
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
 		}else if(direction.equalsIgnoreCase("west")){
 			// leg1_left
@@ -561,8 +579,8 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildWestFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 5, c.getBlockY() + 12, c.getBlockZ()));
 			// arm1
 			//TODO: arm1_bottom, arm1_top
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm1_top");
 			// arm1_left
 			SkinBuild.buildWestSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 4));
 			// arm1_front
@@ -573,8 +591,8 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildWestFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() + 4));
 			// arm2
 			//TODO: arm2_bottom, arm2_top
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm2_top");
 			// arm2_left
 			SkinBuild.buildWestSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 8));
 			// arm2_front
@@ -591,16 +609,22 @@ public class Main extends JavaPlugin implements Listener {
 			// head_behind
 			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			//TODO: head_top
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 16, 24, 0, 8, "head_bottom");
 			// head_front
 			SkinBuild.buildWestFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
 			//TODO: hat layers
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			//SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			// hat_left
+			SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+			// hat_right
+			SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+			// hat_behind
+			SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
+			// hat_front
+			SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+			// hat_top
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
 		}else if(direction.equalsIgnoreCase("north")){
 			// leg1_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
