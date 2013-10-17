@@ -430,7 +430,7 @@ public class SkinBuild {
 		if(component.equalsIgnoreCase("hat_top")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
@@ -462,7 +462,7 @@ public class SkinBuild {
 		if(component.equalsIgnoreCase("arm1_bottom")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 5);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 4);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
@@ -484,7 +484,7 @@ public class SkinBuild {
 		}else if(component.equalsIgnoreCase("arm1_top")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 5);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 4);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
@@ -510,7 +510,7 @@ public class SkinBuild {
 		if(component.equalsIgnoreCase("arm2_bottom")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 1);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
@@ -522,7 +522,7 @@ public class SkinBuild {
 		    		
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
-		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() - i + max_x);
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
 					////getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.WOOL);
 					change.setData(DyeColor.BLACK.getData());
@@ -532,7 +532,7 @@ public class SkinBuild {
 		}else if(component.equalsIgnoreCase("arm2_top")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 6);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
@@ -560,7 +560,7 @@ public class SkinBuild {
 		if(component.equalsIgnoreCase("head_bottom")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 8, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
@@ -581,7 +581,7 @@ public class SkinBuild {
 		}else if(component.equalsIgnoreCase("head_top")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 8);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 
 			////getLogger().info(start.toString());
@@ -656,7 +656,7 @@ public class SkinBuild {
 		}else if(component.equalsIgnoreCase("hat_right")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);
 			
 			////getLogger().info(start.toString());
@@ -702,7 +702,7 @@ public class SkinBuild {
 		}else if(component.equalsIgnoreCase("hat_top")){
 			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 8, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
@@ -715,7 +715,7 @@ public class SkinBuild {
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		if(!isTransparent(bi, i, j)){
-			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() + 1, start.getBlockZ() - j + max_y);
+			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY() + 1, start.getBlockZ() + i - min_x);
 						////getLogger().info(change.getLocation().toString());
 			    		change.setType(Material.WOOL);
 			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
