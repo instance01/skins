@@ -733,7 +733,6 @@ public class SkinSmooth {
 	}
 	
 	
-	//TODO MID
 	public static void smoothPartOfImageWest(Main m, Location t, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		main = m;
 		if(component.equalsIgnoreCase("arm1_bottom")){
@@ -889,8 +888,353 @@ public class SkinSmooth {
 		}
 	}
 		
+
+	public static void smoothPartOfImageSouth(Main m, Location t, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+		main = m;
+		if(component.equalsIgnoreCase("arm1_bottom")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ() + 5);
+			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
+					////getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm1_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() + 5);
+			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
+					////getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}
 		
 		
+		
+		if(component.equalsIgnoreCase("arm2_bottom")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX() - 7, t.getBlockY() + 13, t.getBlockZ() + 1);
+			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 13, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() - i + max_x);
+					////getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm2_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ() + 6);
+			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x,end.getBlockY(),start.getBlockZ() + j - max_y);
+					////getLogger().info(change.getLocation().toString());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}
+		
+		
+		
+		
+		
+		if(component.equalsIgnoreCase("head_bottom")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 25, t.getBlockZ());
+			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 25, t.getBlockZ() + 8);
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1,end.getBlockY(), start.getBlockZ() + i - min_x);
+					////getLogger().info(change.getLocation().toString());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("head_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 32, t.getBlockZ());
+			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 32, t.getBlockZ() + 8);
+
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+
+
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+
+		    		Color c = new Color(bi.getRGB(i, j));
+
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + i - max_x + 1,end.getBlockY(), start.getBlockZ() - j + max_y - 1);
+					////getLogger().info(change.getLocation().toString());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}
+	}
+
+	
+	public static void smoothPartOfImageNorth(Main m, Location t, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+		main = m;
+		if(component.equalsIgnoreCase("arm1_bottom")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 13, t.getBlockZ() - 1);
+			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
+					////getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm1_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 24, t.getBlockZ() - 1);
+			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
+					////getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}
+		
+		
+		
+		if(component.equalsIgnoreCase("arm2_bottom")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ() - 1);
+			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 13, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
+					////getLogger().info(change.getLocation().toString());
+		    		change.setType(Material.WOOL);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("arm2_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() - 6);
+			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ());
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + i - max_x,end.getBlockY(),start.getBlockZ() - j + max_y);
+					////getLogger().info(change.getLocation().toString());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}
+		
+		
+		
+		
+		
+		if(component.equalsIgnoreCase("head_bottom")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 25, t.getBlockZ());
+			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 25, t.getBlockZ() + 8);
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1,end.getBlockY(), start.getBlockZ() + i - min_x);
+					////getLogger().info(change.getLocation().toString());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}else if(component.equalsIgnoreCase("head_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 32, t.getBlockZ() + 1);
+			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 32, t.getBlockZ() + 8);
+
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+
+
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+
+		    		Color c = new Color(bi.getRGB(i, j));
+
+		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x,end.getBlockY(), start.getBlockZ() + j - max_y);
+					////getLogger().info(change.getLocation().toString());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+		    	}
+		    }	
+		}
+		
+		
+		
+		
+		
+		
+		if(component.equalsIgnoreCase("hat_top")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 32, t.getBlockZ() - 8);
+			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 32, t.getBlockZ() + 8);
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		if(!isTransparent(bi, i, j)){
+			    		Block change = t.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() + 1, start.getBlockZ() - j + max_y);
+						////getLogger().info(change.getLocation().toString());
+			    		if(m.isHumanSkin(c)){
+			    			change.setType(Material.WOOD);
+			    			change.setData((byte)2);
+			    		}
+		    		}
+		    	}
+		    }	
+		}
+
+	}
+	
 	
 	// WEST FRONT/BEHIND CUBOID
 	public static void smoothWestFront(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
@@ -946,6 +1290,116 @@ public class SkinSmooth {
 		}
 	}
 
+	
+	// SOUTH FRONT/BEHIND CUBOID
+	public static void smoothSouthFront(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+	    		Block change = w.getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
+	    		if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+	
+	// SOUTH FRONT/BEHIND CUBOID INVERTED
+	public static void smoothSouthFrontInvert(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+	    		Block change = w.getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
+	    		if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+	
+	// SOUTH RIGHT/LEFT CUBOID
+	public static void smoothSouthSide(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = w.getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+				if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+
+
+	// NORTH FRONT/BEHIND CUBOID
+	public static void smoothNorthFront(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+	    		Block change = w.getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
+	    		if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+	
+	// NORTH FRONT/BEHIND CUBOID INVERTED
+	public static void smoothNorthFrontInvert(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+	    		Block change = w.getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+	    		if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+	
+	// NORTH RIGHT/LEFT CUBOID
+	public static void smoothNorthSide(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = w.getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+				if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+		
 	
 	public static boolean isTransparent(BufferedImage img, int x, int y) {
 		int pixel = img.getRGB(x, y);
