@@ -170,9 +170,6 @@ public class Main extends JavaPlugin implements Listener {
 							}
 							
 							if(cont){
-								//TODO: support numbers: 90, 180, 270, 360
-								String look_direction = getCardinalDirection(p);
-								
 								List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 								if(places.contains(direction)){
 									build(p, Image1, args[0], direction);
@@ -209,7 +206,12 @@ public class Main extends JavaPlugin implements Listener {
 							}
 							
 							if(cont){
-								build(p, Image1, args[0], "east");
+								String look_direction = getCardinalDirection(p);
+								if(look_direction != null){
+									build(p, Image1, args[0], look_direction); // builds in direction player is facing
+								}else{
+									build(p, Image1, args[0], "east");
+								}
 							}else{
 								p.sendMessage("§4Playername not found!");
 							}
