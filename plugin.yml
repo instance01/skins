@@ -1,6 +1,6 @@
 name: Skins
 main: com.comze_instancelabs.skins.Main
-version: 1.3
+version: 1.3.1
 author: instancelabs
 commands:
    skin:

@@ -55,7 +55,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//TODO:
 	//FEATURES:
-	// [HIGH] cover all colors (1.6 Mio to go)
+	// [HIGH] cover all colors (1.4 Mio to go)
 	
 	
 	
@@ -170,6 +170,9 @@ public class Main extends JavaPlugin implements Listener {
 							}
 							
 							if(cont){
+								//TODO: support numbers: 90, 180, 270, 360
+								String look_direction = getCardinalDirection(p);
+								
 								List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 								if(places.contains(direction)){
 									build(p, Image1, args[0], direction);
@@ -590,7 +593,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		Location c = p.getLocation();
 		
-		if(direction.equalsIgnoreCase("east")){
+		if(direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("e")){
 			// leg1_left
 			SkinBuild.buildEastSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ()));
 			// leg1_front
@@ -650,7 +653,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
 			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");
 			//SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
-		}else if(direction.equalsIgnoreCase("south")){
+		}else if(direction.equalsIgnoreCase("south") || direction.equalsIgnoreCase("s")){
 			// leg1_left
 			SkinBuild.buildSouthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 1));
 			// leg1_front
@@ -713,7 +716,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// hat_top
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
-		}else if(direction.equalsIgnoreCase("west")){
+		}else if(direction.equalsIgnoreCase("west") || direction.equalsIgnoreCase("w")){
 			// leg1_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
 			// leg1_front
@@ -777,7 +780,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// hat_top
 			SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
-		}else if(direction.equalsIgnoreCase("north")){
+		}else if(direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("n")){
 			// leg1_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
 			// leg1_front
@@ -927,6 +930,21 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GRAY";
 		}else if(s > 0.29 && s < 0.6 && v < 0.2){
 			ret = "GRAY";
+		//TODO:NEW COLORS
+		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
+			ret = "BLUE";
+		}else if(h > 0.5 && h < 0.602777 && v < 0.13){
+			ret = "BLACK";	
+		}else if(h > 0.95833333 && s > 0.7 && v > 0.19 && v < 0.4){
+			ret = "RED";
+		}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
+			ret = "PURPLE";
+		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
+			ret = "CYAN";
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.6 && v < 0.85){
+			ret = "LIGHT_BLUE";
+		}else if(s < 0.31 && v < 0.16){
+			ret = "BLACK";
 		}else{
 			ret = "WHITE"; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -1079,6 +1097,21 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // TEST
 			ret = true; // HUMAN SKIN
+		//TODO:NEW COLORS [TEST]
+		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
+			ret = true;
+		}else if(h > 0.5666666 && h < 0.602777 && v < 0.13){
+			ret = true;	
+		}else if(h > 0.95833333 && s > 0.7 && v > 0.19 && v < 0.4){
+			ret = true;
+		}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
+			ret = true;
+		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
+			ret = true;
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.6 && v < 0.85){
+			ret = true;
+		}else if(s < 0.31 && v < 0.16){
+			ret = true;
 		}else{
 			ret = false; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -1112,4 +1145,33 @@ public class Main extends JavaPlugin implements Listener {
 		
 		return ret;
 	}
+	
+	
+	public static String getCardinalDirection(Player player) {
+        double rotation = (player.getLocation().getYaw() - 90) % 360;
+        if (rotation < 0) {
+            rotation += 360.0;
+        }
+         if (0 <= rotation && rotation < 22.5) {
+            return "north"; // N
+        } else if (22.5 <= rotation && rotation < 67.5) {
+            return "north"; // NE
+        } else if (67.5 <= rotation && rotation < 112.5) {
+            return "east"; // E
+        } else if (112.5 <= rotation && rotation < 157.5) {
+            return "east"; // SE
+        } else if (157.5 <= rotation && rotation < 202.5) {
+            return "south"; // S
+        } else if (202.5 <= rotation && rotation < 247.5) {
+            return "south"; // SW
+        } else if (247.5 <= rotation && rotation < 292.5) {
+            return "west"; // W
+        } else if (292.5 <= rotation && rotation < 337.5) {
+            return "west"; // NW
+        } else if (337.5 <= rotation && rotation < 360.0) {
+            return "north"; // N
+        } else {
+            return null;
+        }
+    }
 }
