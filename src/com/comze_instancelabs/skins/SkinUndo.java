@@ -1566,7 +1566,7 @@ public class SkinUndo {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
-					Block change = start.getWorld().getBlockAt(start.getBlockX() + i - 4, start.getBlockY() + j, start.getBlockZ() - k - 1);
+					Block change = start.getWorld().getBlockAt(start.getBlockX() + i - 4, start.getBlockY() + j, start.getBlockZ() - k + 1);
 					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
 						change.setType(Material.AIR);
 					}

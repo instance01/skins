@@ -194,7 +194,7 @@ public class Main extends JavaPlugin implements Listener {
 							boolean cont = true;
 							try {
 								URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-							    /*if(name.equalsIgnoreCase("steve")){
+								/*if(name.equalsIgnoreCase("steve")){
 							    	url = new URL("http://minecraft.net/images/char.png");
 							    }else{
 							    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
@@ -206,7 +206,7 @@ public class Main extends JavaPlugin implements Listener {
 							}
 							
 							if(cont){
-								String look_direction = getCardinalDirection(p);
+								String look_direction = getDirection(p.getLocation().getYaw());
 								if(look_direction != null){
 									build(p, Image1, args[0], look_direction); // builds in direction player is facing
 								}else{
@@ -1176,4 +1176,18 @@ public class Main extends JavaPlugin implements Listener {
             return null;
         }
     }
+	
+	
+	
+	public String getDirection(Float yaw)
+	{
+	    yaw = yaw / 90;
+	    yaw = (float)Math.round(yaw);
+	 
+	    if (yaw == -4 || yaw == 0 || yaw == 4) {return "SOUTH";}
+	    if (yaw == -1 || yaw == 3) {return "EAST";}
+	    if (yaw == -2 || yaw == 2) {return "NORTH";}
+	    if (yaw == -3 || yaw == 1) {return "WEST";}
+	    return "";
+	}
 }
