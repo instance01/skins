@@ -55,7 +55,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//TODO:
 	//FEATURES:
-	// [HIGH] cover all colors (1.4 Mio to go)
+	// [HIGH] cover all colors (1.19 Mio to go)
 	
 	
 	
@@ -943,13 +943,19 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PURPLE";
 		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
 			ret = "CYAN";
-		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.6 && v < 0.85){
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
 			ret = "LIGHT_BLUE";
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
+			ret = "BLUE";
+		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
+			ret = "BLUE";
 		}else if(s < 0.31 && v < 0.16){
 			ret = "BLACK";
 		}else{
 			ret = "WHITE"; // nothing matched
-			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
@@ -1099,6 +1105,8 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // TEST
 			ret = true; // HUMAN SKIN
+		}else if(h > 0.044 && h < 0.09 && s > 0.3 && s < 0.6 && v > 0.84){
+			ret = true; // HUMAN SKIN
 		//TODO:NEW COLORS [TEST]
 		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
 			ret = true;
@@ -1110,7 +1118,13 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
 			ret = true;
-		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.6 && v < 0.85){
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
+			ret = true;
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
+			ret = true;
+		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
+			ret = true;
+		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
 			ret = true;
 		}else if(s < 0.31 && v < 0.16){
 			ret = true;
@@ -1140,6 +1154,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // h > 0.722222
 			ret = true;
+		}else if(h > 0.044 && h < 0.09 && s > 0.3 && s < 0.6 && v > 0.84){
+			// TODO NEW
+			ret = true;
 		}else{
 			ret = false; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -1149,35 +1166,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	public static String getCardinalDirection(Player player) {
-        double rotation = (player.getLocation().getYaw() - 90) % 360;
-        if (rotation < 0) {
-            rotation += 360.0;
-        }
-         if (0 <= rotation && rotation < 22.5) {
-            return "north"; // N
-        } else if (22.5 <= rotation && rotation < 67.5) {
-            return "north"; // NE
-        } else if (67.5 <= rotation && rotation < 112.5) {
-            return "east"; // E
-        } else if (112.5 <= rotation && rotation < 157.5) {
-            return "east"; // SE
-        } else if (157.5 <= rotation && rotation < 202.5) {
-            return "south"; // S
-        } else if (202.5 <= rotation && rotation < 247.5) {
-            return "south"; // SW
-        } else if (247.5 <= rotation && rotation < 292.5) {
-            return "west"; // W
-        } else if (292.5 <= rotation && rotation < 337.5) {
-            return "west"; // NW
-        } else if (337.5 <= rotation && rotation < 360.0) {
-            return "north"; // N
-        } else {
-            return null;
-        }
-    }
-	
-	
+
 	
 	public String getDirection(Float yaw)
 	{
