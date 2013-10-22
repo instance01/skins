@@ -55,7 +55,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//TODO:
 	//FEATURES:
-	// [HIGH] cover all colors (1.19 Mio to go)
+	// [HIGH] cover all colors (1.12 Mio to go)
 	
 	
 	
@@ -243,9 +243,26 @@ public class Main extends JavaPlugin implements Listener {
 				        }
 				    };
 				    new Thread(r).start();
+				}else if(args[0].equalsIgnoreCase("startwithlog")){ // /colortest startwithlog
+					poscount = 0;
+					negcount = 0;
+					Runnable r = new Runnable() {
+				        public void run() {
+				        	colorTestLog();
+				        }
+				    };
+				    new Thread(r).start();
 				}else if(args[0].equalsIgnoreCase("status")){ // /colortest status
 					sender.sendMessage("§2Pos count: " + Integer.toString(poscount));
 					sender.sendMessage("§4Neg count: " + Integer.toString(negcount));
+				}else if(args[0].equalsIgnoreCase("punchcard")){ // /colortest punchcard
+					sender.sendMessage("§3Building Punchcard . . .");
+					Runnable r = new Runnable() {
+				        public void run() {
+				        	createPunchcard();
+				        }
+				    };
+				    new Thread(r).start();
 				}
 			}else{
 				sender.sendMessage("§3/colortest start");
@@ -874,7 +891,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "RED";
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 			ret = "ORANGE";
-		}else if(s > 0.4 && v < 0.801 && v > 0.2 && h > 0.02 && h < 0.15){ // v < 0.5
+		}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = "BROWN";
@@ -953,6 +970,27 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BLUE";
 		}else if(s < 0.31 && v < 0.16){
 			ret = "BLACK";
+		//TODO:NEW COLORS 2:
+		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+			ret = "BLACK";
+		}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = "BLUE";
+		}else if(h > 0.4 && h < 0.53 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = "CYAN";
+		}else if(h < 0.4 && h > 0.2777777 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = "GREEN";
+		}else if(h < 0.25 && h > 0.2 && s > 0.6 && v < 0.25 && v > 0.15){
+			ret = "BROWN";
+		}else if(h > 833333 && h < 94 && s > 0.6 && v < 0.4 && v > 0.15){
+			ret = "PURPLE";
+		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v > 0.8){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.541 && h < 0.64 && s < 0.4 && s > 0.2 && v > 0.3){
+			ret = "BLUE";
+		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v < 0.5 && v > 0.2){
+			ret = "BLUE";
+		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+			ret = "GRAY";
 		}else{
 			ret = "WHITE"; // nothing matched
 			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -1045,7 +1083,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){
 			ret = true;
-		}else if(s > 0.4 && v < 0.801 && v > 0.2 && h > 0.02 && h < 0.15){
+		}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){
 			ret = true;
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = true;
@@ -1103,9 +1141,11 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(s > 0.29 && s < 0.6 && v < 0.2){
 			ret = true;
-		}else if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // TEST
+		}else if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){
 			ret = true; // HUMAN SKIN
 		}else if(h > 0.044 && h < 0.09 && s > 0.3 && s < 0.6 && v > 0.84){
+			ret = true; // HUMAN SKIN
+		}else if(h > 0.110 && h < 0.1389 && s < 0.6 && s > 0.3 && v > 0.74 && v < 0.91){
 			ret = true; // HUMAN SKIN
 		//TODO:NEW COLORS [TEST]
 		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
@@ -1127,6 +1167,27 @@ public class Main extends JavaPlugin implements Listener {
 		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
 			ret = true;
 		}else if(s < 0.31 && v < 0.16){
+			ret = true;
+		//TODO: NEW COLORS 2 [TEST]
+		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+			ret = true;
+		}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = true;
+		}else if(h > 0.4 && h < 0.53 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = true;
+		}else if(h < 0.4 && h > 0.2777777 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = true;
+		}else if(h < 0.25 && h > 0.2 && s > 0.6 && v < 0.25 && v > 0.15){
+			ret = true;
+		}else if(h > 833333 && h < 94 && s > 0.6 && v < 0.4 && v > 0.15){
+			ret = true;
+		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v > 0.8){
+			ret = true;
+		}else if(h > 0.541 && h < 0.64 && s < 0.4 && s > 0.2 && v > 0.3){
+			ret = true;
+		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v < 0.5 && v > 0.2){
+			ret = true;
+		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
 			ret = true;
 		}else{
 			ret = false; // nothing matched
@@ -1154,8 +1215,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if(h > 0.068 && h < 0.1194444 && s > 0.2 && s < 0.6 && v > 0.7){ // h > 0.722222
 			ret = true;
-		}else if(h > 0.044 && h < 0.09 && s > 0.3 && s < 0.6 && v > 0.84){
-			// TODO NEW
+		}else if(h > 0.044 && h < 0.09 && s > 0.3 && s < 0.6 && v > 0.84){ // NEW
+			ret = true;
+		}else if(h > 0.110 && h < 0.1389 && s < 0.6 && s > 0.3 && v > 0.74 && v < 0.91){ // NEW 2
 			ret = true;
 		}else{
 			ret = false; // nothing matched
@@ -1166,6 +1228,57 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
+	public void createPunchcard(){
+		for(int b = 0; b <= 255; b++){
+			// for each brightness step:
+			BufferedImage newb = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
+			for(int r = 0; r <= 255; r++){
+				for(int g = 0; g <= 255; g++){
+					Color c = new Color(r, g, b);
+					
+					if(getStringFromColorTEST(c)){
+						newb.setRGB(r, g, c.getRGB());
+					}else{
+						//newb.setRGB(r, g, Color.WHITE.getRGB());
+					}
+				}
+			}
+			
+		    File outputfile = new File("plugins/Skins/" + Integer.toString(b) + ".png");
+		    try {
+				ImageIO.write(newb, "png", outputfile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		getLogger().info("Finished creating punchcard.");
+		
+		
+		/*for(int r = 0; r <= 255; r++){
+			for(int g = 0; g <= 255; g++){
+				for(int b = 0; b <= 255; b++){
+					Color c = new Color(r, g, b);
+					
+					if(getStringFromColorTEST(c)){
+						
+					}else{
+						
+					}
+				}
+			}
+		}	
+
+		for(int h = 0; h < 360; h++){ // hue
+			for(int s = 0; s < 100; s++){ // saturation
+				for(int b = 0; b < 100; b++){ // brightness
+					Color c = Color.getHSBColor(h, s, b);
+					
+				}
+			}
+		}*/
+		
+	}
 
 	
 	public String getDirection(Float yaw)
