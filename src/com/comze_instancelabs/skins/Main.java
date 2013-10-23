@@ -82,6 +82,15 @@ public class Main extends JavaPlugin implements Listener {
 			// Failed to submit the stats :(
 		}
 		
+		
+		// own metrics system, still in testing
+		// will replace Hidendras metrics system (above) with this one, if it works
+		try {
+			MyMetrics m = new MyMetrics(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		if(getConfig().getBoolean("config.auto_updating")){
         	Updater updater = new Updater(this, 66523, this.getFile(), Updater.UpdateType.DEFAULT, false);
         }
@@ -993,7 +1002,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GRAY";
 		}else{
 			ret = "WHITE"; // nothing matched
-			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
