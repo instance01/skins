@@ -726,8 +726,7 @@ public class SkinBuild {
 	}
 
 	
-	
-	//TODO: NORTH
+
 	public static void buildPartOfImageNorth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		main = m;
 		if(component.equalsIgnoreCase("arm1_bottom")){

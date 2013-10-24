@@ -1456,7 +1456,7 @@ public class Main extends JavaPlugin implements Listener {
 		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
 			ret = "GRAY";
 		}else{
-			ret = "WHITE"; // nothing matched
+			ret = "NULL"; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
