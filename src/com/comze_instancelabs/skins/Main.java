@@ -82,7 +82,7 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().options().copyDefaults(true);
 		this.saveConfig();
 		
-		try {
+		try{
 			Metrics metrics = new Metrics(this);
 			metrics.start();
 		} catch (IOException e) {
@@ -135,8 +135,38 @@ public class Main extends JavaPlugin implements Listener {
 						}
 						
 					}else if(action.equalsIgnoreCase("smooth")){ // /skin smooth
-						if(args.length > 1){
-							if(args[1].equalsIgnoreCase("clay")){ // skin smooth clay
+						Player p = null;
+						try{
+							p = (Player)sender;
+						}catch(Exception e){
+							sender.sendMessage("§4Please execute this command ingame.");
+						}
+						
+						if(p != null){
+							if(undoloc.containsKey(p)){
+								Location t = undoloc.get(p);
+								String skin = undoskin.get(p);
+								String dir = undodir.get(p);
+								boolean cont = true;
+								BufferedImage Image1 = null;
+								try {
+								    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+								    Image1 = ImageIO.read(url);
+								} catch (IOException e) {
+									cont = false;
+								}
+
+								if(cont){
+									smooth(t, Image1, dir);
+								}else{
+									p.sendMessage("§4Playername not found!");
+								}
+								
+							}
+						}
+					}else{						
+						if(args.length > 1){ // /skin [name] [direction]
+							if(args[1].equalsIgnoreCase("clay")){ // /skin [name] clay
 								Player p = null;
 								try{
 									p = (Player)sender;
@@ -165,81 +195,80 @@ public class Main extends JavaPlugin implements Listener {
 										}
 										
 									}
-								}		
-							}else{
-								sender.sendMessage("§2Possible smooth types: [clay]. Usage: §3/skin mooth §4or §3/skin smooth clay");
-							}
-						}else{
-							Player p = null;
-							try{
-								p = (Player)sender;
-							}catch(Exception e){
-								sender.sendMessage("§4Please execute this command ingame.");
-							}
-							
-							if(p != null){
-								if(undoloc.containsKey(p)){
-									Location t = undoloc.get(p);
-									String skin = undoskin.get(p);
-									String dir = undodir.get(p);
-									boolean cont = true;
-									BufferedImage Image1 = null;
-									try {
-									    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
-									    Image1 = ImageIO.read(url);
-									} catch (IOException e) {
-										cont = false;
-									}
-	
-									if(cont){
-										smooth(t, Image1, dir);
-									}else{
-										p.sendMessage("§4Playername not found!");
-									}
-									
 								}
-							}	
-						}
-						
-						
-					}else{
-						if(args.length > 1){ // /skin [name] [direction]
-							Player p = null;
-							try{
-								p = (Player)sender;	
-							}catch(Exception e){
-								sender.sendMessage("§4Please execute this command ingame.");
-								return true;
-							}
-							
-							String direction = args[1];
-							String name = args[0];
-							sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
-							BufferedImage Image1 = null;
-							boolean cont = true;
-							try {
-								URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-							    /*if(name.equalsIgnoreCase("steve")){
-							    	url = new URL("http://minecraft.net/images/char.png");
-							    }else{
-							    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-							    }*/
+							}else{  // /skin [name] [direction]
+								if(args.length > 2){ // /skin [name] [direction] clay
+									if(args[2].equalsIgnoreCase("clay")){
+										Player p = null;
+										try{
+											p = (Player)sender;
+										}catch(Exception e){
+											sender.sendMessage("§4Please execute this command ingame.");
+										}
+										
+										if(p != null){
+											if(undoloc.containsKey(p)){
+												Location t = undoloc.get(p);
+												String skin = undoskin.get(p);
+												String dir = undodir.get(p);
+												boolean cont = true;
+												BufferedImage Image1 = null;
+												try {
+												    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+												    Image1 = ImageIO.read(url);
+												} catch (IOException e) {
+													cont = false;
+												}
+				
+												if(cont){
+													build(p, Image1, skin, dir);
+													buildclay(p, Image1, skin, dir);
+												}else{
+													p.sendMessage("§4Playername not found!");
+												}
+												
+											}
+										}
+									}
+								}
+								Player p = null;
+								try{
+									p = (Player)sender;	
+								}catch(Exception e){
+									sender.sendMessage("§4Please execute this command ingame.");
+									return true;
+								}
 								
-							    Image1 = ImageIO.read(url);
-							} catch (IOException e) {
-								cont = false;
+								String direction = args[1];
+								String name = args[0];
+								sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+								BufferedImage Image1 = null;
+								boolean cont = true;
+								try {
+									URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+								    /*if(name.equalsIgnoreCase("steve")){
+								    	url = new URL("http://minecraft.net/images/char.png");
+								    }else{
+								    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+								    }*/
+									
+								    Image1 = ImageIO.read(url);
+								} catch (IOException e) {
+									cont = false;
+								}
+								
+								if(cont){
+									List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
+									if(places.contains(direction)){
+										build(p, Image1, args[0], direction);
+									}else{
+										sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+									}
+								}else{
+									p.sendMessage("§4Playername not found!");
+								}	
 							}
 							
-							if(cont){
-								List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
-								if(places.contains(direction)){
-									build(p, Image1, args[0], direction);
-								}else{
-									sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
-								}
-							}else{
-								p.sendMessage("§4Playername not found!");
-							}
 						}else{ // /skin [name]
 							Player p = null;
 							try{
@@ -343,12 +372,62 @@ public class Main extends JavaPlugin implements Listener {
         task = getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable(){
             public void run() {
                 // update skins
-            	// 
+            	update_func();
             }
         }, 0, interval * 1200);
 
         return true;
 	}
+	
+	
+	public void update_func(){
+		for(String skin : getConfig().getConfigurationSection("skins.").getKeys(false)){
+			if(isValidSkin(skin)){
+				boolean cont = true;
+				BufferedImage Image1 = null;
+				BufferedImage local = null;
+				try {
+				    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+				    Image1 = ImageIO.read(url);
+				} catch (IOException e) {
+					cont = false;
+				}
+				
+				try {
+					local = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + skin + ".png"));
+				} catch (IOException e) {
+					cont = false;
+				}
+				
+				if(!bufferedImagesEqual(local, Image1)){
+					// TODO: Build skin
+				}
+			}
+		}
+	}
+	
+	
+	public boolean isValidSkin(String skin){
+		if(getConfig().isSet("skins." + skin + ".name") && getConfig().isSet("skins." + skin + ".location") && getConfig().isSet("skins." + skin + ".direction")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
+		if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
+			for (int x = 0; x < img1.getWidth(); x++) {
+				for (int y = 0; y < img1.getHeight(); y++) {
+					if (img1.getRGB(x, y) != img2.getRGB(x, y)) return false;
+				}
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
+		  
 	
 	
 	public void saveSkin(Location t, String skin, String direction){
@@ -359,6 +438,22 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().set("skins." + skin + ".location.world", t.getWorld().getName());
 		getConfig().set("skins." + skin + ".direction", direction);
 		this.saveConfig();
+		
+		boolean cont = true;
+		BufferedImage Image1 = null;
+		try {
+		    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+		    Image1 = ImageIO.read(url);
+		} catch (IOException e) {
+			cont = false;
+		}
+		
+		File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
+		try {
+			ImageIO.write(Image1, "png", outputfile);
+		} catch (IOException e) {
+			//
+		}
 	}
 	
 	
@@ -370,6 +465,13 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		this.saveConfig();
+		
+		try{
+			File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
+			outputfile.delete();	
+		}catch(Exception e){
+			//
+		}
 	}
 	
 	
@@ -585,11 +687,8 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	private void undo(Player p, Location t, String direction){
-		//TODO: skin_updating
 		if(skin_updating){
 			removeSkin(undoskin.get(p));	
-			// remove image from plugin folder:
-			//this.getDataFolder();
 		}
 		
 		undoloc.remove(p);
@@ -722,6 +821,267 @@ public class Main extends JavaPlugin implements Listener {
 		
 		Location c = p.getLocation();
 		
+		
+		// FIRST BUILD NORMAL WOOL:
+		if(direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("e")){
+			// leg1_left
+			SkinBuild.buildEastSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ()));
+			// leg1_front
+			SkinBuild.buildEastFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY(), c.getBlockZ()));
+			// leg1_ behind
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY(), c.getBlockZ() - 1));
+			// leg2
+			//SkinBuild.buildPartOfImageEast(this, p, Image2, 8, 12, 20, 32, "leg2_right");
+			// leg2_right
+			SkinBuild.buildEastSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 7));
+			// leg2_ front
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY(), c.getBlockZ() + 3));
+			// leg2_behind
+			SkinBuild.buildEastFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY(), c.getBlockZ() + 4));
+			// body
+			// body_front
+			SkinBuild.buildEastFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ()));
+			// body_behind
+			SkinBuild.buildEastFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ()));
+			// arm1
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			// arm1_left
+			SkinBuild.buildEastSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() - 4));
+			// arm1_front
+			SkinBuild.buildEastFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ() - 4));
+			// arm1_right
+			SkinBuild.buildEastSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() - 1));
+			// arm1_behind
+			SkinBuild.buildEastFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ() - 4));
+			// arm2
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			// arm2_left
+			SkinBuild.buildEastSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 11));
+			// arm2_front
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ() + 7));
+			// arm2_right
+			SkinBuild.buildEastSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 8));
+			// arm2_behind
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ() + 7));
+			// head
+			// head_left
+			SkinBuild.buildEastSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ()));
+			// head_right
+			SkinBuild.buildEastSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 7));
+			// head_behind
+			SkinBuild.buildEastFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			// head_front
+			SkinBuild.buildEastFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			// hat layers
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			//SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
+		}else if(direction.equalsIgnoreCase("south") || direction.equalsIgnoreCase("s")){
+			// leg1_left
+			SkinBuild.buildSouthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 1));
+			// leg1_front
+			SkinBuild.buildSouthFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 2));
+			// leg1_ behind
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 5));
+			// leg2
+			// leg2_right
+			SkinBuild.buildSouthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY(), c.getBlockZ() + 1));
+			// leg2_ front
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 3, c.getBlockY(), c.getBlockZ() + 2));
+			// leg2_behind
+			SkinBuild.buildSouthFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 4, c.getBlockY(), c.getBlockZ() + 5));
+			// body
+			// body_front
+			SkinBuild.buildSouthFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 2));
+			// body_behind
+			SkinBuild.buildSouthFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 5));
+			// arm1
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			// arm1_left
+			SkinBuild.buildSouthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 1));
+			// arm1_front
+			SkinBuild.buildSouthFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 2));
+			// arm1_right
+			SkinBuild.buildSouthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 1));
+			// arm1_behind
+			SkinBuild.buildSouthFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 5));
+			// arm2
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			// arm2_left
+			SkinBuild.buildSouthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 11, c.getBlockY() + 12, c.getBlockZ() + 1));
+			// arm2_front
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 2));
+			// arm2_right
+			SkinBuild.buildSouthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 12, c.getBlockZ() + 1));
+			// arm2_behind
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 5));
+			// head
+			// head_left
+			SkinBuild.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+			// head_right
+			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1));
+			// head_behind
+			SkinBuild.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			// head_front
+			SkinBuild.buildSouthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			// hat layers
+			// hat_left
+			SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
+			// hat_right
+			SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
+			// hat_behind
+			SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
+			// hat_front
+			SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+			// hat_top
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+		}else if(direction.equalsIgnoreCase("west") || direction.equalsIgnoreCase("w")){
+			// leg1_left
+			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
+			// leg1_front
+			SkinBuild.buildWestFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ()));
+			// leg1_ behind
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() + 1));
+			// leg2
+			// leg2_right
+			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 7));
+			// leg2_ front
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ() - 3));
+			// leg2_behind
+			SkinBuild.buildWestFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() - 4));
+			// body
+			// body_front
+			SkinBuild.buildWestFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 2, c.getBlockY() + 12, c.getBlockZ()));
+			// body_behind
+			SkinBuild.buildWestFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 5, c.getBlockY() + 12, c.getBlockZ()));
+			// arm1
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			// arm1_left
+			SkinBuild.buildWestSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 4));
+			// arm1_front
+			SkinBuild.buildWestFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() + 4));
+			// arm1_right
+			SkinBuild.buildWestSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 1));
+			// arm1_behind
+			SkinBuild.buildWestFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() + 4));
+			// arm2
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			// arm2_left
+			SkinBuild.buildWestSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 11));
+			// arm2_front
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() - 7));
+			// arm2_right
+			SkinBuild.buildWestSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 8));
+			// arm2_behind
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() - 7));
+			// head
+			// head_left
+			SkinBuild.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+			// head_right
+			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7));
+			// head_behind
+			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
+			// head_top and head_bottom
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			// head_front
+			SkinBuild.buildWestFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			// hat layers
+			// hat_left
+			SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+			// hat_right
+			SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+			// hat_behind
+			SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
+			// hat_front
+			SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+			// hat_top
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
+		}else if(direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("n")){
+			// leg1_left
+			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
+			// leg1_front
+			SkinBuild.buildNorthFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 2));
+			// leg1_behind
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 5));
+			// leg2
+			// leg2_right
+			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY(), c.getBlockZ() - 1));
+			// leg2_ front
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 3, c.getBlockY(), c.getBlockZ() - 2));
+			// leg2_behind
+			SkinBuild.buildNorthFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY(), c.getBlockZ() - 5));
+			// body
+			// body_front
+			SkinBuild.buildNorthFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 2));
+			// body_behind
+			SkinBuild.buildNorthFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 5));
+			// arm1
+			// arm1_bottom and arm1_top
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			// arm1_left
+			SkinBuild.buildNorthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 4, c.getBlockY() + 12, c.getBlockZ() - 1));
+			// arm1_front
+			SkinBuild.buildNorthFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX()  - 4, c.getBlockY() + 12, c.getBlockZ() - 2));
+			// arm1_right
+			SkinBuild.buildNorthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 1));
+			// arm1_behind
+			SkinBuild.buildNorthFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX()  - 4, c.getBlockY() + 12, c.getBlockZ() - 5));
+			// arm2
+			// arm2_bottom and arm2_top
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			// arm2_left
+			SkinBuild.buildNorthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 11, c.getBlockY() + 12, c.getBlockZ() - 1));
+			// arm2_front
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 2));
+			// arm2_right
+			SkinBuild.buildNorthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 12, c.getBlockZ() - 1));
+			// arm2_behind
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 5));
+			// head
+			// head_left
+			SkinBuild.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+			// head_right
+			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1));
+			// head_behind
+			SkinBuild.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
+			// head_top
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 8, 16, 0, 8, "head_top");
+			// head_front
+			SkinBuild.buildNorthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			// hat layers
+			// hat_left:
+			SkinBuild.buildNorthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+			// hat_right:
+			SkinBuild.buildNorthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+			// hat_behind:
+			SkinBuild.buildNorthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8));
+			// hat_front:
+			SkinBuild.buildNorthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 32, 40, 8, 16, "hat_left");
+			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 56, 8, 16, "hat_right");
+			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 8, 16, "hat_front");
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+		}
+		
+		
+		//THEN OVERLAY WITH CLAY
 		if(direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("e")){
 			// leg1_left
 			SkinBuildClay.buildEastSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ()));
@@ -993,8 +1353,6 @@ public class Main extends JavaPlugin implements Listener {
 		//TODO: skin_updating
 		if(skin_updating){
 			saveSkin(p.getLocation(), skin, direction);
-			// save image in plugin folder:
-			//this.getDataFolder();
 		}
 		
 		Location c = p.getLocation();

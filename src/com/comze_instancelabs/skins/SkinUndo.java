@@ -89,8 +89,6 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
-					
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("leg2_front")){
@@ -126,7 +124,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y, start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -167,7 +165,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -247,7 +245,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -269,7 +267,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -291,7 +289,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -380,7 +378,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -402,7 +400,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -424,7 +422,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }
@@ -455,7 +453,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + i - min_x - 3,end.getBlockY() - j + max_y, start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -492,7 +490,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }
@@ -590,7 +588,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 8,end.getBlockY() - j + max_y,t.getBlockZ() - 1);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("hat_front")){
@@ -749,7 +747,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }
@@ -792,7 +790,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y, start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -839,7 +837,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + min_x,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -928,7 +926,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -950,7 +948,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -972,7 +970,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -1061,7 +1059,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -1083,7 +1081,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -1105,7 +1103,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY() - j + max_y,start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }
@@ -1136,7 +1134,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() + i - min_x - 3,end.getBlockY() - j + max_y, start.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }	
@@ -1173,7 +1171,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i,end.getBlockY() - j + max_y,t.getBlockZ());
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 					
 		    	}
 		    }
@@ -1271,7 +1269,7 @@ public class SkinUndo {
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x - 8,end.getBlockY() - j + max_y,t.getBlockZ() - 1);
 					//getLogger().info(change.getLocation().toString());
 		    		change.setType(Material.AIR);
-					change.setData(DyeColor.BLACK.getData());
+					
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("hat_front")){
