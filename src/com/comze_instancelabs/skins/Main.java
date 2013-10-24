@@ -40,6 +40,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 
 
@@ -58,6 +59,10 @@ public class Main extends JavaPlugin implements Listener {
 	// [HIGH] cover all colors (1.12 Mio to go)
 	
 	
+	private boolean skin_updating = false;
+	private volatile BukkitTask task = null;
+    private static int interval = 15; // minutes
+	
 	
 	public String newline = System.getProperty("line.separator");
 	
@@ -72,6 +77,8 @@ public class Main extends JavaPlugin implements Listener {
 		
 		
 		getConfig().addDefault("config.auto_updating", true);
+		getConfig().addDefault("config.auto_skin_updating", false);
+		getConfig().addDefault("config.auto_skin_updating_interval_minutes", 30);
 		getConfig().options().copyDefaults(true);
 		this.saveConfig();
 		
@@ -94,6 +101,13 @@ public class Main extends JavaPlugin implements Listener {
 		if(getConfig().getBoolean("config.auto_updating")){
         	Updater updater = new Updater(this, 66523, this.getFile(), Updater.UpdateType.DEFAULT, false);
         }
+		
+		skin_updating = getConfig().getBoolean("config.auto_skin_updating");
+		interval = getConfig().getInt("config.auto_skin_updating_interval_minutes");
+		
+		if(skin_updating){
+			update_skins();
+		}
 	}
 	
 	@Override
@@ -319,6 +333,44 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		return false;
 	}
+
+	
+	public boolean update_skins() {
+        if (task != null) {
+            return true;
+        }
+
+        task = getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable(){
+            public void run() {
+                // update skins
+            	// 
+            }
+        }, 0, interval * 1200);
+
+        return true;
+	}
+	
+	
+	public void saveSkin(Location t, String skin, String direction){
+		getConfig().set("skins." + skin + ".name", skin);
+		getConfig().set("skins." + skin + ".location.x", t.getBlockX());
+		getConfig().set("skins." + skin + ".location.y", t.getBlockY());
+		getConfig().set("skins." + skin + ".location.z", t.getBlockZ());
+		getConfig().set("skins." + skin + ".location.world", t.getWorld().getName());
+		getConfig().set("skins." + skin + ".direction", direction);
+		this.saveConfig();
+	}
+	
+	
+	public void removeSkin(String skin){
+		try{
+			getConfig().set("skins." + skin, null);	
+		}catch(Exception e){
+			//
+		}
+		
+		this.saveConfig();
+	}
 	
 	
 	
@@ -533,6 +585,13 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	private void undo(Player p, Location t, String direction){
+		//TODO: skin_updating
+		if(skin_updating){
+			removeSkin(undoskin.get(p));	
+			// remove image from plugin folder:
+			//this.getDataFolder();
+		}
+		
 		undoloc.remove(p);
 		undoskin.remove(p);
 		undodir.remove(p);
@@ -931,6 +990,13 @@ public class Main extends JavaPlugin implements Listener {
 		undoskin.put(p, skin);
 		undodir.put(p, direction);
 		
+		//TODO: skin_updating
+		if(skin_updating){
+			saveSkin(p.getLocation(), skin, direction);
+			// save image in plugin folder:
+			//this.getDataFolder();
+		}
+		
 		Location c = p.getLocation();
 		
 		if(direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("e")){
@@ -1278,7 +1344,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GRAY";
 		}else if(s > 0.29 && s < 0.6 && v < 0.2){
 			ret = "GRAY";
-		//TODO:NEW COLORS
+		//NEW COLORS
 		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
 			ret = "BLUE";
 		}else if(h > 0.5 && h < 0.602777 && v < 0.13){
@@ -1299,7 +1365,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BLUE";
 		}else if(s < 0.31 && v < 0.16){
 			ret = "BLACK";
-		//TODO:NEW COLORS 2:
+		//NEW COLORS 2:
 		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
 			ret = "BLACK";
 		}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
@@ -1619,7 +1685,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true; // HUMAN SKIN
 		}else if(h > 0.110 && h < 0.1389 && s < 0.6 && s > 0.3 && v > 0.74 && v < 0.91){
 			ret = true; // HUMAN SKIN
-		//TODO:NEW COLORS [TEST]
+		//NEW COLORS [TEST]
 		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
 			ret = true;
 		}else if(h > 0.5666666 && h < 0.602777 && v < 0.13){
@@ -1640,7 +1706,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(s < 0.31 && v < 0.16){
 			ret = true;
-		//TODO: NEW COLORS 2 [TEST]
+		//NEW COLORS 2 [TEST]
 		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
 			ret = true;
 		}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
