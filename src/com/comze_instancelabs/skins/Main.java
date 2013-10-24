@@ -384,6 +384,8 @@ public class Main extends JavaPlugin implements Listener {
 		for(String skin : getConfig().getConfigurationSection("skins.").getKeys(false)){
 			if(isValidSkin(skin)){
 				boolean cont = true;
+				String direction = getConfig().getString("skins." + skin + ".direction");
+				Location t = new Location(Bukkit.getWorld(getConfig().getString("skins." + skin + ".location.world")), getConfig().getInt("skins." + skin + ".location.x"), getConfig().getInt("skins." + skin + ".location.y"), getConfig().getInt("skins." + skin + ".location.z"));
 				BufferedImage Image1 = null;
 				BufferedImage local = null;
 				try {
@@ -401,6 +403,9 @@ public class Main extends JavaPlugin implements Listener {
 				
 				if(!bufferedImagesEqual(local, Image1)){
 					// TODO: Build skin
+					// need to remove Player parameter from buildclay() func
+					
+					// buildclay(t, Image1, skin, direction);
 				}
 			}
 		}
