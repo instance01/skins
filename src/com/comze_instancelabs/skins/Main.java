@@ -169,104 +169,118 @@ public class Main extends JavaPlugin implements Listener {
 							if(args[1].equalsIgnoreCase("clay")){ // /skin [name] clay
 								Player p = null;
 								try{
-									p = (Player)sender;
-								}catch(Exception e){
-									sender.sendMessage("§4Please execute this command ingame.");
-								}
-								
-								if(p != null){
-									if(undoloc.containsKey(p)){
-										Location t = undoloc.get(p);
-										String skin = undoskin.get(p);
-										String dir = undodir.get(p);
-										boolean cont = true;
-										BufferedImage Image1 = null;
-										try {
-										    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
-										    Image1 = ImageIO.read(url);
-										} catch (IOException e) {
-											cont = false;
-										}
-		
-										if(cont){
-											buildclay(p, Image1, skin, dir);
-										}else{
-											p.sendMessage("§4Playername not found!");
-										}
-										
-									}
-								}
-							}else{  // /skin [name] [direction]
-								if(args.length > 2){ // /skin [name] [direction] clay
-									if(args[2].equalsIgnoreCase("clay")){
-										Player p = null;
-										try{
-											p = (Player)sender;
-										}catch(Exception e){
-											sender.sendMessage("§4Please execute this command ingame.");
-										}
-										
-										if(p != null){
-											if(undoloc.containsKey(p)){
-												Location t = undoloc.get(p);
-												String skin = undoskin.get(p);
-												String dir = undodir.get(p);
-												boolean cont = true;
-												BufferedImage Image1 = null;
-												try {
-												    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
-												    Image1 = ImageIO.read(url);
-												} catch (IOException e) {
-													cont = false;
-												}
-				
-												if(cont){
-													build(p, Image1, skin, dir);
-													buildclay(p, Image1, skin, dir);
-												}else{
-													p.sendMessage("§4Playername not found!");
-												}
-												
-											}
-										}
-									}
-								}
-								Player p = null;
-								try{
 									p = (Player)sender;	
 								}catch(Exception e){
 									sender.sendMessage("§4Please execute this command ingame.");
 									return true;
 								}
 								
-								String direction = args[1];
 								String name = args[0];
-								sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+								sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
 								BufferedImage Image1 = null;
 								boolean cont = true;
 								try {
 									URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-								    /*if(name.equalsIgnoreCase("steve")){
+									/*if(name.equalsIgnoreCase("steve")){
 								    	url = new URL("http://minecraft.net/images/char.png");
 								    }else{
 								    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
 								    }*/
-									
+								    
 								    Image1 = ImageIO.read(url);
 								} catch (IOException e) {
 									cont = false;
 								}
 								
 								if(cont){
-									List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
-									if(places.contains(direction)){
-										build(p, Image1, args[0], direction);
+									String look_direction = getDirection(p.getLocation().getYaw());
+									if(look_direction != null){
+										buildclay(p, Image1, args[0], look_direction); // builds in direction player is facing
 									}else{
-										sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+										buildclay(p, Image1, args[0], "east");
 									}
 								}else{
 									p.sendMessage("§4Playername not found!");
-								}	
+								}
+							}else{  // /skin [name] [direction]
+								if(args.length > 2){ // /skin [name] [direction] clay
+									if(args[2].equalsIgnoreCase("clay")){
+										Player p = null;
+										try{
+											p = (Player)sender;	
+										}catch(Exception e){
+											sender.sendMessage("§4Please execute this command ingame.");
+											return true;
+										}
+										
+										String direction = args[1];
+										String name = args[0];
+										sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+										BufferedImage Image1 = null;
+										boolean cont = true;
+										try {
+											URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+										    /*if(name.equalsIgnoreCase("steve")){
+										    	url = new URL("http://minecraft.net/images/char.png");
+										    }else{
+										    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+										    }*/
+											
+										    Image1 = ImageIO.read(url);
+										} catch (IOException e) {
+											cont = false;
+										}
+										
+										if(cont){
+											List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
+											if(places.contains(direction)){
+												buildclay(p, Image1, args[0], direction);
+											}else{
+												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+											}
+										}else{
+											p.sendMessage("§4Playername not found!");
+										}
+									}
+								}else{ // /skin [name] [direction]
+									Player p = null;
+									try{
+										p = (Player)sender;	
+									}catch(Exception e){
+										sender.sendMessage("§4Please execute this command ingame.");
+										return true;
+									}
+									
+									String direction = args[1];
+									String name = args[0];
+									sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+									BufferedImage Image1 = null;
+									boolean cont = true;
+									try {
+										URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+									    /*if(name.equalsIgnoreCase("steve")){
+									    	url = new URL("http://minecraft.net/images/char.png");
+									    }else{
+									    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+									    }*/
+										
+									    Image1 = ImageIO.read(url);
+									} catch (IOException e) {
+										cont = false;
+									}
+									
+									if(cont){
+										List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
+										if(places.contains(direction)){
+											build(p, Image1, args[0], direction);
+										}else{
+											sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+										}
+									}else{
+										p.sendMessage("§4Playername not found!");
+									}
+								}
+								
 							}
 							
 						}else{ // /skin [name]
@@ -420,7 +434,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 	}
 	
-	boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
+	private boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
 		if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
 			for (int x = 0; x < img1.getWidth(); x++) {
 				for (int y = 0; y < img1.getHeight(); y++) {

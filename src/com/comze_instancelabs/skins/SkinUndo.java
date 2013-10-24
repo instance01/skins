@@ -1523,7 +1523,7 @@ public class SkinUndo {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
 					Block change = start.getWorld().getBlockAt(start.getBlockX() - i + 4, start.getBlockY() + j, start.getBlockZ() + k - 1);
-					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
+					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD || change.getType() == Material.STAINED_CLAY){
 						change.setType(Material.AIR);
 					}
 				}
@@ -1544,7 +1544,7 @@ public class SkinUndo {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
 					Block change = start.getWorld().getBlockAt(start.getBlockX() - k + 1, start.getBlockY() + j, start.getBlockZ() - i + 4);
-					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
+					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD || change.getType() == Material.STAINED_CLAY){
 						change.setType(Material.AIR);
 					}
 				}
@@ -1565,7 +1565,7 @@ public class SkinUndo {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
 					Block change = start.getWorld().getBlockAt(start.getBlockX() + i - 4, start.getBlockY() + j, start.getBlockZ() - k + 1);
-					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD){
+					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD || change.getType() == Material.STAINED_CLAY){
 						change.setType(Material.AIR);
 					}
 				}
