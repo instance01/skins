@@ -1548,7 +1548,6 @@ public class SkinUndo {
 						change.setType(Material.AIR);
 					}
 				}
-				
 			}
 		}
 	}
