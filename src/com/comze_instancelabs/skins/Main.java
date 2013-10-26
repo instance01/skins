@@ -1169,11 +1169,13 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildEastFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 			//SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
 		}else if(direction.equalsIgnoreCase("south") || direction.equalsIgnoreCase("s")){
 			// leg1_left
@@ -1228,16 +1230,18 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildSouthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			// hat_left
-			SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
-			// hat_right
-			SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
-			// hat_behind
-			SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
-			// hat_front
-			SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
-			// hat_top
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left
+				SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
+				// hat_right
+				SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
+				// hat_behind
+				SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
+				// hat_front
+				SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+				// hat_top
+				SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 		}else if(direction.equalsIgnoreCase("west") || direction.equalsIgnoreCase("w")){
 			// leg1_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
@@ -1292,16 +1296,18 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildWestFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			// hat_left
-			SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1));
-			// hat_right
-			SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_behind
-			SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
-			// hat_front
-			SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
-			// hat_top
-			SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left
+				SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+				// hat_right
+				SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+				// hat_behind
+				SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
+				// hat_front
+				SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+				// hat_top
+				SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 		}else if(direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("n")){
 			// leg1_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
@@ -1357,19 +1363,21 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildNorthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			// hat_left:
-			SkinBuild.buildNorthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
-			// hat_right:
-			SkinBuild.buildNorthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_behind:
-			SkinBuild.buildNorthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_front:
-			SkinBuild.buildNorthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left:
+				SkinBuild.buildNorthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+				// hat_right:
+				SkinBuild.buildNorthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+				// hat_behind:
+				SkinBuild.buildNorthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8));
+				// hat_front:
+				SkinBuild.buildNorthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 32, 40, 8, 16, "hat_left");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 56, 8, 16, "hat_right");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 8, 16, "hat_front");
+				SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 		}
 		
 		
@@ -1702,11 +1710,13 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildEastFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 			//SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
 		}else if(direction.equalsIgnoreCase("south") || direction.equalsIgnoreCase("s")){
 			// leg1_left
@@ -1761,16 +1771,18 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildSouthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			// hat_left
-			SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
-			// hat_right
-			SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
-			// hat_behind
-			SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
-			// hat_front
-			SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
-			// hat_top
-			SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left
+				SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
+				// hat_right
+				SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
+				// hat_behind
+				SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
+				// hat_front
+				SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+				// hat_top
+				SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 		}else if(direction.equalsIgnoreCase("west") || direction.equalsIgnoreCase("w")){
 			// leg1_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
@@ -1825,16 +1837,18 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildWestFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			// hat_left
-			SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1));
-			// hat_right
-			SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_behind
-			SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
-			// hat_front
-			SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
-			// hat_top
-			SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left
+				SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+				// hat_right
+				SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+				// hat_behind
+				SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
+				// hat_front
+				SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+				// hat_top
+				SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 		}else if(direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("n")){
 			// leg1_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
@@ -1890,19 +1904,21 @@ public class Main extends JavaPlugin implements Listener {
 			// head_front
 			SkinBuild.buildNorthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
 			// hat layers
-			// hat_left:
-			SkinBuild.buildNorthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
-			// hat_right:
-			SkinBuild.buildNorthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_behind:
-			SkinBuild.buildNorthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_front:
-			SkinBuild.buildNorthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			//SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left:
+				SkinBuild.buildNorthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
+				// hat_right:
+				SkinBuild.buildNorthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
+				// hat_behind:
+				SkinBuild.buildNorthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8));
+				// hat_front:
+				SkinBuild.buildNorthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 32, 40, 8, 16, "hat_left");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 56, 8, 16, "hat_right");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 8, 16, "hat_front");
+				SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top");	
+			}
 		}
 		
 		p.sendMessage("§2Finished building the skin!");
@@ -2042,141 +2058,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		return ret;
 	}
-	
-	
-	
-	//TODO: CHANGE COLORS
-	public String getStringFromColorClay(Color c){
-		String ret = "";
 
-		Integer r = c.getRed(); // RED
-		Integer g = c.getGreen(); // GREEN
-		Integer b = c.getBlue(); // BLUE
-		
-		float[] hsb = new float[3];
-		c.RGBtoHSB(r, g, b, hsb);
-		
-		float h = hsb[0]; // HUE
-		float s = hsb[1]; // SATURATION
-		float v = hsb[2]; // BRIGHTNESS
-		
-		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
-			ret = "RED";
-		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
-			ret = "ORANGE";
-		}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
-			ret = "BROWN";
-		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
-			ret = "BROWN";
-		}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
-			ret = "BROWN";
-		}else if(s > 0.8 && v < 0.15 && v > 0.05 && h > 0.079999999 && h < 0.1222222){
-			ret = "BROWN";
-		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
-			ret = "YELLOW";
-		}else if(s > 0.4 && v < 0.51 && v > 0.1 && h > 0.1138888888 && h < 0.1916666666){ // new
-			ret = "BROWN";
-		}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
-			ret = "GREEN";
-		}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
-			ret = "LIME";
-		}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
-			ret = "LIME";
-		}else if(s > 0.2 && v > 0.8 && h > 0.3805555555 && h < 0.5194444444){ // v > 0.4 adjusted 3
-			ret = "LIGHT_BLUE";
-		}else if(s > 0.1 && s < 0.21 && v > 0.9 && h > 0.3805555555 && h < 0.5194444444){ // new 3
-			ret = "LIGHT_BLUE";
-		}else if(s > 0.4 && v < 0.81 && v > 0.2 && h > 0.3805555555 && h < 0.6027777777){ // adjusted 3
-			ret = "CYAN";
-		}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
-			ret = "CYAN";
-		}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
-			ret = "BLUE";
-		}else if(s > 0.2 && s < 0.41 && v > 0.7 && h > 0.6027777777 && h < 0.6944444444){ // adjusted 3
-			ret = "LIGHT_BLUE";
-		}else if(s < 0.2 && v > 0.6 && h > 0.6027777777 && h < 0.6944444444){ // new 3
-			ret = "BLUE";
-		}else if(s > 0.1 && s < 0.2 && v > 0.6 && v < 0.91 && h > 0.6027777777 && h < 0.6944444444){ // new 3
-			ret = "LIGHT_BLUE";
-		}else if(s > 0.1 && s < 0.2 && v > 0.9 && h > 0.6027777777 && h < 0.6944444444){ // new 3
-			ret = "BLUE";
-		}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
-			ret = "BLUE";
-		}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
-			ret = "PURPLE";
-		}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
-			ret = "MAGENTA";
-		}else if(s > 0.3 && v > 0.4 && h > 0.8777777777 && h < 0.9611111111){
-			ret = "PINK";
-		}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
-			ret = "RED";
-		}else if(s < 0.1 && v > 0.9){
-			ret = "WHITE";
-		}else if(s < 0.1 && v < 0.91 && v > 0.7){
-			ret = "SILVER";
-		}else if(s < 0.1 && v < 0.71 && v > 0.2){
-			ret = "SILVER";
-		}else if(s < 0.1 && v < 0.21){
-			ret = "BLACK";
-		}else if(s < 0.3 && v < 0.3 && v > 0.1){
-			ret = "GRAY";
-		}else if(s < 0.3 && v < 0.11){
-			ret = "BLACK";
-		}else if(s < 0.7 && v < 0.6){
-			ret = "BLACK";
-		}else if(v < 0.1){ // 0.05
-			ret = "BLACK";
-		}else if(s > 0.29 && s < 0.8 && v < 0.11){
-			ret = "GRAY";
-		}else if(s > 0.29 && s < 0.6 && v < 0.2){
-			ret = "GRAY";
-		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
-			ret = "BLUE";
-		}else if(h > 0.5 && h < 0.602777 && v < 0.13){
-			ret = "BLACK";	
-		}else if(h > 0.95833333 && s > 0.7 && v > 0.19 && v < 0.4){
-			ret = "RED";
-		}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
-			ret = "PURPLE";
-		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
-			ret = "CYAN";
-		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
-			ret = "LIGHT_BLUE";
-		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
-			ret = "BLUE";
-		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
-			ret = "LIGHT_BLUE";
-		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
-			ret = "BLUE";
-		}else if(s < 0.31 && v < 0.16){
-			ret = "BLACK";
-		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
-			ret = "BLACK";
-		}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
-			ret = "BLUE";
-		}else if(h > 0.4 && h < 0.53 && s > 0.5 && v < 0.3 && v > 0.15){
-			ret = "CYAN";
-		}else if(h < 0.4 && h > 0.2777777 && s > 0.5 && v < 0.3 && v > 0.15){
-			ret = "GREEN";
-		}else if(h < 0.25 && h > 0.2 && s > 0.6 && v < 0.25 && v > 0.15){
-			ret = "BROWN";
-		}else if(h > 833333 && h < 94 && s > 0.6 && v < 0.4 && v > 0.15){
-			ret = "PURPLE";
-		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v > 0.8){
-			ret = "LIGHT_BLUE";
-		}else if(h > 0.541 && h < 0.64 && s < 0.4 && s > 0.2 && v > 0.3){
-			ret = "BLUE";
-		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v < 0.5 && v > 0.2){
-			ret = "BLUE";
-		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
-			ret = "GRAY";
-		}else{
-			ret = "NULL"; // nothing matched
-			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
-		}
-		
-		return ret;
-	}
 	
 	
 	int poscount;
@@ -2466,6 +2348,140 @@ public class Main extends JavaPlugin implements Listener {
 		}*/
 		
 	}
+	
+	
+	//TODO: CHANGE COLORS
+		public String getStringFromColorClay(Color c){
+			String ret = "";
+
+			Integer r = c.getRed(); // RED
+			Integer g = c.getGreen(); // GREEN
+			Integer b = c.getBlue(); // BLUE
+			
+			float[] hsb = new float[3];
+			c.RGBtoHSB(r, g, b, hsb);
+			
+			float h = hsb[0]; // HUE
+			float s = hsb[1]; // SATURATION
+			float v = hsb[2]; // BRIGHTNESS
+			
+			if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+				ret = "RED";
+			}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
+				ret = "ORANGE";
+			}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+				ret = "BROWN";
+			}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
+				ret = "BROWN";
+			}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
+				ret = "BROWN";
+			}else if(s > 0.8 && v < 0.15 && v > 0.05 && h > 0.079999999 && h < 0.1222222){
+				ret = "BROWN";
+			}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
+				ret = "YELLOW";
+			}else if(s > 0.4 && v < 0.51 && v > 0.1 && h > 0.1138888888 && h < 0.1916666666){ // new
+				ret = "BROWN";
+			}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
+				ret = "GREEN";
+			}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
+				ret = "LIME";
+			}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
+				ret = "LIME";
+			}else if(s > 0.2 && v > 0.8 && h > 0.3805555555 && h < 0.5194444444){ // v > 0.4 adjusted 3
+				ret = "LIGHT_BLUE";
+			}else if(s > 0.1 && s < 0.21 && v > 0.9 && h > 0.3805555555 && h < 0.5194444444){ // new 3
+				ret = "LIGHT_BLUE";
+			}else if(s > 0.4 && v < 0.81 && v > 0.2 && h > 0.3805555555 && h < 0.6027777777){ // adjusted 3
+				ret = "CYAN";
+			}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
+				ret = "CYAN";
+			}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
+				ret = "BLUE";
+			}else if(s > 0.2 && s < 0.41 && v > 0.7 && h > 0.6027777777 && h < 0.6944444444){ // adjusted 3
+				ret = "LIGHT_BLUE";
+			}else if(s < 0.2 && v > 0.6 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+				ret = "BLUE";
+			}else if(s > 0.1 && s < 0.2 && v > 0.6 && v < 0.91 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+				ret = "LIGHT_BLUE";
+			}else if(s > 0.1 && s < 0.2 && v > 0.9 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+				ret = "BLUE";
+			}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
+				ret = "BLUE";
+			}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
+				ret = "PURPLE";
+			}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
+				ret = "MAGENTA";
+			}else if(s > 0.3 && v > 0.4 && h > 0.8777777777 && h < 0.9611111111){
+				ret = "PINK";
+			}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
+				ret = "RED";
+			}else if(s < 0.1 && v > 0.9){
+				ret = "WHITE";
+			}else if(s < 0.1 && v < 0.91 && v > 0.7){
+				ret = "SILVER";
+			}else if(s < 0.1 && v < 0.71 && v > 0.2){
+				ret = "SILVER";
+			}else if(s < 0.1 && v < 0.21){
+				ret = "BLACK";
+			}else if(s < 0.3 && v < 0.3 && v > 0.1){
+				ret = "GRAY";
+			}else if(s < 0.3 && v < 0.11){
+				ret = "BLACK";
+			}else if(s < 0.7 && v < 0.6){
+				ret = "BLACK";
+			}else if(v < 0.1){ // 0.05
+				ret = "BLACK";
+			}else if(s > 0.29 && s < 0.8 && v < 0.11){
+				ret = "GRAY";
+			}else if(s > 0.29 && s < 0.6 && v < 0.2){
+				ret = "GRAY";
+			}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
+				ret = "BLUE";
+			}else if(h > 0.5 && h < 0.602777 && v < 0.13){
+				ret = "BLACK";	
+			}else if(h > 0.95833333 && s > 0.7 && v > 0.19 && v < 0.4){
+				ret = "RED";
+			}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
+				ret = "PURPLE";
+			}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
+				ret = "CYAN";
+			}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
+				ret = "LIGHT_BLUE";
+			}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
+				ret = "BLUE";
+			}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
+				ret = "LIGHT_BLUE";
+			}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
+				ret = "BLUE";
+			}else if(s < 0.31 && v < 0.16){
+				ret = "BLACK";
+			}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+				ret = "BLACK";
+			}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
+				ret = "BLUE";
+			}else if(h > 0.4 && h < 0.53 && s > 0.5 && v < 0.3 && v > 0.15){
+				ret = "CYAN";
+			}else if(h < 0.4 && h > 0.2777777 && s > 0.5 && v < 0.3 && v > 0.15){
+				ret = "GREEN";
+			}else if(h < 0.25 && h > 0.2 && s > 0.6 && v < 0.25 && v > 0.15){
+				ret = "BROWN";
+			}else if(h > 833333 && h < 94 && s > 0.6 && v < 0.4 && v > 0.15){
+				ret = "PURPLE";
+			}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v > 0.8){
+				ret = "LIGHT_BLUE";
+			}else if(h > 0.541 && h < 0.64 && s < 0.4 && s > 0.2 && v > 0.3){
+				ret = "BLUE";
+			}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v < 0.5 && v > 0.2){
+				ret = "BLUE";
+			}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+				ret = "GRAY";
+			}else{
+				ret = "NULL"; // nothing matched
+				//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			}
+			
+			return ret;
+		}
 
 	
 	public String getDirection(Float yaw)
