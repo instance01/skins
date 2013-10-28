@@ -56,7 +56,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//TODO:
 	//FEATURES:
-	// [HIGH] cover all colors (1.04 Mio to go)
+	// [HIGH] cover all colors (0.6 Mio to go)
 	
 	
 	private boolean skin_updating = false;
@@ -92,11 +92,12 @@ public class Main extends JavaPlugin implements Listener {
 		
 		// own metrics system, still in testing
 		// will replace Hidendras metrics system (above) with this one, if it works
-		try {
+		// TODO: fix MyMetrics
+		/*try {
 			MyMetrics m = new MyMetrics(this);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		if(getConfig().getBoolean("config.auto_updating")){
         	Updater updater = new Updater(this, 66523, this.getFile(), Updater.UpdateType.DEFAULT, false);
@@ -393,7 +394,6 @@ public class Main extends JavaPlugin implements Listener {
         return true;
 	}
 	
-	//TODO: TRY IT OUT
 	public void update_func(){
 		getLogger().info("Updating Skins . . .");
 		if(getConfig().isSet("skins")){
@@ -451,7 +451,28 @@ public class Main extends JavaPlugin implements Listener {
 		  
 	
 	
+	public boolean isDuplicateLocation(String skin1, Location l_skin2){
+		if(getConfig().getInt("skins." + skin1 + ".location.x") == l_skin2.getBlockX() && getConfig().getInt("skins." + skin1 + ".location.y") == l_skin2.getBlockY() && getConfig().getInt("skins." + skin1 + ".location.z") == l_skin2.getBlockZ() && getConfig().getString("skins." + skin1 + ".location.world").equals(l_skin2.getWorld().getName())){
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public void saveSkin(Location t, String skin, String direction){
+		// check if there are any skins registered on that location
+		// remove if true
+		if(getConfig().isSet("skins")){
+			for(String skin_ : getConfig().getConfigurationSection("skins.").getKeys(false)){
+				if(isValidSkin(skin_)){
+					// remove skin, if duplicate location
+					if(isDuplicateLocation(skin_, t)){
+						removeSkin(skin_);
+					}
+				}
+			}
+		}
+		
 		getConfig().set("skins." + skin + ".name", skin);
 		getConfig().set("skins." + skin + ".location.x", t.getBlockX());
 		getConfig().set("skins." + skin + ".location.y", t.getBlockY());
@@ -459,6 +480,8 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().set("skins." + skin + ".location.world", t.getWorld().getName());
 		getConfig().set("skins." + skin + ".direction", direction);
 		this.saveConfig();
+
+		
 		
 		boolean cont = true;
 		BufferedImage Image1 = null;
@@ -2059,7 +2082,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BLUE";
 		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
 			ret = "GRAY";
-		// NEW COLORS 3 //TODO: add to color test and clay
+		// NEW COLORS 3
 		}else if(h > 0.85 && s > 0.2 && s < 0.41 && v > 0.9){
 			ret = "PINK";
 		}else if(h > 0.763 && s > 0.2 && s < 0.41 && v > 0.5){
