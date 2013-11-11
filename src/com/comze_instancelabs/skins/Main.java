@@ -573,6 +573,8 @@ public class Main extends JavaPlugin implements Listener {
 			//SkinSmooth.smoothPartOfImageEast(this, t, Image2, 8, 16, 0, 8, "head_top");
 			SkinSmooth.smoothPartOfImageEast(this, t, Image2, 16, 24, 0, 8, "head_bottom");
 			SkinSmooth.smoothPartOfImageEast(this, t, Image2, 8, 16, 8, 16, "head_front");
+			
+			SkinSmooth.smoothPartOfImageEast(this, t, Image2, 40, 48, 8, 16, "hat_front");
 		}else if(direction.equalsIgnoreCase("west")){
 			// leg1_left
 			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 0, 4, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
@@ -626,6 +628,9 @@ public class Main extends JavaPlugin implements Listener {
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 16, 24, 0, 8, "head_bottom");
 			// head_front
 			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 8, 16, 8, 16, new Location(c.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+	
+			// hat_front
+			SkinSmooth.smoothWestFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 		}else if(direction.equalsIgnoreCase("south")){
 			// leg1_left
 			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 1));
@@ -678,6 +683,9 @@ public class Main extends JavaPlugin implements Listener {
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 16, 24, 0, 8, "head_bottom");
 			// head_front
 			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+		
+			// hat_front
+			SkinSmooth.smoothSouthFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 		}else if(direction.equalsIgnoreCase("north")){
 			// leg1_left
 			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
@@ -732,6 +740,9 @@ public class Main extends JavaPlugin implements Listener {
 			SkinSmooth.smoothPartOfImageNorth(this, t, Image2, 8, 16, 0, 8, "head_top");
 			// head_front
 			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			
+			// hat_front
+			SkinSmooth.smoothNorthFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 		}
 	}
 	
@@ -1985,11 +1996,13 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "RED";
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 			ret = "ORANGE";
-		}else if(s > 0.45 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}else if(s > 0.4 && v > 0.14 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.6 && v > 0.09 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
 		}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
-		}else if(s < 0.45 && v < 0.2 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BLACK";
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = "BROWN";
@@ -2019,11 +2032,11 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BLUE";
 		}else if(s > 0.2 && s < 0.41 && v > 0.7 && h > 0.6027777777 && h < 0.6944444444){ // adjusted 3
 			ret = "LIGHT_BLUE";
-		}else if(s < 0.2 && v > 0.6 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+		}else if(s > 0.114 && s < 0.2 && v > 0.6 && h > 0.6027777777 && h < 0.6944444444){ // new 3
 			ret = "BLUE";
 		}else if(s > 0.1 && s < 0.2 && v > 0.6 && v < 0.91 && h > 0.6027777777 && h < 0.6944444444){ // new 3
 			ret = "LIGHT_BLUE";
-		}else if(s > 0.1 && s < 0.2 && v > 0.9 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+		}else if(s > 0.114 && s < 0.2 && v > 0.9 && h > 0.6027777777 && h < 0.6944444444){ // new 3
 			ret = "BLUE";
 		}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
 			ret = "BLUE";
@@ -2035,13 +2048,13 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PINK";
 		}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
 			ret = "RED";
-		}else if(s < 0.1 && v > 0.9){
+		}else if(s < 0.11 && v > 0.9){
 			ret = "WHITE";
-		}else if(s < 0.1 && v < 0.91 && v > 0.7){
+		}else if(s < 0.11 && v < 0.91 && v > 0.7){
 			ret = "SILVER";
-		}else if(s < 0.1 && v < 0.71 && v > 0.2){
+		}else if(s < 0.11 && v < 0.71 && v > 0.2){
 			ret = "SILVER";
-		}else if(s < 0.1 && v < 0.21){
+		}else if(s < 0.11 && v < 0.21){
 			ret = "BLACK";
 		}else if(s < 0.3 && v < 0.3 && v > 0.1){
 			ret = "GRAY";
@@ -2110,10 +2123,13 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "LIME";
 		}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.4 && b < 0.8){
 			ret = "GREEN";
+		}else if(s < 0.114 && b < 0.71 && b > 0.15){
+			ret = "GRAY";
 		}else{
 			ret = "WHITE"; // nothing matched
-			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
+		
 		
 		return ret;
 	}
@@ -2452,8 +2468,14 @@ public class Main extends JavaPlugin implements Listener {
 				ret = "RED";
 			}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 				ret = "ORANGE";
-			}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			}else if(s > 0.4 && v > 0.14 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 				ret = "BROWN";
+			}else if(s > 0.6 && v > 0.09 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+				ret = "BROWN";
+			}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+				ret = "BROWN";
+			}else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+				ret = "BLACK";
 			}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 				ret = "BROWN";
 			}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
@@ -2518,6 +2540,7 @@ public class Main extends JavaPlugin implements Listener {
 				ret = "GRAY";
 			}else if(s > 0.29 && s < 0.6 && v < 0.2){
 				ret = "GRAY";
+			//NEW COLORS
 			}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
 				ret = "BLUE";
 			}else if(h > 0.5 && h < 0.602777 && v < 0.13){
@@ -2538,6 +2561,7 @@ public class Main extends JavaPlugin implements Listener {
 				ret = "BLUE";
 			}else if(s < 0.31 && v < 0.16){
 				ret = "BLACK";
+			//NEW COLORS 2:
 			}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
 				ret = "BLACK";
 			}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
@@ -2571,6 +2595,12 @@ public class Main extends JavaPlugin implements Listener {
 				ret = "LIME";
 			}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.4 && b < 0.8){
 				ret = "GREEN";
+			}else if(s < 0.11 && b > 0.9){
+				ret = "WHITE";
+			}else if(s < 0.11 && b < 0.91 && b > 0.7){
+				ret = "SILVER";
+			}else if(s < 0.11 && b < 0.71 && b > 0.15){
+				ret = "GRAY";
 			}else{
 				ret = "NULL"; // nothing matched
 				//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));

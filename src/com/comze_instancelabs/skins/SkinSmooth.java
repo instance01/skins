@@ -3,10 +3,12 @@ package com.comze_instancelabs.skins;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 
 public class SkinSmooth {
 	
@@ -728,6 +730,33 @@ public class SkinSmooth {
 		    }	
 		}
 
+		
+		if(component.equalsIgnoreCase("hat_front")){
+			Location current = t;
+			//getLogger().info("Building " + component);
+			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t.getBlockZ());
+			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() + 8);
+			
+			////getLogger().info(start.toString());
+			////getLogger().info(end.toString());
+			
+			
+			for(int i = min_x; i < max_x; i++){
+		    	for(int j = min_y; j < max_y; j++){
+		    		
+		    		Color c = new Color(bi.getRGB(i, j));
+		    		
+		    		if(!isTransparent(bi, i, j)){
+			    		Block change = t.getWorld().getBlockAt(start.getBlockX() - 1,end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
+						////getLogger().info(change.getLocation().toString());
+			    		if(m.isHumanSkin(c)){
+			    			change.setType(Material.WOOD);
+			    			change.setData((byte)2);
+			    		}	
+		    		}
+		    	}
+		    }	
+		}
 	}
 	
 	
@@ -750,7 +779,6 @@ public class SkinSmooth {
 		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
 		    		if(m.isHumanSkin(c)){
 		    			change.setType(Material.WOOD);
 		    			change.setData((byte)2);
@@ -774,7 +802,6 @@ public class SkinSmooth {
 		    		
 		    		Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
 		    		if(m.isHumanSkin(c)){
 		    			change.setType(Material.WOOD);
 		    			change.setData((byte)2);
@@ -1235,6 +1262,27 @@ public class SkinSmooth {
 	
 	
 	// WEST FRONT/BEHIND CUBOID
+	public static void smoothWestFrontHAT(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				if(!isTransparent(bi, min_x + i, min_y + j)){
+					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+				}
+			}
+		}
+	}
+	
+	
+	// WEST FRONT/BEHIND CUBOID
 	public static void smoothWestFront(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
@@ -1288,6 +1336,27 @@ public class SkinSmooth {
 		}
 	}
 
+	
+	// SOUTH FRONT/BEHIND CUBOID HAT LAYERS
+	public static void smoothSouthFrontHAT(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				if(!isTransparent(bi, min_x + i, min_y + j)){
+					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}
+				}
+			}
+		}
+	}
+	
 	
 	// SOUTH FRONT/BEHIND CUBOID
 	public static void smoothSouthFront(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
@@ -1343,6 +1412,27 @@ public class SkinSmooth {
 		}
 	}
 
+	
+	// NORTH FRONT/BEHIND CUBOID HAT LAYERS
+	public static void smoothNorthFrontHAT(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				if(!isTransparent(bi, min_x + i, min_y + j)){
+					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
+		    		if(m.isHumanSkin(c)){
+		    			change.setType(Material.WOOD);
+		    			change.setData((byte)2);
+		    		}	
+				}
+			}
+		}
+	}
+	
 
 	// NORTH FRONT/BEHIND CUBOID
 	public static void smoothNorthFront(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
