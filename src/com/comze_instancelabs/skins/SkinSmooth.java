@@ -3,12 +3,10 @@ package com.comze_instancelabs.skins;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 
 public class SkinSmooth {
 	

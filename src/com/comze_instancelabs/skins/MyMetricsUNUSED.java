@@ -28,8 +28,8 @@ import com.comze_instancelabs.skins.Metrics.Graph;
 
 public class MyMetricsUNUSED {
 	/*
-	 * This is an own Metrics system I built with a little help of Hidendras.
-	 * I made this decision because Hidendras host is often down and lagging/throwing errors on the server sometimes.
+	 * This is an own Metrics system I built with a little help of Hidendra's.
+	 * I made this decision because Hidendra's host is often down and lagging/throwing errors on the server sometimes.
 	 * As this is only one plugin with medium-low popularity, my current host should handle it without problems
 	 * -> better plugin performance and better results
 	 * 

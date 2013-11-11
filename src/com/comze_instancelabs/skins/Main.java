@@ -151,8 +151,13 @@ public class Main extends JavaPlugin implements Listener {
 								boolean cont = true;
 								BufferedImage Image1 = null;
 								try {
-								    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
-								    Image1 = ImageIO.read(url);
+									URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+									if(skin.equalsIgnoreCase("steve")){
+								    	url = new URL("https://minecraft.net/images/char.png");
+								    }else{
+								    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+								    }
+									Image1 = ImageIO.read(url);
 								} catch (IOException e) {
 									cont = false;
 								}
@@ -181,12 +186,12 @@ public class Main extends JavaPlugin implements Listener {
 								BufferedImage Image1 = null;
 								boolean cont = true;
 								try {
-									URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-									/*if(name.equalsIgnoreCase("steve")){
-								    	url = new URL("http://minecraft.net/images/char.png");
+									URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+									if(name.equalsIgnoreCase("steve")){
+								    	url = new URL("https://minecraft.net/images/char.png");
 								    }else{
 								    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-								    }*/
+								    }
 								    
 								    Image1 = ImageIO.read(url);
 								} catch (IOException e) {
@@ -220,12 +225,12 @@ public class Main extends JavaPlugin implements Listener {
 										BufferedImage Image1 = null;
 										boolean cont = true;
 										try {
-											URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-										    /*if(name.equalsIgnoreCase("steve")){
-										    	url = new URL("http://minecraft.net/images/char.png");
+											URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+											if(name.equalsIgnoreCase("steve")){
+										    	url = new URL("https://minecraft.net/images/char.png");
 										    }else{
 										    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-										    }*/
+										    }
 											
 										    Image1 = ImageIO.read(url);
 										} catch (IOException e) {
@@ -258,12 +263,12 @@ public class Main extends JavaPlugin implements Listener {
 									BufferedImage Image1 = null;
 									boolean cont = true;
 									try {
-										URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-									    /*if(name.equalsIgnoreCase("steve")){
-									    	url = new URL("http://minecraft.net/images/char.png");
+										URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+										if(name.equalsIgnoreCase("steve")){
+									    	url = new URL("https://minecraft.net/images/char.png");
 									    }else{
 									    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-									    }*/
+									    }
 										
 									    Image1 = ImageIO.read(url);
 									} catch (IOException e) {
@@ -298,13 +303,13 @@ public class Main extends JavaPlugin implements Listener {
 							BufferedImage Image1 = null;
 							boolean cont = true;
 							try {
-								URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-								/*if(name.equalsIgnoreCase("steve")){
-							    	url = new URL("http://minecraft.net/images/char.png");
+								URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+								if(name.equalsIgnoreCase("steve")){
+							    	url = new URL("https://minecraft.net/images/char.png");
 							    }else{
 							    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-							    }*/
-							    
+							    }
+
 							    Image1 = ImageIO.read(url);
 							} catch (IOException e) {
 								cont = false;
@@ -486,7 +491,13 @@ public class Main extends JavaPlugin implements Listener {
 		boolean cont = true;
 		BufferedImage Image1 = null;
 		try {
-		    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+			URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+			if(skin.equalsIgnoreCase("steve")){
+		    	url = new URL("https://minecraft.net/images/char.png");
+		    }else{
+		    	url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+		    }
+			
 		    Image1 = ImageIO.read(url);
 		} catch (IOException e) {
 			cont = false;
@@ -1974,8 +1985,12 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "RED";
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 			ret = "ORANGE";
-		}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}else if(s > 0.45 && v > 0.145 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s < 0.45 && v < 0.2 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BLACK";
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = "BROWN";
 		}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
@@ -2097,7 +2112,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GREEN";
 		}else{
 			ret = "WHITE"; // nothing matched
-			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		return ret;
@@ -2353,6 +2368,13 @@ public class Main extends JavaPlugin implements Listener {
 			ret = false; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
+		
+		
+		//TODO: TEST, REMOVE LATER
+		if(h > 0.03 && h < 0.1 && s > 0.3 && s < 0.7 && v > 0.6){ // NEW
+			ret = true;
+		}	
+		
 		
 		return ret;
 	}
