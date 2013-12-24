@@ -537,7 +537,7 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().set("skins." + uuid_ + ".location.z", t.getBlockZ());
 		getConfig().set("skins." + uuid_ + ".location.world", t.getWorld().getName());
 		getConfig().set("skins." + uuid_ + ".direction", direction);
-		getConfig().set("sins." + uuid_ + ".mode", mode);
+		getConfig().set("skins." + uuid_ + ".mode", mode);
 		this.saveConfig();
 
 		
