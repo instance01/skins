@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -70,6 +71,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static HashMap<Player, Location> undoloc = new HashMap<Player, Location>();
 	public static HashMap<Player, String> undoskin = new HashMap<Player, String>();
 	public static HashMap<Player, String> undodir = new HashMap<Player, String>();
+	public static HashMap<Player, String> undo_uuid = new HashMap<Player, String>();
 	
 	@Override
 	public void onEnable(){
@@ -425,10 +427,20 @@ public class Main extends JavaPlugin implements Listener {
             return true;
         }
 
+        final Plugin main = this;
+        
         task = getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable(){
             public void run() {
                 // update skins
-            	update_func();
+            	Bukkit.getScheduler().runTaskLater(main, new Runnable(){
+            		
+            		@Override
+            		public void run(){
+            			update_func();	
+            		}
+            	
+            	}, 10L);
+            	
             }
         }, 20, interval * 1200);
 
@@ -438,28 +450,30 @@ public class Main extends JavaPlugin implements Listener {
 	public void update_func(){
 		getLogger().info("Updating Skins . . .");
 		if(getConfig().isSet("skins")){
-			for(String skin : getConfig().getConfigurationSection("skins.").getKeys(false)){
-				if(isValidSkin(skin)){
+			for(String uuid : getConfig().getConfigurationSection("skins.").getKeys(false)){
+				String skin_ = getConfig().getString("skins." + uuid + ".name");
+				if(isValidSkin(uuid)){
 					boolean cont = true;
-					String direction = getConfig().getString("skins." + skin + ".direction");
-					Location t = new Location(Bukkit.getWorld(getConfig().getString("skins." + skin + ".location.world")), getConfig().getInt("skins." + skin + ".location.x"), getConfig().getInt("skins." + skin + ".location.y"), getConfig().getInt("skins." + skin + ".location.z"));
+					String direction = getConfig().getString("skins." + uuid + ".direction");
+					String mode = getConfig().getString("skins." + uuid + ".mode");
+					Location t = new Location(Bukkit.getWorld(getConfig().getString("skins." + uuid + ".location.world")), getConfig().getInt("skins." + uuid + ".location.x"), getConfig().getInt("skins." + uuid + ".location.y"), getConfig().getInt("skins." + uuid + ".location.z"));
 					BufferedImage Image1 = null;
 					BufferedImage local = null;
 					try {
-					    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+					    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin_ + ".png");
 					    Image1 = ImageIO.read(url);
 					} catch (IOException e) {
 						cont = false;
 					}
 					
 					try {
-						local = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + skin + ".png"));
+						local = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + skin_ + ".png"));
 					} catch (IOException e) {
 						cont = false;
 					}
 					
 					if(!bufferedImagesEqual(local, Image1)){
-						update(t, Image1, skin, direction);
+						update(t, Image1, skin_, direction, mode);
 					}
 				}
 			}
@@ -500,26 +514,30 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	public void saveSkin(Location t, String skin, String direction){
+	public void saveSkin(Location t, String skin, String uuid_, String direction, String mode){
 		// check if there are any skins registered on that location
 		// remove if true
 		if(getConfig().isSet("skins")){
-			for(String skin_ : getConfig().getConfigurationSection("skins.").getKeys(false)){
-				if(isValidSkin(skin_)){
+			for(String uuid : getConfig().getConfigurationSection("skins.").getKeys(false)){
+				if(isValidSkin(uuid)){
+					String skin_ = getConfig().getString("skins." + uuid + ".name");
 					// remove skin, if duplicate location
-					if(isDuplicateLocation(skin_, t)){
-						removeSkin(skin_);
+					if(isDuplicateLocation(uuid, t)){
+						removeSkin(skin_, uuid);
 					}
 				}
 			}
 		}
 		
-		getConfig().set("skins." + skin + ".name", skin);
-		getConfig().set("skins." + skin + ".location.x", t.getBlockX());
-		getConfig().set("skins." + skin + ".location.y", t.getBlockY());
-		getConfig().set("skins." + skin + ".location.z", t.getBlockZ());
-		getConfig().set("skins." + skin + ".location.world", t.getWorld().getName());
-		getConfig().set("skins." + skin + ".direction", direction);
+		
+		
+		getConfig().set("skins." + uuid_ + ".name", skin);
+		getConfig().set("skins." + uuid_ + ".location.x", t.getBlockX());
+		getConfig().set("skins." + uuid_ + ".location.y", t.getBlockY());
+		getConfig().set("skins." + uuid_ + ".location.z", t.getBlockZ());
+		getConfig().set("skins." + uuid_ + ".location.world", t.getWorld().getName());
+		getConfig().set("skins." + uuid_ + ".direction", direction);
+		getConfig().set("sins." + uuid_ + ".mode", mode);
 		this.saveConfig();
 
 		
@@ -548,9 +566,9 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	public void removeSkin(String skin){
+	public void removeSkin(String skin, String uuid){
 		try{
-			getConfig().set("skins." + skin, null);	
+			getConfig().set("skins." + uuid, null);	
 		}catch(Exception e){
 			//
 		}
@@ -790,12 +808,13 @@ public class Main extends JavaPlugin implements Listener {
 	
 	private void undo(Player p, Location t, String direction){
 		if(skin_updating){
-			removeSkin(undoskin.get(p));	
+			removeSkin(undoskin.get(p), undo_uuid.get(p));	
 		}
 		
 		undoloc.remove(p);
 		undoskin.remove(p);
 		undodir.remove(p);
+		undo_uuid.remove(p);
 		
 		Location c = t;
 		
@@ -915,9 +934,12 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	
-	private void update(Location p, BufferedImage Image2, String skin, String direction){
+	
+	//TODO: ADD CLAY AND GLASS MODE TO UPDATE MECHANISM
+	private void update(Location p, BufferedImage Image2, String skin, String direction, String mode){
 		if(skin_updating){
-			saveSkin(p, skin, direction);
+			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+			saveSkin(p, skin, uuid, direction, mode);
 		}
 		
 		Location c = p;
@@ -1185,14 +1207,17 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	private void buildclay(Player p, BufferedImage Image2, String skin, String direction){
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+
 		undoloc.put(p, p.getLocation());
 		undoskin.put(p, skin);
 		undodir.put(p, direction);
+		undo_uuid.put(p, uuid);
 		
 		Location c = p.getLocation();
 		
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, direction);
+			saveSkin(p.getLocation(), skin, uuid, direction, "clay");
 		}
 		
 		// FIRST BUILD NORMAL WOOL:
@@ -1734,14 +1759,17 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	private void buildglass(Player p, BufferedImage Image2, String skin, String direction){
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		
 		undoloc.put(p, p.getLocation());
 		undoskin.put(p, skin);
 		undodir.put(p, direction);
+		undo_uuid.put(p, uuid);
 		
 		Location c = p.getLocation();
 		
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, direction);
+			saveSkin(p.getLocation(), skin, uuid, direction, "glass");
 		}
 		
 		// FIRST BUILD NORMAL WOOL:
@@ -2284,12 +2312,15 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	private void build(Player p, BufferedImage Image2, String skin, String direction){
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		
 		undoloc.put(p, p.getLocation());
 		undoskin.put(p, skin);
 		undodir.put(p, direction);
+		undo_uuid.put(p, uuid);
 
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, direction);
+			saveSkin(p.getLocation(), skin, uuid, direction, "default");
 		}
 		
 		Location c = p.getLocation();
@@ -3035,164 +3066,164 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	//TODO: CHANGE COLORS
-		public String getStringFromColorClay(Color c){
-			String ret = "";
+	public String getStringFromColorClay(Color c){
+		String ret = "";
 
-			Integer r = c.getRed(); // RED
-			Integer g = c.getGreen(); // GREEN
-			Integer b = c.getBlue(); // BLUE
-			
-			float[] hsb = new float[3];
-			c.RGBtoHSB(r, g, b, hsb);
-			
-			float h = hsb[0]; // HUE
-			float s = hsb[1]; // SATURATION
-			float v = hsb[2]; // BRIGHTNESS
-			
-			if(s > 0.4 && v > 0.2 && h < 0.03333333333){
-				ret = "RED";
-			}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
-				ret = "ORANGE";
-			}else if(s > 0.4 && v > 0.14 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
-				ret = "BROWN";
-			}else if(s > 0.6 && v > 0.09 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
-				ret = "BROWN";
-			}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
-				ret = "BROWN";
-			}else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
-				ret = "BLACK";
-			}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
-				ret = "BROWN";
-			}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
-				ret = "BROWN";
-			}else if(s > 0.8 && v < 0.15 && v > 0.05 && h > 0.079999999 && h < 0.1222222){
-				ret = "BROWN";
-			}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
-				ret = "YELLOW";
-			}else if(s > 0.4 && v < 0.51 && v > 0.1 && h > 0.1138888888 && h < 0.1916666666){ // new
-				ret = "BROWN";
-			}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
-				ret = "GREEN";
-			}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
-				ret = "LIME";
-			}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
-				ret = "LIME";
-			}else if(s > 0.2 && v > 0.8 && h > 0.3805555555 && h < 0.5194444444){ // v > 0.4 adjusted 3
-				ret = "LIGHT_BLUE";
-			}else if(s > 0.1 && s < 0.21 && v > 0.9 && h > 0.3805555555 && h < 0.5194444444){ // new 3
-				ret = "LIGHT_BLUE";
-			}else if(s > 0.4 && v < 0.81 && v > 0.2 && h > 0.3805555555 && h < 0.6027777777){ // adjusted 3
-				ret = "CYAN";
-			}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
-				ret = "CYAN";
-			}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
-				ret = "BLUE";
-			}else if(s > 0.2 && s < 0.41 && v > 0.7 && h > 0.6027777777 && h < 0.6944444444){ // adjusted 3
-				ret = "LIGHT_BLUE";
-			}else if(s < 0.2 && v > 0.6 && h > 0.6027777777 && h < 0.6944444444){ // new 3
-				ret = "BLUE";
-			}else if(s > 0.1 && s < 0.2 && v > 0.6 && v < 0.91 && h > 0.6027777777 && h < 0.6944444444){ // new 3
-				ret = "LIGHT_BLUE";
-			}else if(s > 0.1 && s < 0.2 && v > 0.9 && h > 0.6027777777 && h < 0.6944444444){ // new 3
-				ret = "BLUE";
-			}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
-				ret = "BLUE";
-			}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
-				ret = "PURPLE";
-			}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
-				ret = "MAGENTA";
-			}else if(s > 0.3 && v > 0.4 && h > 0.8777777777 && h < 0.9611111111){
-				ret = "PINK";
-			}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
-				ret = "RED";
-			}else if(s < 0.1 && v > 0.9){
-				ret = "WHITE";
-			}else if(s < 0.1 && v < 0.91 && v > 0.7){
-				ret = "SILVER";
-			}else if(s < 0.1 && v < 0.71 && v > 0.2){
-				ret = "SILVER";
-			}else if(s < 0.1 && v < 0.21){
-				ret = "BLACK";
-			}else if(s < 0.3 && v < 0.3 && v > 0.1){
-				ret = "GRAY";
-			}else if(s < 0.3 && v < 0.11){
-				ret = "BLACK";
-			}else if(s < 0.7 && v < 0.6){
-				ret = "BLACK";
-			}else if(v < 0.1){ // 0.05
-				ret = "BLACK";
-			}else if(s > 0.29 && s < 0.8 && v < 0.11){
-				ret = "GRAY";
-			}else if(s > 0.29 && s < 0.6 && v < 0.2){
-				ret = "GRAY";
-			//NEW COLORS
-			}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
-				ret = "BLUE";
-			}else if(h > 0.5 && h < 0.602777 && v < 0.13){
-				ret = "BLACK";	
-			}else if(h > 0.95833333 && s > 0.7 && v > 0.19 && v < 0.4){
-				ret = "RED";
-			}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
-				ret = "PURPLE";
-			}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
-				ret = "CYAN";
-			}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
-				ret = "LIGHT_BLUE";
-			}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
-				ret = "BLUE";
-			}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
-				ret = "LIGHT_BLUE";
-			}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
-				ret = "BLUE";
-			}else if(s < 0.31 && v < 0.16){
-				ret = "BLACK";
-			//NEW COLORS 2:
-			}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
-				ret = "BLACK";
-			}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
-				ret = "BLUE";
-			}else if(h > 0.4 && h < 0.53 && s > 0.5 && v < 0.3 && v > 0.15){
-				ret = "CYAN";
-			}else if(h < 0.4 && h > 0.2777777 && s > 0.5 && v < 0.3 && v > 0.15){
-				ret = "GREEN";
-			}else if(h < 0.25 && h > 0.2 && s > 0.6 && v < 0.25 && v > 0.15){
-				ret = "BROWN";
-			}else if(h > 833333 && h < 94 && s > 0.6 && v < 0.4 && v > 0.15){
-				ret = "PURPLE";
-			}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v > 0.8){
-				ret = "LIGHT_BLUE";
-			}else if(h > 0.541 && h < 0.64 && s < 0.4 && s > 0.2 && v > 0.3){
-				ret = "BLUE";
-			}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v < 0.5 && v > 0.2){
-				ret = "BLUE";
-			}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
-				ret = "GRAY";
-			// NEW COLORS 3
-			}else if(h > 0.85 && s > 0.2 && s < 0.41 && v > 0.9){
-				ret = "PINK";
-			}else if(h > 0.763 && s > 0.2 && s < 0.41 && v > 0.5){
-				ret = "PURPLE";
-			}else if(h > 0.125 && h < 0.191666666 && s > 0.25 && s < 0.4 && b > 0.89){
-				ret = "YELLOW";
-			}else if(h > 0.125 && h < 0.191666666 && s > 0.25 && s < 0.4 && b < 0.81 && b > 0.3){
-				ret = "BROWN";
-			}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.85){
-				ret = "LIME";
-			}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.4 && b < 0.8){
-				ret = "GREEN";
-			}else if(s < 0.11 && b > 0.9){
-				ret = "WHITE";
-			}else if(s < 0.11 && b < 0.91 && b > 0.7){
-				ret = "SILVER";
-			}else if(s < 0.11 && b < 0.71 && b > 0.15){
-				ret = "GRAY";
-			}else{
-				ret = "WHITE"; // nothing matched
-				//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
-			}
-			
-			return ret;
+		Integer r = c.getRed(); // RED
+		Integer g = c.getGreen(); // GREEN
+		Integer b = c.getBlue(); // BLUE
+		
+		float[] hsb = new float[3];
+		c.RGBtoHSB(r, g, b, hsb);
+		
+		float h = hsb[0]; // HUE
+		float s = hsb[1]; // SATURATION
+		float v = hsb[2]; // BRIGHTNESS
+		
+		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+			ret = "RED";
+		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
+			ret = "ORANGE";
+		}else if(s > 0.4 && v > 0.14 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.6 && v > 0.09 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BLACK";
+		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
+			ret = "BROWN";
+		}else if(s > 0.4 && v < 0.2 && v > 0.1 && h > 0.079999999 && h < 0.1222222){
+			ret = "BROWN";
+		}else if(s > 0.8 && v < 0.15 && v > 0.05 && h > 0.079999999 && h < 0.1222222){
+			ret = "BROWN";
+		}else if(s > 0.4 && v > 0.5 && h > 0.1138888888 && h < 0.1916666666){
+			ret = "YELLOW";
+		}else if(s > 0.4 && v < 0.51 && v > 0.1 && h > 0.1138888888 && h < 0.1916666666){ // new
+			ret = "BROWN";
+		}else if(s > 0.4 && v > 0.2 && v < 0.81 && h > 0.1916666666 && h < 0.3805555555){
+			ret = "GREEN";
+		}else if(s > 0.4 && v > 0.5 && h > 0.1916666666 && h < 0.3805555555){
+			ret = "LIME";
+		}else if(s > 0.2 && v > 0.75 && h > 0.1916666666 && h < 0.3805555555){
+			ret = "LIME";
+		}else if(s > 0.2 && v > 0.8 && h > 0.3805555555 && h < 0.5194444444){ // v > 0.4 adjusted 3
+			ret = "LIGHT_BLUE";
+		}else if(s > 0.1 && s < 0.21 && v > 0.9 && h > 0.3805555555 && h < 0.5194444444){ // new 3
+			ret = "LIGHT_BLUE";
+		}else if(s > 0.4 && v < 0.81 && v > 0.2 && h > 0.3805555555 && h < 0.6027777777){ // adjusted 3
+			ret = "CYAN";
+		}else if(s > 0.4 && v > 0.2 && h > 0.5194444444 && h < 0.6027777777){
+			ret = "CYAN";
+		}else if(s > 0.4 && v > 0.4 && h > 0.6027777777 && h < 0.6944444444){
+			ret = "BLUE";
+		}else if(s > 0.2 && s < 0.41 && v > 0.7 && h > 0.6027777777 && h < 0.6944444444){ // adjusted 3
+			ret = "LIGHT_BLUE";
+		}else if(s < 0.2 && v > 0.6 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+			ret = "BLUE";
+		}else if(s > 0.1 && s < 0.2 && v > 0.6 && v < 0.91 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+			ret = "LIGHT_BLUE";
+		}else if(s > 0.1 && s < 0.2 && v > 0.9 && h > 0.6027777777 && h < 0.6944444444){ // new 3
+			ret = "BLUE";
+		}else if(s > 0.6 && v > 0.1 && h > 0.6027777777 && h < 0.6944444444){
+			ret = "BLUE";
+		}else if(s > 0.4 && v > 0.3 && h > 0.6944444444 && h < 0.8305555555){
+			ret = "PURPLE";
+		}else if(s > 0.4 && v > 0.4 && h > 0.8305555555 && h < 0.8777777777){
+			ret = "MAGENTA";
+		}else if(s > 0.3 && v > 0.4 && h > 0.8777777777 && h < 0.9611111111){
+			ret = "PINK";
+		}else if(s > 0.4 && v > 0.4 && h > 0.9361111111 && h < 1.0000000001){
+			ret = "RED";
+		}else if(s < 0.1 && v > 0.9){
+			ret = "WHITE";
+		}else if(s < 0.1 && v < 0.91 && v > 0.7){
+			ret = "SILVER";
+		}else if(s < 0.1 && v < 0.71 && v > 0.2){
+			ret = "SILVER";
+		}else if(s < 0.1 && v < 0.21){
+			ret = "BLACK";
+		}else if(s < 0.3 && v < 0.3 && v > 0.1){
+			ret = "GRAY";
+		}else if(s < 0.3 && v < 0.11){
+			ret = "BLACK";
+		}else if(s < 0.7 && v < 0.6){
+			ret = "BLACK";
+		}else if(v < 0.1){ // 0.05
+			ret = "BLACK";
+		}else if(s > 0.29 && s < 0.8 && v < 0.11){
+			ret = "GRAY";
+		}else if(s > 0.29 && s < 0.6 && v < 0.2){
+			ret = "GRAY";
+		//NEW COLORS
+		}else if(s > 0.6 && h > 0.5666666 && h < 0.602777 && v > 0.12 && v < 0.3){
+			ret = "BLUE";
+		}else if(h > 0.5 && h < 0.602777 && v < 0.13){
+			ret = "BLACK";	
+		}else if(h > 0.95833333 && s > 0.7 && v > 0.19 && v < 0.4){
+			ret = "RED";
+		}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
+			ret = "PURPLE";
+		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
+			ret = "CYAN";
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
+			ret = "BLUE";
+		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v < 0.71){
+			ret = "BLUE";
+		}else if(s < 0.31 && v < 0.16){
+			ret = "BLACK";
+		//NEW COLORS 2:
+		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+			ret = "BLACK";
+		}else if(h > 0.53 && h < 0.7 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = "BLUE";
+		}else if(h > 0.4 && h < 0.53 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = "CYAN";
+		}else if(h < 0.4 && h > 0.2777777 && s > 0.5 && v < 0.3 && v > 0.15){
+			ret = "GREEN";
+		}else if(h < 0.25 && h > 0.2 && s > 0.6 && v < 0.25 && v > 0.15){
+			ret = "BROWN";
+		}else if(h > 833333 && h < 94 && s > 0.6 && v < 0.4 && v > 0.15){
+			ret = "PURPLE";
+		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v > 0.8){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.541 && h < 0.64 && s < 0.4 && s > 0.2 && v > 0.3){
+			ret = "BLUE";
+		}else if(h > 0.47222222 && h < 0.541 && s < 0.4 && s > 0.2 && v < 0.5 && v > 0.2){
+			ret = "BLUE";
+		}else if(h > 0.32 && h < 0.501 && s > 0.99 && v < 0.12){
+			ret = "GRAY";
+		// NEW COLORS 3
+		}else if(h > 0.85 && s > 0.2 && s < 0.41 && v > 0.9){
+			ret = "PINK";
+		}else if(h > 0.763 && s > 0.2 && s < 0.41 && v > 0.5){
+			ret = "PURPLE";
+		}else if(h > 0.125 && h < 0.191666666 && s > 0.25 && s < 0.4 && b > 0.89){
+			ret = "YELLOW";
+		}else if(h > 0.125 && h < 0.191666666 && s > 0.25 && s < 0.4 && b < 0.81 && b > 0.3){
+			ret = "BROWN";
+		}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.85){
+			ret = "LIME";
+		}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.4 && b < 0.8){
+			ret = "GREEN";
+		}else if(s < 0.11 && b > 0.9){
+			ret = "WHITE";
+		}else if(s < 0.11 && b < 0.91 && b > 0.7){
+			ret = "SILVER";
+		}else if(s < 0.11 && b < 0.71 && b > 0.15){
+			ret = "GRAY";
+		}else{
+			ret = "WHITE"; // nothing matched
+			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
+		
+		return ret;
+	}
 
 	
 	public String getDirection(Float yaw)
