@@ -9,18 +9,18 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-public class SkinUpdate {
+public class SkinBuildAll {
 
 	static Main main;
 	
-	public static void buildPartOfImageEast(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+	public static void buildPartOfImageEast(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		main = m;
 
 		if(component.equalsIgnoreCase("arm1_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 5, p.getBlockY() + 13, p.getBlockZ() - 4);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 1, p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 4);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -33,16 +33,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
-					
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm1_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 5, p.getBlockY() + 24, p.getBlockZ() - 4);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 1, p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 4);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -55,8 +55,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() - j + max_y - 1);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -64,10 +65,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("arm2_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 5, p.getBlockY() + 13, p.getBlockZ() + 11);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 1, p.getBlockY() + 13, p.getBlockZ() + 11);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 11);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 11);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -80,15 +81,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
-		    	}
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
+			    }
 		    }	
 		}else if(component.equalsIgnoreCase("arm2_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 5, p.getBlockY() + 24, p.getBlockZ() + 11);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 1, p.getBlockY() + 24, p.getBlockZ() + 11);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 11);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 11);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -101,8 +103,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4,end.getBlockY(),start.getBlockZ() + j - max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -110,10 +113,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("head_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 25, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 25, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -126,15 +129,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 9,end.getBlockY(), start.getBlockZ() + i - min_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("head_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 32, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -147,8 +151,9 @@ public class SkinUpdate {
 
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY(), start.getBlockZ() + i - min_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -159,10 +164,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("hat_left")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY(), p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -174,18 +179,19 @@ public class SkinUpdate {
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		if(!isTransparent(bi, i, j)){
-			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 8,end.getBlockY() - j + max_y,p.getBlockZ() - 1);
+			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 8,end.getBlockY() - j + max_y,p.getLocation().getBlockZ() - 1);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("hat_front")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 12, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -199,16 +205,17 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - 1,end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("hat_right")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY() + 12, p.getBlockZ() + 7);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 24, p.getBlockZ() + 7);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -222,16 +229,17 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x - 7,end.getBlockY() - j + max_y,start.getBlockZ() + 1);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("hat_behind")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY(), p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY() + 24, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -245,16 +253,17 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + 1,end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("hat_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 32, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -268,8 +277,9 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX()- j + max_y,end.getBlockY() + 1, start.getBlockZ() + i - min_x);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
@@ -280,13 +290,13 @@ public class SkinUpdate {
 
 	
 	
-	public static void buildPartOfImageSouth(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+	public static void buildPartOfImageSouth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		main = m;
 		if(component.equalsIgnoreCase("arm1_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 13, p.getBlockZ() + 5);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 5);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -299,16 +309,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm1_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ() + 5);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 5);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -321,9 +331,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -331,10 +341,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("arm2_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 7, p.getBlockY() + 13, p.getBlockZ() + 1);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -347,16 +357,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() - i + max_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm2_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 24, p.getBlockZ() + 6);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 6);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -369,8 +379,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x,end.getBlockY(),start.getBlockZ() + j - max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -380,10 +391,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("head_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 25, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 25, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -396,15 +407,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1,end.getBlockY(), start.getBlockZ() + i - min_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("head_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 32, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -417,8 +429,9 @@ public class SkinUpdate {
 
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - max_x + 1,end.getBlockY(), start.getBlockZ() - j + max_y - 1);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -429,10 +442,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("hat_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 7, p.getBlockY() + 32, p.getBlockZ() - 1);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -446,8 +459,9 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() + 1, start.getBlockZ() - j + max_y);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
@@ -457,13 +471,13 @@ public class SkinUpdate {
 	
 
 	
-	public static void buildPartOfImageWest(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+	public static void buildPartOfImageWest(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		main = m;
 		if(component.equalsIgnoreCase("arm1_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 6, p.getBlockY() + 13, p.getBlockZ() + 4);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 4);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -476,16 +490,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm1_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 6, p.getBlockY() + 24, p.getBlockZ() + 4);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 4);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -498,9 +512,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() - i + max_x - 4);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -508,10 +522,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("arm2_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 13, p.getBlockZ() - 7);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -524,16 +538,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm2_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 6, p.getBlockY() + 24, p.getBlockZ() - 7);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -546,9 +560,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x,end.getBlockY(),start.getBlockZ() + j - max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -558,10 +572,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("head_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 8, p.getBlockY() + 25, p.getBlockZ() - 7);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 25, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 8, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() - 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -574,15 +588,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 9,end.getBlockY(), start.getBlockZ() + i - min_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("head_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 7, p.getBlockY() + 32, p.getBlockZ() - 8);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 8);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -595,8 +610,9 @@ public class SkinUpdate {
 
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY(), start.getBlockZ() - j + max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -607,10 +623,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("hat_left")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY(), p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -622,19 +638,19 @@ public class SkinUpdate {
 		    		Color c = new Color(bi.getRGB(i, j));
 		    		
 		    		if(!isTransparent(bi, i, j)){
-			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - 1,end.getBlockY() - j + max_y,p.getBlockZ() - i + max_x - 8);
+			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - 1,end.getBlockY() - j + max_y,p.getLocation().getBlockZ() - i + max_x - 8);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-						change.setData(DyeColor.BLACK.getData());
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("hat_front")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 12, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -648,16 +664,17 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() - j + max_y, start.getBlockZ() - 1);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("hat_right")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 12, p.getBlockZ() + 7);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 24, p.getBlockZ() + 7);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -671,16 +688,17 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + 1,end.getBlockY() - j + max_y,start.getBlockZ() + i - min_x - 7);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }
 		}else if(component.equalsIgnoreCase("hat_behind")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY(), p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY() + 24, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -694,16 +712,17 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() - j + max_y, start.getBlockZ() + 1);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("hat_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 8, p.getBlockY() + 32, p.getBlockZ() - 7);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 8, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 7);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -717,8 +736,9 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY() + 1, start.getBlockZ() + i - min_x);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);
 		    		}
 		    	}
 		    }	
@@ -727,14 +747,14 @@ public class SkinUpdate {
 	}
 
 	
-
-	public static void buildPartOfImageNorth(Main m, Location p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
+	
+	public static void buildPartOfImageNorth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component){
 		main = m;
 		if(component.equalsIgnoreCase("arm1_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY() + 13, p.getBlockZ() - 1);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -747,16 +767,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm1_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() + 7, p.getBlockY() + 24, p.getBlockZ() - 1);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -769,9 +789,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -779,10 +799,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("arm2_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 13, p.getBlockZ() - 1);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 13, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -795,16 +815,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y,end.getBlockY(),start.getBlockZ() + i - max_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("arm2_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 24, p.getBlockZ() - 6);
-			Location end = new Location(p.getWorld(), p.getBlockX() - 11, p.getBlockY() + 24, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 6);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -817,8 +837,9 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - max_x,end.getBlockY(),start.getBlockZ() - j + max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -828,10 +849,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("head_bottom")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 25, p.getBlockZ());
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 25, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -844,15 +865,16 @@ public class SkinUpdate {
 		    		
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1,end.getBlockY(), start.getBlockZ() + i - min_x);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}else if(component.equalsIgnoreCase("head_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 32, p.getBlockZ() + 1);
-			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 1);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -865,8 +887,9 @@ public class SkinUpdate {
 
 		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x,end.getBlockY(), start.getBlockZ() + j - max_y);
 					////getLogger().info(change.getLocation().toString());
-		    		change.setType(Material.WOOL);
-		    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 		    	}
 		    }	
 		}
@@ -877,10 +900,10 @@ public class SkinUpdate {
 		
 		
 		if(component.equalsIgnoreCase("hat_top")){
-			Location current = p;
+			Location current = p.getLocation();
 			//getLogger().info("Building " + component);
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 32, p.getBlockZ() - 8);
-			Location end = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 32, p.getBlockZ() + 8);
+			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 8);
+			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
 			////getLogger().info(start.toString());
 			////getLogger().info(end.toString());
@@ -894,8 +917,9 @@ public class SkinUpdate {
 		    		if(!isTransparent(bi, i, j)){
 			    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x,end.getBlockY() + 1, start.getBlockZ() - j + max_y);
 						////getLogger().info(change.getLocation().toString());
-			    		change.setType(Material.WOOL);
-			    		change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+			    		int[] i_ = Main.getMaterialFromColor(c);
+			    		change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte)i_[1]);	
 		    		}
 		    	}
 		    }	
@@ -906,7 +930,7 @@ public class SkinUpdate {
 
 	
 	// EAST FRONT/BEHIND CUBOID
-	public static void buildEastFront(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildEastFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -915,16 +939,17 @@ public class SkinUpdate {
 			for(int j = 0; j < height; j++){
 				//if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-		    		Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + i);
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + i);
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				//}
 			}
 		}
 	}
 	
 	// EAST FRONT/BEHIND CUBOID INVERTED
-	public static void buildEastFrontInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildEastFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -933,16 +958,17 @@ public class SkinUpdate {
 			for(int j = 0; j < height; j++){
 				//if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-		    		Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				//}
 			}
 		}
 	}
 	
 	// EAST RIGHT/LEFT CUBOID
-	public static void buildEastSide(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildEastSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -951,9 +977,10 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				//if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				//}
 			}
 		}
@@ -962,7 +989,7 @@ public class SkinUpdate {
 	
 
 	// WEST FRONT/BEHIND CUBOID
-	public static void buildWestFront(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildWestFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -970,15 +997,16 @@ public class SkinUpdate {
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-	    		Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
-	    		change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
+	    		int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	// WEST FRONT/BEHIND CUBOID INVERTED
-	public static void buildWestFrontInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildWestFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -986,15 +1014,16 @@ public class SkinUpdate {
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-	    		Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-	    		change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+	    		int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSide(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1002,16 +1031,17 @@ public class SkinUpdate {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-				Block change = start.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
+				int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 
 	
 	// WEST FRONT/BEHIND CUBOID
-	public static void buildWestFrontHAT(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildWestFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1020,16 +1050,17 @@ public class SkinUpdate {
 			for(int j = 0; j < height; j++){
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-		    		Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 			}
 		}
 	}
 	
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSideHAT(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1038,16 +1069,17 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 			}
 		}
 	}
 	
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSideHATInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1056,9 +1088,10 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 			}
 		}
@@ -1066,7 +1099,7 @@ public class SkinUpdate {
 	
 
 	// SOUTH FRONT/BEHIND CUBOID
-	public static void buildSouthFront(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildSouthFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1074,15 +1107,16 @@ public class SkinUpdate {
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-	    		Block change = start.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
-	    		change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
+	    		int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	// SOUTH FRONT/BEHIND CUBOID INVERTED
-	public static void buildSouthFrontInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildSouthFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1090,15 +1124,16 @@ public class SkinUpdate {
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-	    		Block change = start.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
-	    		change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
+	    		int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	// SOUTH RIGHT/LEFT CUBOID
-	public static void buildSouthSide(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1106,16 +1141,17 @@ public class SkinUpdate {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-				Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+				int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	
 	// SOUTH FRONT/BEHIND CUBOID HAT LAYERS
-	public static void buildSouthFrontHAT(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildSouthFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1124,16 +1160,17 @@ public class SkinUpdate {
 			for(int j = 0; j < height; j++){
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-		    		Block change = start.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);	
 				}
 			}
 		}
 	}
 	
 	// SOUTH RIGHT/LEFT CUBOID HAT LAYERS
-	public static void buildSouthSideHAT(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1142,9 +1179,10 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 				
 			}
@@ -1153,7 +1191,7 @@ public class SkinUpdate {
 	
 	
 	// SOUTH RIGHT/LEFT CUBOID HAT LAYERS INVERTED
-	public static void buildSouthSideHATInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1162,9 +1200,10 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 				
 			}
@@ -1175,7 +1214,7 @@ public class SkinUpdate {
 	
 
 	// NORTH FRONT/BEHIND CUBOID
-	public static void buildNorthFront(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildNorthFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1183,15 +1222,16 @@ public class SkinUpdate {
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-	    		Block change = start.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
-	    		change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
+	    		int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	// NORTH FRONT/BEHIND CUBOID INVERTED
-	public static void buildNorthFrontInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildNorthFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1199,15 +1239,16 @@ public class SkinUpdate {
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-	    		Block change = start.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-	    		change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+	    		Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+	    		int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
 	
 	// NORTH RIGHT/LEFT CUBOID
-	public static void buildNorthSide(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1215,9 +1256,10 @@ public class SkinUpdate {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-				Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+				int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
 			}
 		}
 	}
@@ -1225,7 +1267,7 @@ public class SkinUpdate {
 	
 	
 	// NORTH FRONT/BEHIND CUBOID HAT LAYERS
-	public static void buildNorthFrontHAT(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
+	public static void buildNorthFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start){
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1234,16 +1276,17 @@ public class SkinUpdate {
 			for(int j = 0; j < height; j++){
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-		    		Block change = start.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
-		    		change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+		    		Block change = p.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
+		    		int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 			}
 		}
 	}
 	
 	// NORTH RIGHT/LEFT CUBOID HAT LAYERS
-	public static void buildNorthSideHAT(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1252,9 +1295,10 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 				
 			}
@@ -1263,7 +1307,7 @@ public class SkinUpdate {
 	
 	
 	// NORTH RIGHT/LEFT CUBOID HAT LAYERS INVERTED
-	public static void buildNorthSideHATInvert(Main m, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
 		
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1272,9 +1316,10 @@ public class SkinUpdate {
 			for (int j = 0; j < height; j++) {
 				if(!isTransparent(bi, min_x + i, min_y + j)){
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
-					Block change = start.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());	
+					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+					int[] i_ = Main.getMaterialFromColor(c);
+		    		change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte)i_[1]);
 				}
 				
 			}
