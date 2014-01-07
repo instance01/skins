@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -171,6 +172,18 @@ public class Main extends JavaPlugin implements Listener {
 								}
 								
 							}
+						}
+					}else if(action.equalsIgnoreCase("forceupdate")){
+						if(skin_updating){
+							sender.sendMessage(ChatColor.DARK_AQUA + "Forcing Skins update..");
+							Bukkit.getScheduler().runTaskLater(this, new Runnable(){
+			            		@Override
+			            		public void run(){
+			            			update_func();	
+			            		}
+			            	}, 10L);	
+						}else{
+							sender.sendMessage(ChatColor.RED + "You need to toggle skin_auto_updating to true in the config first.");
 						}
 					}else{						
 						if(args.length > 1){ // /skin [name] [direction]
@@ -438,13 +451,13 @@ public class Main extends JavaPlugin implements Listener {
 							}
 						}
 							
-					}
+					} 
 					
 				}else{
 					sender.sendMessage("§3 -- Skins Help --");
-					sender.sendMessage("§3 /skin [name] : §2Builds a skin in the EAST direction");
+					sender.sendMessage("§3 /skin [name] : §2Builds a skin in the direction you are looking");
 					sender.sendMessage("§3 /skin [name] [direction] : §2Builds a skin in the provided direction");
-					sender.sendMessage("§3 /skin smooth : §2Smoothes the skin");
+					sender.sendMessage("§3 /skin smooth : §2Smoothes the skin with wood blocks");
 					sender.sendMessage("§3 /skin undo : §2Undoes the last skin");
 					sender.sendMessage("§3 /colortest [start/status] : §2Runs a colortest to determine all currently supported colors");
 				}
@@ -467,7 +480,7 @@ public class Main extends JavaPlugin implements Listener {
 				}else if(args[0].equalsIgnoreCase("startwithlog")){ // /colortest startwithlog
 					poscount = 0;
 					negcount = 0;
-					Runnable r = new Runnable() {
+					Runnable r = new Runnable(){
 				        public void run() {
 				        	colorTestLog();
 				        }
@@ -521,38 +534,57 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	public void update_func(){
-		getLogger().info("Updating Skins . . .");
-		if(getConfig().isSet("skins")){
-			for(String uuid : getConfig().getConfigurationSection("skins.").getKeys(false)){
-				String skin_ = getConfig().getString("skins." + uuid + ".name");
-				if(isValidSkin(uuid)){
-					boolean cont = true;
-					String direction = getConfig().getString("skins." + uuid + ".direction");
-					String mode = getConfig().getString("skins." + uuid + ".mode");
-					Location t = new Location(Bukkit.getWorld(getConfig().getString("skins." + uuid + ".location.world")), getConfig().getInt("skins." + uuid + ".location.x"), getConfig().getInt("skins." + uuid + ".location.y"), getConfig().getInt("skins." + uuid + ".location.z"));
-					BufferedImage Image1 = null;
-					BufferedImage local = null;
-					try {
-					    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin_ + ".png");
-					    Image1 = ImageIO.read(url);
-					} catch (IOException e) {
-						cont = false;
-					}
-					
-					try {
-						local = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + skin_ + ".png"));
-					} catch (IOException e) {
-						cont = false;
-					}
-					
-					if(!bufferedImagesEqual(local, Image1)){
-						update(t, Image1, skin_, direction, mode);
+		try{
+			getLogger().info("Updating Skins . . .");
+			if(getConfig().isSet("skins")){
+				for(String uuid : getConfig().getConfigurationSection("skins.").getKeys(false)){
+					if(isValidSkin(uuid)){
+						String skin_ = getConfig().getString("skins." + uuid + ".name");
+						getLogger().info("Updating " + skin_);
+						boolean cont = true;
+						String direction = getConfig().getString("skins." + uuid + ".direction");
+						String mode = getConfig().getString("skins." + uuid + ".mode");
+						Location t = new Location(Bukkit.getWorld(getConfig().getString("skins." + uuid + ".location.world")), getConfig().getInt("skins." + uuid + ".location.x"), getConfig().getInt("skins." + uuid + ".location.y"), getConfig().getInt("skins." + uuid + ".location.z"));
+						BufferedImage Image1 = null;
+						BufferedImage local = null;
+						try {
+						    URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin_ + ".png");
+						    Image1 = ImageIO.read(url);
+						} catch (IOException e) {
+							cont = false;
+						}
+						
+						try {
+							local = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + uuid + ".png"));
+							//local = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + skin_ + ".png"));
+						} catch (IOException e) {
+							cont = false;
+						}
+						
+						if(local != null){
+							if(!bufferedImagesEqual(local, Image1)){
+								update(t, Image1, skin_, direction, mode);
+							}
+						}else{
+							getLogger().info("An error occured while updating " + skin_ + ": Skin image in config folder was not found. Downloading latest skin.");
+							File outputfile = new File(this.getDataFolder().getPath() + "/" + uuid + ".png");
+							//File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
+							try {
+								ImageIO.write(Image1, "png", outputfile);
+							} catch (IOException e) {
+								//
+							}
+							update(t, Image1, skin_, direction, mode);
+						}
 					}
 				}
 			}
+			
+			getLogger().info("Finished updating skins.");
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		
-		getLogger().info("Finished updating skins.");
 	}
 	
 	
@@ -630,7 +662,8 @@ public class Main extends JavaPlugin implements Listener {
 			cont = false;
 		}
 		
-		File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
+		File outputfile = new File(this.getDataFolder().getPath() + "/" + uuid_ + ".png");
+		//File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
 		try {
 			ImageIO.write(Image1, "png", outputfile);
 		} catch (IOException e) {
@@ -649,7 +682,8 @@ public class Main extends JavaPlugin implements Listener {
 		this.saveConfig();
 		
 		try{
-			File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
+			File outputfile = new File(this.getDataFolder().getPath() + "/" + uuid + ".png");
+			//File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
 			outputfile.delete();	
 		}catch(Exception e){
 			//
