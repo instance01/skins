@@ -450,9 +450,7 @@ public class Main extends JavaPlugin implements Listener {
 								p.sendMessage("§4Playername not found!");
 							}
 						}
-							
-					} 
-					
+					}
 				}else{
 					sender.sendMessage("§3 -- Skins Help --");
 					sender.sendMessage("§3 /skin [name] : §2Builds a skin in the direction you are looking");
@@ -3266,16 +3264,40 @@ public class Main extends JavaPlugin implements Listener {
 		float s = hsb[1]; // SATURATION
 		float v = hsb[2]; // BRIGHTNESS
 		
-		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+		if(s > 0.4 && v > 0.2 && h < 0.037){
 			ret = "RED";
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 			ret = "ORANGE";
-		}else if(s > 0.4 && v > 0.14 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}else if(s > 0.4 && s < 0.61 && v > 0.14 && v < 0.5 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
-		}else if(s > 0.6 && v > 0.09 && h > 0.019 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}else if(s > 79 && v > 0.14 && v < 0.45 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
-		}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}else if(s > 0.15 && s < 0.4 && v > 0.14 && v < 0.6 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
+		}else if(s > 0.15 && s < 0.4 && v > 0.6 && v < 0.81 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "RED";
+		}else if(s > 0.55 && v > 0.41 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "RED";
+		}else if(s > 0.15 && s < 0.4 && v > 0.8 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "PINK";
+		}else if(s > 0.4 && s < 0.61 && v > 0.14 && v < 0.75 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.6 && s < 0.8 && v > 0.09 && v < 0.7 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.6 && s < 0.8 && v > 0.7 && h > 0.038 && h < 0.12){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "ORANGE";
+		}else if(s > 0.8 && v > 0.09 && v < 0.7 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.5 && v < 0.8 && h > 0.02 && h < 0.0333333333){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "RED";
+		}else if(s > 0.3 && v < 0.5 && h > 0.02 && h < 0.0333333333){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.5 && v < 0.75 && h > 0.0333333333 && h < 0.1138888888){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v < 0.55 && h > 0.1138888888 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.55 && v < 0.7 && h > 0.1138888888 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "GREEN";
 		}else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BLACK";
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
@@ -3324,10 +3346,10 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "RED";
 		}else if(s < 0.11 && v > 0.9){
 			ret = "WHITE";
-		}else if(s < 0.11 && v < 0.91 && v > 0.7){
+		}else if(s < 0.11 && v < 0.91 && v > 0.6){
 			ret = "SILVER";
-		}else if(s < 0.11 && v < 0.71 && v > 0.2){
-			ret = "SILVER";
+		}else if(s < 0.11 && v < 0.601 && v > 0.2){
+			ret = "GRAY";
 		}else if(s < 0.11 && v < 0.21){
 			ret = "BLACK";
 		}else if(s < 0.3 && v < 0.3 && v > 0.1){
@@ -3404,6 +3426,7 @@ public class Main extends JavaPlugin implements Listener {
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
+		getLogger().info(ret + " " + Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		
 		return ret;
 	}
@@ -3489,10 +3512,45 @@ public class Main extends JavaPlugin implements Listener {
 		float s = hsb[1]; // SATURATION
 		float v = hsb[2]; // BRIGHTNESS
 		
-		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+		if(s > 0.4 && v > 0.2 && h < 0.037){
+			ret = true;
+		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
+			ret = true;
+		}else if(s > 0.4 && s < 0.61 && v > 0.14 && v < 0.5 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 79 && v > 0.14 && v < 0.45 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.15 && s < 0.4 && v > 0.14 && v < 0.6 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.15 && s < 0.4 && v > 0.6 && v < 0.81 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.55 && v > 0.41 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.15 && s < 0.4 && v > 0.8 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.4 && s < 0.61 && v > 0.14 && v < 0.75 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.6 && s < 0.8 && v > 0.09 && v < 0.7 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.6 && s < 0.8 && v > 0.7 && h > 0.038 && h < 0.12){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.8 && v > 0.09 && v < 0.7 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.3 && v > 0.5 && v < 0.8 && h > 0.02 && h < 0.0333333333){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.3 && v < 0.5 && h > 0.02 && h < 0.0333333333){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.3 && v > 0.5 && v < 0.75 && h > 0.0333333333 && h < 0.1138888888){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.3 && v < 0.55 && h > 0.1138888888 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		}else if(s > 0.3 && v > 0.55 && v < 0.7 && h > 0.1138888888 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = true;
+		/*if(s > 0.4 && v > 0.2 && h < 0.03333333333){
 			ret = true;
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){
 			ret = true;
+		*/	
 		}else if(s > 0.4 && v > 0.145 && h > 0.02 && h < 0.15){
 			ret = true;
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
@@ -3738,7 +3796,42 @@ public class Main extends JavaPlugin implements Listener {
 		float s = hsb[1]; // SATURATION
 		float v = hsb[2]; // BRIGHTNESS
 		
-		if(s > 0.4 && v > 0.2 && h < 0.03333333333){
+		if(s > 0.4 && v > 0.2 && h < 0.037){
+			ret = "RED";
+		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
+			ret = "ORANGE";
+		}else if(s > 0.4 && s < 0.61 && v > 0.14 && v < 0.5 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 79 && v > 0.14 && v < 0.45 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.15 && s < 0.4 && v > 0.14 && v < 0.6 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.15 && s < 0.4 && v > 0.6 && v < 0.81 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "RED";
+		}else if(s > 0.55 && v > 0.41 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "RED";
+		}else if(s > 0.15 && s < 0.4 && v > 0.8 && h > 0.019 && h < 0.038){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "PINK";
+		}else if(s > 0.4 && s < 0.61 && v > 0.14 && v < 0.75 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.6 && s < 0.8 && v > 0.09 && v < 0.7 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.6 && s < 0.8 && v > 0.7 && h > 0.038 && h < 0.12){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "ORANGE";
+		}else if(s > 0.8 && v > 0.09 && v < 0.7 && h > 0.038 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.5 && v < 0.8 && h > 0.02 && h < 0.0333333333){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "RED";
+		}else if(s > 0.3 && v < 0.5 && h > 0.02 && h < 0.0333333333){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.5 && v < 0.75 && h > 0.0333333333 && h < 0.1138888888){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v < 0.55 && h > 0.1138888888 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "BROWN";
+		}else if(s > 0.3 && v > 0.55 && v < 0.7 && h > 0.1138888888 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+			ret = "GREEN";
+		}
+		/*if(s > 0.4 && v > 0.2 && h < 0.03333333333){
 			ret = "RED";
 		}else if(s > 0.6 && v > 0.7 && h > 0.0333333333 && h < 0.1138888888){ // s > 0.4 && v > 0.5
 			ret = "ORANGE";
@@ -3748,7 +3841,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "BROWN";
 		}else if(s > 0.3 && v > 0.5 && h > 0.02 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BROWN";
-		}else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
+		}*/else if(s < 0.41 && v < 0.2 && h > 0.01 && h < 0.15){ // v < 0.5 // s < 0.801 // v > 0.2
 			ret = "BLACK";
 		}else if(s > 0.4 && v < 0.35 && v > 0.2 && h > 0.969){
 			ret = "BROWN";
@@ -3928,11 +4021,16 @@ public class Main extends JavaPlugin implements Listener {
 	private static int[] GOLD = new int[] { 255, 255, 0, 20, 41, 0 };
 	private static int[] SNOW = new int[] { 255, 255, 255, 21, 80, 0 };
 	private static int[] GRAVEL = new int[] { 140, 135, 155, 22, 13, 0 };
-
+	private static int[] TWO_HALFSLABS = new int[] { 159, 159, 159, 23, 43, 0 };
+	private static int[] SNOW_BLOCK = new int[] { 239, 251, 251, 24, 80, 0 };
+	private static int[] NETHER_RACK = new int[] { 110, 53, 51, 25, 87, 0 };
+	private static int[] SOUL_SAND = new int[] { 84, 64, 51, 26, 88, 0 };
+	private static int[] OBSIDIAN = new int[] { 20, 18, 29, 27, 49, 0 };
+	
 	public static int[][] materials = {
 		 STONE, WOOL_GREY, WOOL_L_GREY, WOOL_BLACK, WOOL_ORANGE, WOOL_MAGENTA, WOOL_L_BLUE, WOOL_YELLOW, WOOL_LIME,
 		 WOOL_PINK, WOOL_CYAN, WOOL_PURPLE, WOOL_BLUE, WOOL_BROWN, WOOL_GREEN, WOOL_RED, WOOL_WHITE,
-		 SANDSTONE, IRON, DIAMOND, GOLD, SNOW, GRAVEL
+		 SANDSTONE, IRON, DIAMOND, GOLD, SNOW, GRAVEL, TWO_HALFSLABS, SNOW_BLOCK, NETHER_RACK, SOUL_SAND, OBSIDIAN
 	};
 
 	public static double colorDistance(Color c1, Color c2)
@@ -3945,25 +4043,22 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public static int[] getMaterialFromColor(Color col) {
-		int[] ret = {35};
 		int closestId = 0;
 
 		int closestBlock = 35;
 		int closestData = 0;
 
-		double closestDistance = colorDistance(col, new Color(250, 250, 250));
+		double d = colorDistance(col, new Color(255, 255, 255));
 
 		for (int i = 0; i < materials.length; i++) {
-			double dist = colorDistance(col, new Color(materials[i][0], materials[i][1], materials[i][2]));
+			double currentdist = colorDistance(col, new Color(materials[i][0], materials[i][1], materials[i][2]));
 
-			if (dist <= closestDistance) {
+			if (currentdist < d) {
 				closestId = i;
-				closestDistance = dist;
+				d = currentdist;
 			}
-
-			ret = new int[] { materials[closestId][4], materials[closestId][5] };
 		}
 
-		return ret;
+		return new int[] { materials[closestId][4], materials[closestId][5] };
 	}
 }
