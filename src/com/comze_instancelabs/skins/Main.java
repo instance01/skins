@@ -71,10 +71,17 @@ public class Main extends JavaPlugin implements Listener {
 	public String newline = System.getProperty("line.separator");
 	
 	
-	public static HashMap<Player, Location> undoloc = new HashMap<Player, Location>();
-	public static HashMap<Player, String> undoskin = new HashMap<Player, String>();
-	public static HashMap<Player, String> undodir = new HashMap<Player, String>();
-	public static HashMap<Player, String> undo_uuid = new HashMap<Player, String>();
+	//public static HashMap<Player, Location> undoloc = new HashMap<Player, Location>();
+	//public static HashMap<Player, String> undoskin = new HashMap<Player, String>();
+	//public static HashMap<Player, String> undodir = new HashMap<Player, String>();
+	//public static HashMap<Player, String> undo_uuid = new HashMap<Player, String>();
+	
+	public static HashMap<Player, ArrayList<Location>> undoloc = new HashMap<Player, ArrayList<Location>>();
+	public static HashMap<Player, ArrayList<String>> undoskin = new HashMap<Player, ArrayList<String>>();
+	public static HashMap<Player, ArrayList<String>> undodir = new HashMap<Player, ArrayList<String>>();
+	public static HashMap<Player, ArrayList<String>> undo_uuid = new HashMap<Player, ArrayList<String>>();
+	
+	
 	
 	@Override
 	public void onEnable(){
@@ -132,9 +139,17 @@ public class Main extends JavaPlugin implements Listener {
 						
 						if(p != null){
 							if(undoloc.containsKey(p)){
-								Location t = undoloc.get(p);
-								String direction = undodir.get(p);
-								undo(p, t, direction);
+								//Location t = undoloc.get(p);
+								//String direction = undodir.get(p);
+								ArrayList<Location> t_ = undoloc.get(p);
+								Location t = null;
+								ArrayList<String> dir_ = undodir.get(p);
+								String direction = "";
+								if(!t_.isEmpty() && !dir_.isEmpty()){
+									t = t_.get(t_.size() - 1);
+									direction = dir_.get(dir_.size() - 1);
+									undo(p, t, direction);
+								}
 							}else{
 								p.sendMessage("§4I don't have any skins you requested in memory!");
 							}
@@ -150,10 +165,26 @@ public class Main extends JavaPlugin implements Listener {
 						
 						if(p != null){
 							if(undoloc.containsKey(p)){
-								Location t = undoloc.get(p);
-								String skin = undoskin.get(p);
-								String dir = undodir.get(p);
+								//Location t = undoloc.get(p);
+								//String skin = undoskin.get(p);
+								//String dir = undodir.get(p);
 								boolean cont = true;
+								
+								ArrayList<Location> t_ = undoloc.get(p);
+								Location t = null;
+								ArrayList<String> dir_ = undodir.get(p);
+								String dir = "";
+								ArrayList<String> skin_ = undoskin.get(p);
+								String skin = "";
+								if(!t_.isEmpty() && !dir_.isEmpty() && !skin_.isEmpty()){
+									t = t_.get(t_.size() - 1);
+									dir = dir_.get(dir_.size() - 1);
+									skin = skin_.get(skin_.size() - 1);
+									
+								}else{
+									cont = false;
+								}
+								
 								BufferedImage Image1 = null;
 								try {
 									URL url; //= new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
@@ -915,13 +946,41 @@ public class Main extends JavaPlugin implements Listener {
 	
 	private void undo(Player p, Location t, String direction){
 		if(skin_updating){
-			removeSkin(undoskin.get(p), undo_uuid.get(p));	
+			removeSkin(undoskin.get(p).get(undoskin.get(p).size() - 1), undo_uuid.get(p).get(undo_uuid.get(p).size() - 1));	
 		}
 		
-		undoloc.remove(p);
-		undoskin.remove(p);
-		undodir.remove(p);
-		undo_uuid.remove(p);
+		ArrayList<Location> loc_ = new ArrayList<Location>();
+		ArrayList<String> skin_ = new ArrayList<String>();
+		ArrayList<String> dir_ = new ArrayList<String>();
+		ArrayList<String> uuid_ = new ArrayList<String>();
+		if(undoloc.containsKey(p)){
+			loc_ = undoloc.get(p);
+			skin_ = undoskin.get(p);
+			dir_ = undodir.get(p);
+			uuid_ = undo_uuid.get(p);
+			
+			if(loc_.size() < 2){
+				undoloc.remove(p);
+				undoskin.remove(p);
+				undodir.remove(p);
+				undo_uuid.remove(p);
+			}else{
+				loc_.remove(loc_.size() - 1);
+				skin_.remove(skin_.size() - 1);
+				dir_.remove(dir_.size() - 1);
+				uuid_.remove(uuid_.size() - 1);
+				
+				undoloc.put(p, loc_);
+				undoskin.put(p, skin_);
+				undodir.put(p, dir_);
+				undo_uuid.put(p, uuid_);
+			}
+		}
+		
+		//undoloc.remove(p);
+		//undoskin.remove(p);
+		//undodir.remove(p);
+		//undo_uuid.remove(p);
 		
 		Location c = t;
 		
@@ -1316,10 +1375,31 @@ public class Main extends JavaPlugin implements Listener {
 	private void buildclay(Player p, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
-		undoloc.put(p, p.getLocation());
-		undoskin.put(p, skin);
-		undodir.put(p, direction);
-		undo_uuid.put(p, uuid);
+		ArrayList<Location> loc_ = new ArrayList<Location>();
+		ArrayList<String> skin_ = new ArrayList<String>();
+		ArrayList<String> dir_ = new ArrayList<String>();
+		ArrayList<String> uuid_ = new ArrayList<String>();
+		if(undoloc.containsKey(p)){
+			loc_ = undoloc.get(p);
+			skin_ = undoskin.get(p);
+			dir_ = undodir.get(p);
+			uuid_ = undo_uuid.get(p);
+		}
+		
+		loc_.add(p.getLocation());
+		skin_.add(skin);
+		dir_.add(direction);
+		uuid_.add(uuid);
+		
+		//undoloc.put(p, p.getLocation());
+		//undoskin.put(p, skin);
+		//undodir.put(p, direction);
+		//undo_uuid.put(p, uuid);
+		
+		undoloc.put(p, loc_);
+		undoskin.put(p, skin_);
+		undodir.put(p, dir_);
+		undo_uuid.put(p, uuid_);
 		
 		Location c = p.getLocation();
 		
@@ -1868,10 +1948,31 @@ public class Main extends JavaPlugin implements Listener {
 	private void buildglass(Player p, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		
-		undoloc.put(p, p.getLocation());
-		undoskin.put(p, skin);
-		undodir.put(p, direction);
-		undo_uuid.put(p, uuid);
+		ArrayList<Location> loc_ = new ArrayList<Location>();
+		ArrayList<String> skin_ = new ArrayList<String>();
+		ArrayList<String> dir_ = new ArrayList<String>();
+		ArrayList<String> uuid_ = new ArrayList<String>();
+		if(undoloc.containsKey(p)){
+			loc_ = undoloc.get(p);
+			skin_ = undoskin.get(p);
+			dir_ = undodir.get(p);
+			uuid_ = undo_uuid.get(p);
+		}
+		
+		loc_.add(p.getLocation());
+		skin_.add(skin);
+		dir_.add(direction);
+		uuid_.add(uuid);
+		
+		//undoloc.put(p, p.getLocation());
+		//undoskin.put(p, skin);
+		//undodir.put(p, direction);
+		//undo_uuid.put(p, uuid);
+		
+		undoloc.put(p, loc_);
+		undoskin.put(p, skin_);
+		undodir.put(p, dir_);
+		undo_uuid.put(p, uuid_);
 		
 		Location c = p.getLocation();
 		
@@ -2420,10 +2521,31 @@ public class Main extends JavaPlugin implements Listener {
 	private void buildall(Player p, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		
-		undoloc.put(p, p.getLocation());
-		undoskin.put(p, skin);
-		undodir.put(p, direction);
-		undo_uuid.put(p, uuid);
+		ArrayList<Location> loc_ = new ArrayList<Location>();
+		ArrayList<String> skin_ = new ArrayList<String>();
+		ArrayList<String> dir_ = new ArrayList<String>();
+		ArrayList<String> uuid_ = new ArrayList<String>();
+		if(undoloc.containsKey(p)){
+			loc_ = undoloc.get(p);
+			skin_ = undoskin.get(p);
+			dir_ = undodir.get(p);
+			uuid_ = undo_uuid.get(p);
+		}
+		
+		loc_.add(p.getLocation());
+		skin_.add(skin);
+		dir_.add(direction);
+		uuid_.add(uuid);
+		
+		//undoloc.put(p, p.getLocation());
+		//undoskin.put(p, skin);
+		//undodir.put(p, direction);
+		//undo_uuid.put(p, uuid);
+		
+		undoloc.put(p, loc_);
+		undoskin.put(p, skin_);
+		undodir.put(p, dir_);
+		undo_uuid.put(p, uuid_);
 		
 		Location c = p.getLocation();
 		
@@ -2972,10 +3094,31 @@ public class Main extends JavaPlugin implements Listener {
 	private void build(Player p, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		
-		undoloc.put(p, p.getLocation());
-		undoskin.put(p, skin);
-		undodir.put(p, direction);
-		undo_uuid.put(p, uuid);
+		ArrayList<Location> loc_ = new ArrayList<Location>();
+		ArrayList<String> skin_ = new ArrayList<String>();
+		ArrayList<String> dir_ = new ArrayList<String>();
+		ArrayList<String> uuid_ = new ArrayList<String>();
+		if(undoloc.containsKey(p)){
+			loc_ = undoloc.get(p);
+			skin_ = undoskin.get(p);
+			dir_ = undodir.get(p);
+			uuid_ = undo_uuid.get(p);
+		}
+		
+		loc_.add(p.getLocation());
+		skin_.add(skin);
+		dir_.add(direction);
+		uuid_.add(uuid);
+		
+		//undoloc.put(p, p.getLocation());
+		//undoskin.put(p, skin);
+		//undodir.put(p, direction);
+		//undo_uuid.put(p, uuid);
+		
+		undoloc.put(p, loc_);
+		undoskin.put(p, skin_);
+		undodir.put(p, dir_);
+		undo_uuid.put(p, uuid_);
 
 		if(skin_updating){
 			saveSkin(p.getLocation(), skin, uuid, direction, "default");
@@ -3428,7 +3571,7 @@ public class Main extends JavaPlugin implements Listener {
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
-		getLogger().info(ret + " " + Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+		//getLogger().info(ret + " " + Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		
 		return ret;
 	}
