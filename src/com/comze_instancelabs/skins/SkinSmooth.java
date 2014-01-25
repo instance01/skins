@@ -1335,6 +1335,25 @@ public class SkinSmooth {
 			}
 		}
 	}
+	
+	
+	// WEST RIGHT/LEFT CUBOID
+	public static void smoothWestSideInvert(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = w.getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+				if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
 
 	
 	// SOUTH FRONT/BEHIND CUBOID HAT LAYERS
@@ -1404,6 +1423,25 @@ public class SkinSmooth {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = w.getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+				if(m.isHumanSkin(c)){
+	    			change.setType(Material.WOOD);
+	    			change.setData((byte)2);
+	    		}
+			}
+		}
+	}
+	
+	
+	// SOUTH RIGHT/LEFT CUBOID
+	public static void smoothSouthSideInvert(Main m, World w, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = w.getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
 				if(m.isHumanSkin(c)){
 	    			change.setType(Material.WOOD);
 	    			change.setData((byte)2);

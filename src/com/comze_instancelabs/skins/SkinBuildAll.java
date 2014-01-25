@@ -1038,6 +1038,24 @@ public class SkinBuildAll {
 			}
 		}
 	}
+	
+	
+	// WEST RIGHT/LEFT CUBOID
+	public static void buildWestSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
+				int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
+			}
+		}
+	}
 
 	
 	// WEST FRONT/BEHIND CUBOID
@@ -1142,6 +1160,24 @@ public class SkinBuildAll {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+				int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
+			}
+		}
+	}
+	
+	
+	// SOUTH RIGHT/LEFT CUBOID
+	public static void buildSouthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
 				int[] i_ = Main.getMaterialFromColor(c);
 	    		change.setType(Material.getMaterial(i_[0]));
 				change.setData((byte)i_[1]);
@@ -1257,6 +1293,24 @@ public class SkinBuildAll {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
+				int[] i_ = Main.getMaterialFromColor(c);
+	    		change.setType(Material.getMaterial(i_[0]));
+				change.setData((byte)i_[1]);
+			}
+		}
+	}
+	
+	
+	// NORTH RIGHT/LEFT CUBOID
+	public static void buildNorthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
 				int[] i_ = Main.getMaterialFromColor(c);
 	    		change.setType(Material.getMaterial(i_[0]));
 				change.setData((byte)i_[1]);
