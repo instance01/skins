@@ -122,7 +122,26 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		if(cmd.getName().equalsIgnoreCase("skin")){
+		if(cmd.getName().equalsIgnoreCase("mob")){
+			if(sender.hasPermission("mobs.build")){
+				if(args.length > 0){
+					String action = args[0];
+					if(action.equalsIgnoreCase("chicken")){
+						Player p = null;
+						try{
+							p = (Player)sender;	
+						}catch(Exception e){
+							sender.sendMessage("§4Please execute this command ingame.");
+						}
+						
+						Chicken.buildChicken(p.getLocation(), "east");
+					}
+				}else{
+					sender.sendMessage("Possible Mobs: Chicken");
+				}
+			}
+			return true;
+		}else if(cmd.getName().equalsIgnoreCase("skin")){
 			if(sender.hasPermission("skins.build")){
 				if(args.length > 0){
 					String action = args[0];

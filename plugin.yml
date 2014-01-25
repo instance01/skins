@@ -7,6 +7,9 @@ commands:
    skin:
       description: Builds a statue of the player
       usage: /skin
+   mob:
+      description: Builds a mob statue
+      usage: /mob
    colortest:
       description: Runs a colortest to determine all currently supported colors
       usage: /colortest
