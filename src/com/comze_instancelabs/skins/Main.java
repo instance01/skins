@@ -73,10 +73,11 @@ public class Main extends JavaPlugin implements Listener {
 	public void onEnable(){
 		getServer().getPluginManager().registerEvents(this, this);
 		
-		
+		getConfig().options().header("Check out the bukkitdev page (http://dev.bukkit.org/bukkit-plugins/skin-statue-builder/) for more information on these settings.");
 		getConfig().addDefault("config.auto_updating", true);
 		getConfig().addDefault("config.auto_skin_updating", false);
 		getConfig().addDefault("config.auto_skin_updating_interval_minutes", 30);
+		getConfig().addDefault("config.use_worldguard", false);
 		getConfig().options().copyDefaults(true);
 		this.saveConfig();
 		
@@ -245,9 +246,13 @@ public class Main extends JavaPlugin implements Listener {
 								if(cont){
 									String look_direction = getDirection(p.getLocation().getYaw());
 									if(look_direction != null){
-										buildclay(p, Image1, args[0], look_direction); // builds in direction player is facing
+										if(canBuild(p, look_direction)){
+											buildclay(p, Image1, args[0], look_direction); // builds in direction player is facing
+										}
 									}else{
-										buildclay(p, Image1, args[0], "east");
+										if(canBuild(p, "east")){
+											buildclay(p, Image1, args[0], "east");
+										}
 									}
 								}else{
 									p.sendMessage("§4Playername not found!");
@@ -281,9 +286,13 @@ public class Main extends JavaPlugin implements Listener {
 								if(cont){
 									String look_direction = getDirection(p.getLocation().getYaw());
 									if(look_direction != null){
-										buildglass(p, Image1, args[0], look_direction); // builds in direction player is facing
+										if(canBuild(p, look_direction)){
+											buildglass(p, Image1, args[0], look_direction); // builds in direction player is facing
+										}
 									}else{
-										buildglass(p, Image1, args[0], "east");
+										if(canBuild(p, "east")){
+											buildglass(p, Image1, args[0], "east");
+										}
 									}
 								}else{
 									p.sendMessage("§4Playername not found!");
@@ -317,9 +326,13 @@ public class Main extends JavaPlugin implements Listener {
 								if(cont){
 									String look_direction = getDirection(p.getLocation().getYaw());
 									if(look_direction != null){
-										buildall(p, Image1, args[0], look_direction); // builds in direction player is facing
+										if(canBuild(p, look_direction)){
+											buildall(p, Image1, args[0], look_direction); // builds in direction player is facing
+										}
 									}else{
-										buildall(p, Image1, args[0], "east");
+										if(canBuild(p, "east")){
+											buildall(p, Image1, args[0], "east");
+										}
 									}
 								}else{
 									p.sendMessage("§4Playername not found!");
@@ -356,7 +369,9 @@ public class Main extends JavaPlugin implements Listener {
 										if(cont){
 											List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 											if(places.contains(direction)){
-												buildclay(p, Image1, args[0], direction);
+												if(canBuild(p, direction)){
+													buildclay(p, Image1, args[0], direction);
+												}
 											}else{
 												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
 											}
@@ -431,7 +446,9 @@ public class Main extends JavaPlugin implements Listener {
 									if(cont){
 										List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 										if(places.contains(direction)){
-											build(p, Image1, args[0], direction);
+											if(canBuild(p, direction)){
+												build(p, Image1, args[0], direction);
+											}
 										}else{
 											sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
 										}
@@ -450,8 +467,6 @@ public class Main extends JavaPlugin implements Listener {
 								sender.sendMessage("§4Please execute this command ingame.");
 								return true;
 							}
-							
-							this.canBuild(p, "east");
 							
 							String name = args[0];
 							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
@@ -473,9 +488,13 @@ public class Main extends JavaPlugin implements Listener {
 							if(cont){
 								String look_direction = getDirection(p.getLocation().getYaw());
 								if(look_direction != null){
-									build(p, Image1, args[0], look_direction); // builds in direction player is facing
+									if(canBuild(p, look_direction)){
+										build(p, Image1, args[0], look_direction); // builds in direction player is facing	
+									}
 								}else{
-									build(p, Image1, args[0], "east");
+									if(canBuild(p, "east")){
+										build(p, Image1, args[0], "east");
+									}
 								}
 							}else{
 								p.sendMessage("§4Playername not found!");
@@ -4209,6 +4228,83 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	
-	
+	public boolean canBuild(Player p, String direction){
+		if(!getConfig().getBoolean("config.use_worldguard")){
+			return true;
+		}
+		
+		if(direction.equalsIgnoreCase("east")){
+			ArrayList<Location> locs = new ArrayList<Location>(Arrays.asList(
+				p.getLocation().getBlock().getRelative(-1, 0, -4).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-1, 0, +11).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+8, 0, +11).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+8, 0, -4).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-1, +33, -4).getLocation(), // up
+				p.getLocation().getBlock().getRelative(-1, +33, +11).getLocation(), // up
+				p.getLocation().getBlock().getRelative(+8, +33, +11).getLocation(), // up
+				p.getLocation().getBlock().getRelative(+8, +33, -4).getLocation() // up
+			));
+			for(Location l : locs){
+				if(!getWorldGuard().canBuild(p, l)){
+					p.sendMessage("§cYou don't have permission to build a skin here!");
+					return false;
+				}
+			}
+		}else if(direction.equalsIgnoreCase("south")){
+			ArrayList<Location> locs = new ArrayList<Location>(Arrays.asList(
+				p.getLocation().getBlock().getRelative(+4, 0, -1).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-11, 0, -1).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-11, 0, +8).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+4, 0, +8).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+4, +33, -1).getLocation(), // up
+				p.getLocation().getBlock().getRelative(-11, +33, -1).getLocation(), // up
+				p.getLocation().getBlock().getRelative(-11, +33, +8).getLocation(), // up
+				p.getLocation().getBlock().getRelative(+4, +33, +8).getLocation() // up
+			));
+			for(Location l : locs){
+				if(!getWorldGuard().canBuild(p, l)){
+					p.sendMessage("§cYou don't have permission to build a skin here!");
+					return false;
+				}
+			}
+		}else if(direction.equalsIgnoreCase("north")){
+			ArrayList<Location> locs = new ArrayList<Location>(Arrays.asList(
+				p.getLocation().getBlock().getRelative(-4, 0, +1).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+11, 0, +1).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+11, 0, -8).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-4, 0, -8).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-4, +33, +1).getLocation(), // up
+				p.getLocation().getBlock().getRelative(+11, +33, +1).getLocation(), // up
+				p.getLocation().getBlock().getRelative(+11, +33, -8).getLocation(), // up
+				p.getLocation().getBlock().getRelative(-4, +33, -8).getLocation() // up
+			));
+			for(Location l : locs){
+				if(!getWorldGuard().canBuild(p, l)){
+					p.sendMessage("§cYou don't have permission to build a skin here!");
+					return false;
+				}
+			}
+		}else if(direction.equalsIgnoreCase("west")){
+			ArrayList<Location> locs = new ArrayList<Location>(Arrays.asList(
+				p.getLocation().getBlock().getRelative(+1, 0, +4).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+1, 0, -11).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-8, 0, -11).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(-8, 0, +4).getLocation(), // bottom
+				p.getLocation().getBlock().getRelative(+1, +33, +4).getLocation(), // up
+				p.getLocation().getBlock().getRelative(+1, +33, -11).getLocation(), // up
+				p.getLocation().getBlock().getRelative(-8, +33, -11).getLocation(), // up
+				p.getLocation().getBlock().getRelative(-8, +33, +4).getLocation() // up
+			));
+			for(Location l : locs){
+				if(!getWorldGuard().canBuild(p, l)){
+					p.sendMessage("§cYou don't have permission to build a skin here!");
+					return false;
+				}
+			}
+		}
+
+
+		return true;
+	}
 	
 }
