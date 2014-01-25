@@ -1221,6 +1221,23 @@ public class SkinBuild {
 		}
 	}
 	
+
+	// NORTH RIGHT/LEFT CUBOID
+	public static void buildNorthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+		
+		int width = max_x - min_x;
+		int height = max_y - min_y;
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
+				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
+				change.setType(Material.WOOL);
+				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+			}
+		}
+	}
+	
 	
 	
 	// NORTH FRONT/BEHIND CUBOID HAT LAYERS
