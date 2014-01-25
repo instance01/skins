@@ -42,10 +42,8 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 	
-	
-	
+
 	//TODO:
-	//FEATURES:
 	// [HIGH] cover all colors (0.6 Mio to go)
 	
 	
@@ -91,7 +89,6 @@ public class Main extends JavaPlugin implements Listener {
 		
 		// own metrics system, still in testing
 		// will replace Hidendras metrics system (above) with this one, if it works
-		// TODO: fix MyMetrics
 		/*try {
 			MyMetrics m = new MyMetrics(this);
 		} catch (IOException e) {
@@ -134,10 +131,24 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§4Please execute this command ingame.");
 						}
 						
-						Chicken.buildChicken(p.getLocation(), "east");
+						Chicken.buildChicken(p.getLocation(), "west");
+						
+						//TODO: add more mobs
+					}else if(action.equalsIgnoreCase("cow")){
+						
+					}else if(action.equalsIgnoreCase("sheep")){
+						
+					}else if(action.equalsIgnoreCase("pig")){
+						
+					}else if(action.equalsIgnoreCase("ocelot")){
+						
+					}else if(action.equalsIgnoreCase("villager")){
+						
+					}else if(action.equalsIgnoreCase("mooshroom")){
+						
 					}
 				}else{
-					sender.sendMessage("Possible Mobs: Chicken");
+					sender.sendMessage("§3Possible Mobs: §6Chicken");
 				}
 			}
 			return true;
@@ -963,7 +974,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 8, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinSmooth.smoothNorthSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8)); //TODO FIX
+			SkinSmooth.smoothNorthSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8)); 
 			// head_behind
 			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 24, 32, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -1553,7 +1564,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1)); //TODO fix
+			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1)); 
 			// head_behind
 			SkinBuild.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -1618,7 +1629,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix
+			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7)); 
 			// head_behind
 			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom
@@ -1686,7 +1697,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1)); //TODO fix
+			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1)); 
 			// head_behind
 			SkinBuild.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -1820,7 +1831,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildClay.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuildClay.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()  + 8)); //TODO fix
+			SkinBuildClay.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()  + 8)); 
 			// head_behind
 			SkinBuildClay.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuildClay.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -1885,7 +1896,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildClay.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuildClay.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX()  - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix
+			SkinBuildClay.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX()  - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); 
 			// head_behind
 			SkinBuildClay.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom
@@ -1953,7 +1964,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildClay.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinBuildClay.buildNorthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8)); //TODO fix
+			SkinBuildClay.buildNorthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8)); 
 			// head_behind
 			SkinBuildClay.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -2126,7 +2137,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1)); //TODO fix
+			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1)); 
 			// head_behind
 			SkinBuild.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -2191,7 +2202,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix
+			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7)); 
 			// head_behind
 			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom
@@ -2259,7 +2270,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1)); //TODO fix
+			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1)); 
 			// head_behind
 			SkinBuild.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -2393,7 +2404,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildGlass.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuildGlass.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()  + 8)); //TODO fix
+			SkinBuildGlass.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()  + 8)); 
 			// head_behind
 			SkinBuildGlass.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuildGlass.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -2458,7 +2469,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildGlass.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuildGlass.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX()  - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix
+			SkinBuildGlass.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX()  - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); 
 			// head_behind
 			SkinBuildGlass.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom
@@ -2526,7 +2537,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildGlass.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinBuildGlass.buildNorthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ()  - 8)); //TODO fix
+			SkinBuildGlass.buildNorthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ()  - 8)); 
 			// head_behind
 			SkinBuildGlass.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -2699,7 +2710,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1)); //TODO fix
+			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1)); 
 			// head_behind
 			SkinBuild.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -2764,7 +2775,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix
+			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7)); 
 			// head_behind
 			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom
@@ -2832,7 +2843,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1)); //TODO fix
+			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1)); 
 			// head_behind
 			SkinBuild.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -2966,7 +2977,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildAll.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuildAll.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() + 8)); //TODO fix
+			SkinBuildAll.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() + 8)); 
 			// head_behind
 			SkinBuildAll.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuildAll.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -3031,7 +3042,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildAll.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuildAll.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix
+			SkinBuildAll.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); 
 			// head_behind
 			SkinBuildAll.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom
@@ -3099,7 +3110,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuildAll.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
 			// head_right
-			SkinBuildAll.buildNorthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8)); //TODO fix
+			SkinBuildAll.buildNorthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8)); 
 			// head_behind
 			SkinBuildAll.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_top
@@ -3271,7 +3282,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
 			// head_right
-			SkinBuild.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() + 8)); //TODO fix (-1)
+			SkinBuild.buildSouthSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() + 8));
 			// head_behind
 			SkinBuild.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
 			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
@@ -3336,7 +3347,7 @@ public class Main extends JavaPlugin implements Listener {
 			// head_left
 			SkinBuild.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
 			// head_right
-			SkinBuild.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 7)); //TODO fix (+1)
+			SkinBuild.buildWestSideInvert(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 7));
 			// head_behind
 			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
 			// head_top and head_bottom

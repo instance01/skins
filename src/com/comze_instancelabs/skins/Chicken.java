@@ -7,7 +7,7 @@ import org.bukkit.block.Block;
 public class Chicken {
 
 	public static void buildChicken(Location start, String direction){
-		if(direction.equalsIgnoreCase("east")){
+		if(direction.equalsIgnoreCase("west")){
 			buildLegsWEST(start);
 			buildBodyWEST(start);
 			buildHeadWEST(start);
