@@ -1,6 +1,6 @@
 name: Skins
 main: com.comze_instancelabs.skins.Main
-version: 1.6.3
+version: 1.7
 author: instancelabs
 softdepend: [WorldGuard]
 commands:
