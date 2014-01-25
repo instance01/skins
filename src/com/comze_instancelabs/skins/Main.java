@@ -3,48 +3,34 @@
 package com.comze_instancelabs.skins;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-//import org.bukkit.material.Sign;
-import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
+
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+//import org.bukkit.material.Sign;
 
 
 
@@ -121,6 +107,16 @@ public class Main extends JavaPlugin implements Listener {
 		if(skin_updating){
 			update_skins();
 		}
+	}
+	
+	private WorldGuardPlugin getWorldGuard() {
+	    Plugin plugin = getServer().getPluginManager().getPlugin("WorldGuard");
+
+	    if (plugin == null || !(plugin instanceof WorldGuardPlugin)) {
+	        return null;
+	    }
+
+	    return (WorldGuardPlugin) plugin;
 	}
 	
 	@Override
@@ -455,6 +451,8 @@ public class Main extends JavaPlugin implements Listener {
 								return true;
 							}
 							
+							this.canBuild(p, "east");
+							
 							String name = args[0];
 							sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
 							BufferedImage Image1 = null;
@@ -498,40 +496,42 @@ public class Main extends JavaPlugin implements Listener {
 			
 			return true;
 		}else if(cmd.getName().equalsIgnoreCase("colortest")){ // /colortest
-			if(args.length > 0){
-				if(args[0].equalsIgnoreCase("start")){ // /colortest start
-					poscount = 0;
-					negcount = 0;
-					Runnable r = new Runnable() {
-				        public void run() {
-				        	colorTest();
-				        }
-				    };
-				    new Thread(r).start();
-				}else if(args[0].equalsIgnoreCase("startwithlog")){ // /colortest startwithlog
-					poscount = 0;
-					negcount = 0;
-					Runnable r = new Runnable(){
-				        public void run() {
-				        	colorTestLog();
-				        }
-				    };
-				    new Thread(r).start();
-				}else if(args[0].equalsIgnoreCase("status")){ // /colortest status
-					sender.sendMessage("§2Pos count: " + Integer.toString(poscount));
-					sender.sendMessage("§4Neg count: " + Integer.toString(negcount));
-				}else if(args[0].equalsIgnoreCase("punchcard")){ // /colortest punchcard
-					sender.sendMessage("§3Building Punchcard . . .");
-					Runnable r = new Runnable() {
-				        public void run() {
-				        	createPunchcard();
-				        }
-				    };
-				    new Thread(r).start();
+			if(sender.hasPermission("colortest.colortest")){
+				if(args.length > 0){
+					if(args[0].equalsIgnoreCase("start")){ // /colortest start
+						poscount = 0;
+						negcount = 0;
+						Runnable r = new Runnable() {
+					        public void run() {
+					        	colorTest();
+					        }
+					    };
+					    new Thread(r).start();
+					}else if(args[0].equalsIgnoreCase("startwithlog")){ // /colortest startwithlog
+						poscount = 0;
+						negcount = 0;
+						Runnable r = new Runnable(){
+					        public void run() {
+					        	colorTestLog();
+					        }
+					    };
+					    new Thread(r).start();
+					}else if(args[0].equalsIgnoreCase("status")){ // /colortest status
+						sender.sendMessage("§2Pos count: " + Integer.toString(poscount));
+						sender.sendMessage("§4Neg count: " + Integer.toString(negcount));
+					}else if(args[0].equalsIgnoreCase("punchcard")){ // /colortest punchcard
+						sender.sendMessage("§3Building Punchcard . . .");
+						Runnable r = new Runnable() {
+					        public void run() {
+					        	createPunchcard();
+					        }
+					    };
+					    new Thread(r).start();
+					}
+				}else{
+					sender.sendMessage("§3/colortest start");
+					sender.sendMessage("§3/colortest status");
 				}
-			}else{
-				sender.sendMessage("§3/colortest start");
-				sender.sendMessage("§3/colortest status");
 			}
 			return true;
 		}
@@ -4206,4 +4206,9 @@ public class Main extends JavaPlugin implements Listener {
 
 		return new int[] { materials[closestId][4], materials[closestId][5] };
 	}
+	
+	
+	
+	
+	
 }

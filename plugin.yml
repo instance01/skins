@@ -2,6 +2,7 @@ name: Skins
 main: com.comze_instancelabs.skins.Main
 version: 1.6.3
 author: instancelabs
+softdepend: [WorldGuard]
 commands:
    skin:
       description: Builds a statue of the player
