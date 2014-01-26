@@ -119,7 +119,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		if(cmd.getName().equalsIgnoreCase("mob")){
+		if(cmd.getName().equalsIgnoreCase("mobbuild")){
 			if(sender.hasPermission("mobs.build")){
 				if(args.length > 0){
 					String action = args[0];
@@ -131,8 +131,9 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§4Please execute this command ingame.");
 						}
 						
+						sender.sendMessage("§3Building a §6chicken §3now.");
 						Chicken.buildChicken(p.getLocation(), "west");
-						
+
 						//TODO: add more mobs
 					}else if(action.equalsIgnoreCase("cow")){
 						
