@@ -119,7 +119,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		if(cmd.getName().equalsIgnoreCase("mobbuild")){
+		if(cmd.getName().equalsIgnoreCase("mobbuild") || cmd.getName().equalsIgnoreCase("mobstatue")){
 			if(sender.hasPermission("mobs.build")){
 				if(args.length > 0){
 					String action = args[0];
@@ -134,8 +134,9 @@ public class Main extends JavaPlugin implements Listener {
 						sender.sendMessage("§3Building a §6chicken §3now.");
 						Chicken.buildChicken(p.getLocation(), "west");
 
+						sender.sendMessage("§aFinished!");
 						//TODO: add more mobs
-					}else if(action.equalsIgnoreCase("cow")){
+					}/*else if(action.equalsIgnoreCase("cow")){
 						
 					}else if(action.equalsIgnoreCase("sheep")){
 						
@@ -147,6 +148,9 @@ public class Main extends JavaPlugin implements Listener {
 						
 					}else if(action.equalsIgnoreCase("mooshroom")){
 						
+					}*/
+					else{
+						sender.sendMessage("§3Possible Mobs: §6Chicken");
 					}
 				}else{
 					sender.sendMessage("§3Possible Mobs: §6Chicken");
@@ -4185,12 +4189,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	
-	
-	
-	//TODO REMOVE
-	
-	// Experimental:
+
 	
 	
 	private static int[] STONE = new int[] { 145, 145, 145, 0, 1, 0 };

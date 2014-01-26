@@ -10,6 +10,9 @@ commands:
    mobbuild:
       description: Builds a mob statue
       usage: /mobbuild
+   mobstatue:
+      description: Builds a mob statue
+      usage: /mobstatue
    colortest:
       description: Runs a colortest to determine all currently supported colors
       usage: /colortest

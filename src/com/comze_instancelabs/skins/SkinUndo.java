@@ -1523,11 +1523,10 @@ public class SkinUndo {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
 					Block change = start.getWorld().getBlockAt(start.getBlockX() - i + 4, start.getBlockY() + j, start.getBlockZ() + k - 1);
-					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD || change.getType() == Material.STAINED_CLAY){
+					if(containsMaterial(change.getType())){
 						change.setType(Material.AIR);
 					}
 				}
-				
 			}
 		}
 	}
@@ -1544,7 +1543,7 @@ public class SkinUndo {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
 					Block change = start.getWorld().getBlockAt(start.getBlockX() - k + 1, start.getBlockY() + j, start.getBlockZ() - i + 4);
-					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD || change.getType() == Material.STAINED_CLAY){
+					if(containsMaterial(change.getType())){
 						change.setType(Material.AIR);
 					}
 				}
@@ -1564,12 +1563,19 @@ public class SkinUndo {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < length; k++){
 					Block change = start.getWorld().getBlockAt(start.getBlockX() + i - 4, start.getBlockY() + j, start.getBlockZ() - k + 1);
-					if(change.getType() == Material.WOOL || change.getType() == Material.WOOD || change.getType() == Material.STAINED_CLAY){
+					if(containsMaterial(change.getType())){
 						change.setType(Material.AIR);
 					}
 				}
-				
 			}
 		}
+	}
+	
+	
+	public static boolean containsMaterial(Material m){
+		if(m == Material.WOOL || m == Material.WOOD || m == Material.STAINED_CLAY || m == Material.STAINED_GLASS || m == Material.STONE || m == Material.SANDSTONE || m == Material.IRON_BLOCK || m == Material.GOLD_BLOCK || m == Material.DIAMOND_BLOCK || m == Material.SNOW_BLOCK || m == Material.OBSIDIAN){
+			return true;
+		}
+		return false;
 	}
 }
