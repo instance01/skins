@@ -157,6 +157,49 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 			return true;
+		}else if(cmd.getName().equalsIgnoreCase("skinload")){
+			if(!(sender instanceof Player)){
+				sender.sendMessage("§4Please execute this command ingame.");
+				return true;
+			}
+			Player p = (Player)sender;
+			
+			if(args.length < 1)
+				return true;
+			
+			String filename = args[0];
+			if(!filename.contains(".png")){
+				filename = filename + ".png";
+			}
+			sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+			BufferedImage Image1 = null;
+			boolean cont = true;
+			try {
+				Image1 = ImageIO.read(new File(this.getDataFolder().getPath() + "/" + filename));
+			} catch (IOException e) {
+				cont = false;
+			}
+
+			if(cont){
+				if(Image1.getHeight() < 32 && Image1.getWidth() < 64){
+					sender.sendMessage("§cThe file doesn't look like a valid skin.");
+					return true;
+				}
+				
+				String look_direction = getDirection(p.getLocation().getYaw());
+				if(look_direction != null){
+					if(canBuild(p, look_direction)){
+						build(p, Image1, args[0], look_direction); // builds in direction player is facing	
+					}
+				}else{
+					if(canBuild(p, "east")){
+						build(p, Image1, args[0], "east");
+					}
+				}
+			}else{
+				sender.sendMessage("§cCould not find the file. Possible solutions: Assure that the file is in the /plugins/skins folder and that it's a PNG file.");
+			}
+			return true;
 		}else if(cmd.getName().equalsIgnoreCase("skin")){
 			if(sender.hasPermission("skins.build")){
 				if(args.length > 0){

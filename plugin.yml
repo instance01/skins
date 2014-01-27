@@ -1,12 +1,15 @@
 name: Skins
 main: com.comze_instancelabs.skins.Main
-version: 1.7
+version: 1.7.1
 author: instancelabs
 softdepend: [WorldGuard]
 commands:
    skin:
       description: Builds a statue of the player
       usage: /skin
+   skinload:
+      description: Builds a statue of a skin from a file
+      usage: /skinload
    mobbuild:
       description: Builds a mob statue
       usage: /mobbuild
