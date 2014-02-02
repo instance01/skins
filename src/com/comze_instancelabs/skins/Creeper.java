@@ -98,7 +98,119 @@ public class Creeper {
 					b.setType(Material.WOOL);
 					b.setData((byte)5);
 				}
-			}	
+			}
+		}
+		
+		if(d.equalsIgnoreCase("west")){
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 1)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 6)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 1)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 6)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 22, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 22, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 19, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 19, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)7, true);
+
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)15, true);
+		}else if(d.equalsIgnoreCase("east")){
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 24, start.getBlockZ() + 1)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 24, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 24, start.getBlockZ() + 5)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 24, start.getBlockZ() + 6)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 23, start.getBlockZ() + 1)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 23, start.getBlockZ() + 6)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 22, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 22, start.getBlockZ() + 4)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 21, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 21, start.getBlockZ() + 5)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 19, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 19, start.getBlockZ() + 5)).setTypeIdAndData(35, (byte)7, true);
+
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 23, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 23, start.getBlockZ() + 5)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 21, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 21, start.getBlockZ() + 4)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 20, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 20, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 20, start.getBlockZ() + 4)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 20, start.getBlockZ() + 5)).setTypeIdAndData(35, (byte)15, true);
+		}else if(d.equalsIgnoreCase("north")){
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 1, start.getBlockY() + 24, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 24, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 5, start.getBlockY() + 24, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 6, start.getBlockY() + 24, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 1, start.getBlockY() + 23, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 6, start.getBlockY() + 23, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 22, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 4, start.getBlockY() + 22, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 21, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 5, start.getBlockY() + 21, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 19, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 5, start.getBlockY() + 19, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 23, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 5, start.getBlockY() + 23, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 21, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 4, start.getBlockY() + 21, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 3, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 4, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 5, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+		}else if(d.equalsIgnoreCase("south")){
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 1, start.getBlockY() + 24, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 24, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 5, start.getBlockY() + 24, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 6, start.getBlockY() + 24, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 1, start.getBlockY() + 23, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 6, start.getBlockY() + 23, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 22, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 4, start.getBlockY() + 22, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 21, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 5, start.getBlockY() + 21, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 19, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 5, start.getBlockY() + 19, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)7, true);
+
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 23, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 5, start.getBlockY() + 23, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 4, start.getBlockY() + 21, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 20, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 4, start.getBlockY() + 20, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 5, start.getBlockY() + 20, start.getBlockZ() + 3)).setTypeIdAndData(35, (byte)15, true);
+		}else{
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 1)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 24, start.getBlockZ() - 6)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 1)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 6)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 22, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 22, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 19, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)7, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 19, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)7, true);
+
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 23, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 21, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)15, true);
 		}
 	}
 	
