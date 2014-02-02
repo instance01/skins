@@ -137,9 +137,7 @@ public class Main extends JavaPlugin implements Listener {
 						sender.sendMessage("§aFinished!");
 					}else if(action.equalsIgnoreCase("creeper")){
 						sender.sendMessage("§3Building a §6Creeper §3now.");
-						
-						//TODO BUILD CREEPER
-
+						Creeper.buildCreeper(p.getLocation(), look_direction);
 						sender.sendMessage("§aFinished!");
 					}/*else if(action.equalsIgnoreCase("cow")){
 						
