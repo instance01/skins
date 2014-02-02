@@ -123,19 +123,24 @@ public class Main extends JavaPlugin implements Listener {
 			if(sender.hasPermission("mobs.build")){
 				if(args.length > 0){
 					String action = args[0];
+					if(!(sender instanceof Player)){
+						sender.sendMessage("§4Please execute this command ingame.");
+						return true;
+					}
+					Player p = (Player)sender;
+					String look_direction = getDirection(p.getLocation().getYaw()).toLowerCase();
+					
 					if(action.equalsIgnoreCase("chicken")){
-						Player p = null;
-						try{
-							p = (Player)sender;	
-						}catch(Exception e){
-							sender.sendMessage("§4Please execute this command ingame.");
-						}
-						
 						sender.sendMessage("§3Building a §6chicken §3now.");
-						Chicken.buildChicken(p.getLocation(), "west");
+						Chicken.buildChicken(p.getLocation(), look_direction);
 
 						sender.sendMessage("§aFinished!");
-						//TODO: add more mobs
+					}else if(action.equalsIgnoreCase("creeper")){
+						sender.sendMessage("§3Building a §6Creeper §3now.");
+						
+						//TODO BUILD CREEPER
+
+						sender.sendMessage("§aFinished!");
 					}/*else if(action.equalsIgnoreCase("cow")){
 						
 					}else if(action.equalsIgnoreCase("sheep")){
@@ -150,10 +155,10 @@ public class Main extends JavaPlugin implements Listener {
 						
 					}*/
 					else{
-						sender.sendMessage("§3Possible Mobs: §6Chicken");
+						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper");
 					}
 				}else{
-					sender.sendMessage("§3Possible Mobs: §6Chicken");
+					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper");
 				}
 			}
 			return true;
