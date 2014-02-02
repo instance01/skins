@@ -167,6 +167,10 @@ public class Main extends JavaPlugin implements Listener {
 			}
 			Player p = (Player)sender;
 			
+			if(!p.hasPermission("skins.load")){
+				return true;
+			}
+			
 			if(args.length < 1)
 				return true;
 			
