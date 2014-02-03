@@ -133,26 +133,12 @@ public class Main extends JavaPlugin implements Listener {
 					if(action.equalsIgnoreCase("chicken")){
 						sender.sendMessage("§3Building a §6chicken §3now.");
 						Chicken.buildChicken(p.getLocation(), look_direction);
-
 						sender.sendMessage("§aFinished!");
 					}else if(action.equalsIgnoreCase("creeper")){
 						sender.sendMessage("§3Building a §6Creeper §3now.");
 						Creeper.buildCreeper(p.getLocation(), look_direction);
 						sender.sendMessage("§aFinished!");
-					}/*else if(action.equalsIgnoreCase("cow")){
-						
-					}else if(action.equalsIgnoreCase("sheep")){
-						
-					}else if(action.equalsIgnoreCase("pig")){
-						
-					}else if(action.equalsIgnoreCase("ocelot")){
-						
-					}else if(action.equalsIgnoreCase("villager")){
-						
-					}else if(action.equalsIgnoreCase("mooshroom")){
-						
-					}*/
-					else{
+					}else{
 						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper");
 					}
 				}else{

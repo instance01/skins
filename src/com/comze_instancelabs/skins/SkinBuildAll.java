@@ -21,11 +21,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 4);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -43,11 +39,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 4);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -69,11 +61,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 11);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 11);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -91,11 +79,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 5, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 11);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 11);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+						
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -117,11 +101,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -139,10 +119,6 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-
 
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -168,11 +144,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -193,10 +165,7 @@ public class SkinBuildAll {
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -217,10 +186,6 @@ public class SkinBuildAll {
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -240,11 +205,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -264,11 +225,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -297,11 +254,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 5);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -319,11 +272,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 5);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -345,11 +294,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -367,10 +312,6 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 6);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -395,11 +336,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -417,10 +354,6 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-
 
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -447,8 +380,8 @@ public class SkinBuildAll {
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
+			
+			
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -479,10 +412,6 @@ public class SkinBuildAll {
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() + 4);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -500,11 +429,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 4);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -526,11 +451,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -548,11 +469,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 6, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -576,11 +493,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 8, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -598,10 +511,6 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 7, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 8);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-
 
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -627,11 +536,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+					
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -651,11 +556,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -675,11 +576,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 12, p.getLocation().getBlockZ() + 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 7);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -699,11 +596,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY(), p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -723,11 +616,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 8, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 7);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+		
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -755,11 +644,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -777,11 +662,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() + 7, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+	
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -803,11 +684,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ() - 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 13, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -825,11 +702,7 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ() - 6);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() - 11, p.getLocation().getBlockY() + 24, p.getLocation().getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
+
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -854,10 +727,6 @@ public class SkinBuildAll {
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ());
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 25, p.getLocation().getBlockZ() + 8);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
-			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
 		    		
@@ -875,10 +744,6 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX() - 1, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 1);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX() + 6, p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-
 
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -904,10 +769,6 @@ public class SkinBuildAll {
 			//getLogger().info("Building " + component);
 			Location start = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() - 8);
 			Location end = new Location(p.getWorld(), p.getLocation().getBlockX(), p.getLocation().getBlockY() + 32, p.getLocation().getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){

@@ -23,9 +23,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 11, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t.getBlockZ());;
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -45,9 +42,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY() - 12, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY(), t.getBlockZ() + 4);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -69,9 +63,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 11, t.getBlockZ() + 3);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t.getBlockZ() + 3);;
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -91,9 +82,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 12, t.getBlockZ() + 3);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() + 7);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -118,9 +106,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 11, t.getBlockZ() + 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t.getBlockZ() + 4);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -140,9 +125,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY() - 12, t.getBlockZ() + 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY(), t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -164,9 +146,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 11, t.getBlockZ() + 7);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t.getBlockZ() + 7);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -186,9 +165,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 12, t.getBlockZ() + 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -214,9 +190,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 1, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t.getBlockZ());;
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -236,9 +209,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY() + 1, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY() + 12, t.getBlockZ() + 4);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -260,9 +230,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 1, t.getBlockZ() + 7);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t.getBlockZ() + 7);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -282,9 +249,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 12, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -310,9 +274,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 13, t.getBlockZ() - 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -332,9 +293,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 24, t.getBlockZ() - 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -356,9 +314,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() - 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t.getBlockZ() - 4);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -378,9 +333,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY(), t.getBlockZ() - 4);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY() + 12, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -402,9 +354,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY(), t.getBlockZ() - 1);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 12, t.getBlockZ() - 1);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -424,9 +373,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() - 1);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 12, t.getBlockZ() + 3);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -452,9 +398,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 13, t.getBlockZ() + 11);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 13, t.getBlockZ() + 11);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -474,9 +417,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 24, t.getBlockZ() + 11);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 24, t.getBlockZ() + 11);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -498,9 +438,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() + 11);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t.getBlockZ() + 11);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -520,9 +457,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY(), t.getBlockZ() + 8);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 2, t.getBlockY() + 12, t.getBlockZ() + 12);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -544,9 +478,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() + 8);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t.getBlockZ() + 8);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -566,9 +497,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY(), t.getBlockZ() + 8);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 12, t.getBlockZ() + 12);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -596,9 +524,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY(), t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 24, t.getBlockZ());;
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -618,9 +543,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -642,9 +564,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 12, t.getBlockZ() + 7);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 24, t.getBlockZ() + 7);;
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -664,9 +583,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY(), t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 24, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -688,9 +604,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 32, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 32, t.getBlockZ() + 8);
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -710,9 +623,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 25, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 25, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			int[] pixel;
 			for(int i = min_x; i < max_x; i++){
@@ -736,9 +646,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -768,9 +675,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() - 6, t.getBlockY() + 13, t.getBlockZ() + 4);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -790,9 +694,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() - 6, t.getBlockY() + 24, t.getBlockZ() + 4);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -816,9 +717,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 13, t.getBlockZ() - 7);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -839,9 +737,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() - 6, t.getBlockY() + 24, t.getBlockZ() - 7);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -869,9 +764,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() - 8, t.getBlockY() + 25, t.getBlockZ() - 7);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 25, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -922,9 +814,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ() + 5);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -945,9 +834,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() + 5);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -974,9 +860,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() - 7, t.getBlockY() + 13, t.getBlockZ() + 1);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -997,9 +880,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ() + 6);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -1026,9 +906,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 25, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 25, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -1079,9 +956,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 13, t.getBlockZ() - 1);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -1102,9 +976,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 24, t.getBlockZ() - 1);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -1131,9 +1002,6 @@ public class SkinSmooth {
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 13, t.getBlockZ() - 1);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 13, t.getBlockZ());
 			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
-			
 			
 			for(int i = min_x; i < max_x; i++){
 		    	for(int j = min_y; j < max_y; j++){
@@ -1154,9 +1022,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() - 6);
 			Location end = new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 24, t.getBlockZ());
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -1183,9 +1048,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 25, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 6, t.getBlockY() + 25, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
@@ -1236,9 +1098,6 @@ public class SkinSmooth {
 			//getLogger().info("Building " + component);
 			Location start = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 32, t.getBlockZ() - 8);
 			Location end = new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 32, t.getBlockZ() + 8);
-			
-			////getLogger().info(start.toString());
-			////getLogger().info(end.toString());
 			
 			
 			for(int i = min_x; i < max_x; i++){
