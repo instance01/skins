@@ -191,19 +191,21 @@ public class Main extends JavaPlugin implements Listener {
 							if(mob.equalsIgnoreCase("chicken")){
 								Chicken.undoChicken(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}else if(mob.equalsIgnoreCase("creeper")){
-								
+								Creeper.undoCreeper(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}
 							
 							
 							if(loc_.size() < 2){
 								mob_undoloc.remove(p);
 								mob_undomob.remove(p);
+								mob_undodir.remove(p);
 							}else{
 								loc_.remove(loc_.size() - 1);
 								mob_.remove(mob_.size() - 1);
-								
+								dir_.remove(dir_.size() - 1);
 								mob_undoloc.put(p, loc_);
 								mob_undomob.put(p, mob_);
+								mob_undodir.put(p, dir_);
 							}
 							
 							sender.sendMessage("§cSuccessfully removed " + mob);

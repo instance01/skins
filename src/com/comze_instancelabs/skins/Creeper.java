@@ -2,6 +2,7 @@ package com.comze_instancelabs.skins;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 
 public class Creeper {
@@ -211,6 +212,31 @@ public class Creeper {
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 3)).setTypeIdAndData(35, (byte)15, true);
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)15, true);
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 3, start.getBlockY() + 20, start.getBlockZ() - 5)).setTypeIdAndData(35, (byte)15, true);
+		}
+	}
+	
+	public static void undoCreeper(Location start, String d){
+		World w = start.getWorld();
+		for(int i__ = 0; i__ < 12; i__++){
+			for(int i_ = 0; i_ < 8; i_++){
+				for(int i = 0; i < 26; i++){
+					Block b;
+					if(d.equalsIgnoreCase("west")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i__ - 1, start.getBlockY() + i, start.getBlockZ() - i_));
+					}else if(d.equalsIgnoreCase("east")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i__ + 1, start.getBlockY() + i, start.getBlockZ() + i_));
+					}else if(d.equalsIgnoreCase("north")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i_, start.getBlockY() + i, start.getBlockZ() - i__ - 1));
+					}else if(d.equalsIgnoreCase("south")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i_, start.getBlockY() + i, start.getBlockZ() + i__ + 1));
+					}else{
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i__ - 1, start.getBlockY() + i, start.getBlockZ() - i_));
+					}
+					if(b.getType() == Material.WOOL){
+						b.setType(Material.AIR);
+					}
+				}
+			}	
 		}
 	}
 	
