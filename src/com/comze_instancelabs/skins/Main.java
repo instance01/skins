@@ -66,6 +66,11 @@ public class Main extends JavaPlugin implements Listener {
 	public static HashMap<Player, ArrayList<String>> undo_uuid = new HashMap<Player, ArrayList<String>>();
 	
 	
+	public static HashMap<Player, ArrayList<Location>> mob_undoloc = new HashMap<Player, ArrayList<Location>>();
+	public static HashMap<Player, ArrayList<String>> mob_undomob = new HashMap<Player, ArrayList<String>>();
+	public static HashMap<Player, ArrayList<String>> mob_undodir = new HashMap<Player, ArrayList<String>>();
+	
+	
 	
 	@Override
 	public void onEnable(){
@@ -130,14 +135,79 @@ public class Main extends JavaPlugin implements Listener {
 					Player p = (Player)sender;
 					String look_direction = getDirection(p.getLocation().getYaw()).toLowerCase();
 					
+					
+					ArrayList<Location> loc_ = new ArrayList<Location>();
+					ArrayList<String> mob_ = new ArrayList<String>();
+					ArrayList<String> dir_ = new ArrayList<String>();
+					
+					
+					
 					if(action.equalsIgnoreCase("chicken")){
 						sender.sendMessage("§3Building a §6chicken §3now.");
 						Chicken.buildChicken(p.getLocation(), look_direction);
 						sender.sendMessage("§aFinished!");
+						
+						if(mob_undoloc.containsKey(p)){
+							loc_ = mob_undoloc.get(p);
+							mob_ = mob_undomob.get(p);
+							dir_ = mob_undodir.get(p);
+						}
+						
+						loc_.add(p.getLocation());
+						mob_.add(action);
+						dir_.add(look_direction);
+
+						mob_undoloc.put(p, loc_);
+						mob_undomob.put(p, mob_);
+						mob_undodir.put(p, dir_);
 					}else if(action.equalsIgnoreCase("creeper")){
 						sender.sendMessage("§3Building a §6Creeper §3now.");
 						Creeper.buildCreeper(p.getLocation(), look_direction);
 						sender.sendMessage("§aFinished!");
+						
+						if(mob_undoloc.containsKey(p)){
+							loc_ = mob_undoloc.get(p);
+							mob_ = mob_undomob.get(p);
+							dir_ = mob_undodir.get(p);
+						}
+						
+						loc_.add(p.getLocation());
+						mob_.add(action);
+						dir_.add(look_direction);
+
+						mob_undoloc.put(p, loc_);
+						mob_undomob.put(p, mob_);
+						mob_undodir.put(p, dir_);
+					}else if(action.equalsIgnoreCase("undo")){
+						//TODO undo
+						
+						if(mob_undoloc.containsKey(p)){
+							loc_ = mob_undoloc.get(p);
+							mob_ = mob_undomob.get(p);
+							dir_ = mob_undodir.get(p);
+							
+							
+							String mob = mob_.get(mob_.size() - 1);
+							if(mob.equalsIgnoreCase("chicken")){
+								Chicken.undoChicken(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
+							}else if(mob.equalsIgnoreCase("creeper")){
+								
+							}
+							
+							
+							if(loc_.size() < 2){
+								mob_undoloc.remove(p);
+								mob_undomob.remove(p);
+							}else{
+								loc_.remove(loc_.size() - 1);
+								mob_.remove(mob_.size() - 1);
+								
+								mob_undoloc.put(p, loc_);
+								mob_undomob.put(p, mob_);
+							}
+							
+							sender.sendMessage("§cSuccessfully removed " + mob);
+						}
 					}else{
 						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper");
 					}

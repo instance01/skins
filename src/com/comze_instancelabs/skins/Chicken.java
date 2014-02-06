@@ -2,6 +2,7 @@ package com.comze_instancelabs.skins;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 
 public class Chicken {
@@ -188,11 +189,11 @@ public class Chicken {
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 14, start.getBlockZ() + 1)).setTypeIdAndData(35, (byte)15, true);
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + 14, start.getBlockZ() + 4)).setTypeIdAndData(35, (byte)15, true);
 		}else if(d.equalsIgnoreCase("north")){
-			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 1, start.getBlockY() + 14, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
-			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 4, start.getBlockY() + 14, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 1, start.getBlockY() + 14, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 4, start.getBlockY() + 14, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)15, true);
 		}else if(d.equalsIgnoreCase("south")){
-			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 1, start.getBlockY() + 14, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)15, true);
-			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 4, start.getBlockY() + 14, start.getBlockZ() + 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 1, start.getBlockY() + 14, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
+			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 4, start.getBlockY() + 14, start.getBlockZ() - 2)).setTypeIdAndData(35, (byte)15, true);
 		}else{
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 14, start.getBlockZ() - 1)).setTypeIdAndData(35, (byte)15, true);
 			start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + 14, start.getBlockZ() - 4)).setTypeIdAndData(35, (byte)15, true);
@@ -238,6 +239,32 @@ public class Chicken {
 				b.setType(Material.WOOL);
 				b.setData((byte)14);
 			}
+		}
+	}
+	
+	
+	public static void undoChicken(Location start, String d){
+		World w = start.getWorld();
+		for(int i__ = 0; i__ < 12; i__++){
+			for(int i_ = 0; i_ < 8; i_++){
+				for(int i = 0; i < 16; i++){
+					Block b;
+					if(d.equalsIgnoreCase("west")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i__ + 4, start.getBlockY() + i, start.getBlockZ() - i_ + 1));
+					}else if(d.equalsIgnoreCase("east")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i__ - 4, start.getBlockY() + i, start.getBlockZ() + i_ - 1));
+					}else if(d.equalsIgnoreCase("north")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i_ - 1, start.getBlockY() + i, start.getBlockZ() - i__ + 4));
+					}else if(d.equalsIgnoreCase("south")){
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i_ + 1, start.getBlockY() + i, start.getBlockZ() + i__ - 4));
+					}else{
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i__ + 1, start.getBlockY() + i, start.getBlockZ() - i_ - 1));
+					}
+					if(b.getType() == Material.WOOL){
+						b.setType(Material.AIR);
+					}
+				}
+			}	
 		}
 	}
 	
