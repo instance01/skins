@@ -1,5 +1,3 @@
-
-
 package com.comze_instancelabs.skins;
 
 import java.awt.Color;
@@ -29,6 +27,11 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.comze_instancelabs.skins.mobs.Chicken;
+import com.comze_instancelabs.skins.mobs.Creeper;
+import com.comze_instancelabs.skins.utils.Metrics;
+import com.comze_instancelabs.skins.utils.Updater;
+import com.comze_instancelabs.skins.utils.Updater.UpdateType;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 //import org.bukkit.material.Sign;
 

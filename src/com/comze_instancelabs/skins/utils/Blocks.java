@@ -1,4 +1,4 @@
-package com.comze_instancelabs.skins;
+package com.comze_instancelabs.skins.utils;
 
 import java.awt.Color;
 import java.util.HashMap;
