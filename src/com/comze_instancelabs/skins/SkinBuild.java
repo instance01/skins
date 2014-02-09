@@ -9,12 +9,11 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-
 public class SkinBuild {
 
 	static Main main;
 
-	public static void buildPartOfImageEast(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component) {
+	public static void buildPartOfImageEast(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component, String type) {
 		main = m;
 
 		if (component.equalsIgnoreCase("arm1_bottom")) {
@@ -30,8 +29,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4, end.getBlockY(), start.getBlockZ() - j + max_y - 1);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm1_top")) {
@@ -47,8 +62,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4, end.getBlockY(), start.getBlockZ() - j + max_y - 1);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -66,8 +97,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4, end.getBlockY(), start.getBlockZ() + j - max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm2_top")) {
@@ -83,8 +130,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 4, end.getBlockY(), start.getBlockZ() + j - max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -102,8 +165,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 9, end.getBlockY(), start.getBlockZ() + i - min_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("head_top")) {
@@ -119,8 +198,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() + i - min_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -139,8 +234,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x - 8, end.getBlockY() - j + max_y, p.getLocation().getBlockZ() - 1);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -158,8 +269,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() - 1, end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -177,8 +304,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x - 7, end.getBlockY() - j + max_y, start.getBlockZ() + 1);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -196,8 +339,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + 1, end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -215,8 +374,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY() + 1, start.getBlockZ() + i - min_x);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -224,7 +399,7 @@ public class SkinBuild {
 
 	}
 
-	public static void buildPartOfImageSouth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component) {
+	public static void buildPartOfImageSouth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component, String type) {
 		main = m;
 		if (component.equalsIgnoreCase("arm1_bottom")) {
 			Location current = p.getLocation();
@@ -239,9 +414,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() - i + max_x - 4);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm1_top")) {
@@ -257,9 +447,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() - i + max_x - 4);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -277,9 +482,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y, end.getBlockY(), start.getBlockZ() - i + max_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm2_top")) {
@@ -295,8 +515,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x, end.getBlockY(), start.getBlockZ() + j - max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -314,8 +550,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1, end.getBlockY(), start.getBlockZ() + i - min_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("head_top")) {
@@ -331,8 +583,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + i - max_x + 1, end.getBlockY(), start.getBlockZ() - j + max_y - 1);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -351,8 +619,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x, end.getBlockY() + 1, start.getBlockZ() - j + max_y);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -360,7 +644,7 @@ public class SkinBuild {
 
 	}
 
-	public static void buildPartOfImageWest(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component) {
+	public static void buildPartOfImageWest(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component, String type) {
 		main = m;
 		if (component.equalsIgnoreCase("arm1_bottom")) {
 			Location current = p.getLocation();
@@ -375,9 +659,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() - i + max_x - 4);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm1_top")) {
@@ -393,9 +692,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() - i + max_x - 4);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -413,9 +727,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm2_top")) {
@@ -431,9 +760,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x, end.getBlockY(), start.getBlockZ() + j - max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -451,8 +795,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 9, end.getBlockY(), start.getBlockZ() + i - min_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("head_top")) {
@@ -468,8 +828,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x, end.getBlockY(), start.getBlockZ() - j + max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -488,9 +864,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() - 1, end.getBlockY() - j + max_y, p.getLocation().getBlockZ() - i + max_x - 8);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.BLACK.getData());
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -508,8 +899,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x, end.getBlockY() - j + max_y, start.getBlockZ() - 1);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -527,8 +934,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + 1, end.getBlockY() - j + max_y, start.getBlockZ() + i - min_x - 7);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -546,8 +969,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x, end.getBlockY() - j + max_y, start.getBlockZ() + 1);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -565,8 +1004,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY() + 1, start.getBlockZ() + i - min_x);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -574,7 +1029,7 @@ public class SkinBuild {
 
 	}
 
-	public static void buildPartOfImageNorth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component) {
+	public static void buildPartOfImageNorth(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, String component, String type) {
 		main = m;
 		if (component.equalsIgnoreCase("arm1_bottom")) {
 			Location current = p.getLocation();
@@ -589,9 +1044,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm1_top")) {
@@ -607,9 +1077,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -627,9 +1112,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.BLACK.getData());
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("arm2_top")) {
@@ -645,8 +1145,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + i - max_x, end.getBlockY(), start.getBlockZ() - j + max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -664,8 +1180,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1, end.getBlockY(), start.getBlockZ() + i - min_x);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		} else if (component.equalsIgnoreCase("head_top")) {
@@ -681,8 +1213,24 @@ public class SkinBuild {
 
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x, end.getBlockY(), start.getBlockZ() + j - max_y);
 
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
@@ -701,8 +1249,24 @@ public class SkinBuild {
 					if (!isTransparent(bi, i, j)) {
 						Block change = p.getWorld().getBlockAt(start.getBlockX() + i - min_x, end.getBlockY() + 1, start.getBlockZ() - j + max_y);
 
-						change.setType(Material.WOOL);
-						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						if (type == "normal") {
+							change.setType(Material.WOOL); //
+							change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+						} else if (type == "clay") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_CLAY);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "glass") {
+							if (!m.getStringFromColorClay(c).equals("NULL")) {
+								change.setType(Material.STAINED_GLASS);
+								change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+							}
+						} else if (type == "all") {
+							int[] i_ = Main.getMaterialFromColor(c);
+							change.setType(Material.getMaterial(i_[0]));
+							change.setData((byte) i_[1]);
+						}
 					}
 				}
 			}
@@ -711,7 +1275,7 @@ public class SkinBuild {
 	}
 
 	// EAST FRONT/BEHIND CUBOID
-	public static void buildEastFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildEastFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -721,15 +1285,31 @@ public class SkinBuild {
 				// if(!isTransparent(bi, min_x + i, min_y + j)){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 				// }
 			}
 		}
 	}
 
 	// EAST FRONT/BEHIND CUBOID INVERTED
-	public static void buildEastFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildEastFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -739,15 +1319,31 @@ public class SkinBuild {
 				// if(!isTransparent(bi, min_x + i, min_y + j)){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 				// }
 			}
 		}
 	}
 
 	// EAST RIGHT/LEFT CUBOID
-	public static void buildEastSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildEastSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -757,15 +1353,31 @@ public class SkinBuild {
 				// if(!isTransparent(bi, min_x + i, min_y + j)){
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 				// }
 			}
 		}
 	}
 
 	// WEST FRONT/BEHIND CUBOID
-	public static void buildWestFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -774,14 +1386,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// WEST FRONT/BEHIND CUBOID INVERTED
-	public static void buildWestFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -790,14 +1418,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -806,14 +1450,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -822,14 +1482,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// WEST FRONT/BEHIND CUBOID
-	public static void buildWestFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -839,15 +1515,31 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
 	}
 
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -857,15 +1549,31 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
 	}
 
 	// WEST RIGHT/LEFT CUBOID
-	public static void buildWestSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildWestSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -875,15 +1583,31 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
 	}
 
 	// SOUTH FRONT/BEHIND CUBOID
-	public static void buildSouthFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -892,14 +1616,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// SOUTH FRONT/BEHIND CUBOID INVERTED
-	public static void buildSouthFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -908,14 +1648,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() - width + i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// SOUTH RIGHT/LEFT CUBOID
-	public static void buildSouthSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -924,14 +1680,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// SOUTH RIGHT/LEFT CUBOID
-	public static void buildSouthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -940,14 +1712,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// SOUTH FRONT/BEHIND CUBOID HAT LAYERS
-	public static void buildSouthFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -957,15 +1745,31 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX() - i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
 	}
 
 	// SOUTH RIGHT/LEFT CUBOID HAT LAYERS
-	public static void buildSouthSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -975,8 +1779,24 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 
 			}
@@ -984,7 +1804,7 @@ public class SkinBuild {
 	}
 
 	// SOUTH RIGHT/LEFT CUBOID HAT LAYERS INVERTED
-	public static void buildSouthSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildSouthSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -994,8 +1814,24 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 
 			}
@@ -1003,7 +1839,7 @@ public class SkinBuild {
 	}
 
 	// NORTH FRONT/BEHIND CUBOID
-	public static void buildNorthFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthFront(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1012,14 +1848,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// NORTH FRONT/BEHIND CUBOID INVERTED
-	public static void buildNorthFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthFrontInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1028,14 +1880,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX() + width - i, start.getBlockY() + height - j, start.getBlockZ());
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// NORTH RIGHT/LEFT CUBOID
-	public static void buildNorthSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSide(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1044,14 +1912,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// NORTH RIGHT/LEFT CUBOID
-	public static void buildNorthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSideInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1060,14 +1944,30 @@ public class SkinBuild {
 			for (int j = 0; j < height; j++) {
 				Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 				Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-				change.setType(Material.WOOL);
-				change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				if (type == "normal") {
+					change.setType(Material.WOOL); //
+					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+				} else if (type == "clay") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_CLAY);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "glass") {
+					if (!m.getStringFromColorClay(c).equals("NULL")) {
+						change.setType(Material.STAINED_GLASS);
+						change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+					}
+				} else if (type == "all") {
+					int[] i_ = Main.getMaterialFromColor(c);
+					change.setType(Material.getMaterial(i_[0]));
+					change.setData((byte) i_[1]);
+				}
 			}
 		}
 	}
 
 	// NORTH FRONT/BEHIND CUBOID HAT LAYERS
-	public static void buildNorthFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthFrontHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1077,15 +1977,31 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX() + i, start.getBlockY() + height - j, start.getBlockZ());
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 			}
 		}
 	}
 
 	// NORTH RIGHT/LEFT CUBOID HAT LAYERS
-	public static void buildNorthSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSideHAT(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1095,8 +2011,24 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() - width + i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 
 			}
@@ -1104,7 +2036,7 @@ public class SkinBuild {
 	}
 
 	// NORTH RIGHT/LEFT CUBOID HAT LAYERS INVERTED
-	public static void buildNorthSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start) {
+	public static void buildNorthSideHATInvert(Main m, Player p, BufferedImage bi, int min_x, int max_x, int min_y, int max_y, Location start, String type) {
 
 		int width = max_x - min_x;
 		int height = max_y - min_y;
@@ -1114,8 +2046,24 @@ public class SkinBuild {
 				if (!isTransparent(bi, min_x + i, min_y + j)) {
 					Color c = new Color(bi.getRGB(min_x + i, min_y + j));
 					Block change = p.getWorld().getBlockAt(start.getBlockX(), start.getBlockY() + height - j, start.getBlockZ() + width - i);
-					change.setType(Material.WOOL);
-					change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					if (type == "normal") {
+						change.setType(Material.WOOL); //
+						change.setData(DyeColor.valueOf(m.getStringFromColor(c)).getData());
+					} else if (type == "clay") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_CLAY);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "glass") {
+						if (!m.getStringFromColorClay(c).equals("NULL")) {
+							change.setType(Material.STAINED_GLASS);
+							change.setData(DyeColor.valueOf(m.getStringFromColorClay(c)).getData());
+						}
+					} else if (type == "all") {
+						int[] i_ = Main.getMaterialFromColor(c);
+						change.setType(Material.getMaterial(i_[0]));
+						change.setData((byte) i_[1]);
+					}
 				}
 
 			}
