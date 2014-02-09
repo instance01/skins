@@ -29,6 +29,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import com.comze_instancelabs.skins.mobs.Chicken;
 import com.comze_instancelabs.skins.mobs.Creeper;
+import com.comze_instancelabs.skins.mobs.Enderman;
 import com.comze_instancelabs.skins.utils.Metrics;
 import com.comze_instancelabs.skins.utils.Updater;
 import com.comze_instancelabs.skins.utils.Updater.UpdateType;
@@ -181,6 +182,24 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undoloc.put(p, loc_);
 						mob_undomob.put(p, mob_);
 						mob_undodir.put(p, dir_);
+					}else if(action.equalsIgnoreCase("enderman")){
+						sender.sendMessage("§3Building an §6Enderman §3now.");
+						Enderman.buildEnderman(p.getLocation(), look_direction);
+						sender.sendMessage("§aFinished!");
+						
+						if(mob_undoloc.containsKey(p)){
+							loc_ = mob_undoloc.get(p);
+							mob_ = mob_undomob.get(p);
+							dir_ = mob_undodir.get(p);
+						}
+						
+						loc_.add(p.getLocation());
+						mob_.add(action);
+						dir_.add(look_direction);
+
+						mob_undoloc.put(p, loc_);
+						mob_undomob.put(p, mob_);
+						mob_undodir.put(p, dir_);
 					}else if(action.equalsIgnoreCase("undo")){
 						//TODO undo
 						
@@ -195,6 +214,8 @@ public class Main extends JavaPlugin implements Listener {
 								Chicken.undoChicken(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}else if(mob.equalsIgnoreCase("creeper")){
 								Creeper.undoCreeper(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
+							}else if(mob.equalsIgnoreCase("enderman")){
+								Enderman.undoEnderman(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}
 							
 							
@@ -214,10 +235,10 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§cSuccessfully removed " + mob);
 						}
 					}else{
-						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper");
+						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman");
 					}
 				}else{
-					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper");
+					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman");
 				}
 			}
 			return true;
