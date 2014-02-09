@@ -196,9 +196,9 @@ public class Enderman {
 					}else if(d.equalsIgnoreCase("east")){
 						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i__ - 2, start.getBlockY() + i, start.getBlockZ() + i_ - 3));
 					}else if(d.equalsIgnoreCase("north")){
-						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i_ - 3, start.getBlockY() + i, start.getBlockZ() - i__ - 2));
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() + i_ - 3, start.getBlockY() + i, start.getBlockZ() - i__ + 2));
 					}else if(d.equalsIgnoreCase("south")){
-						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i_ + 3, start.getBlockY() + i, start.getBlockZ() + i__ + 2));
+						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i_ + 3, start.getBlockY() + i, start.getBlockZ() + i__ - 2));
 					}else{
 						b = start.getWorld().getBlockAt(new Location(w, start.getBlockX() - i__ + 2, start.getBlockY() + i, start.getBlockZ() - i_ + 3));
 					}
