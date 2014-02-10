@@ -146,15 +146,15 @@ public class Slime {
 			for(int i = 0; i < 2; i++){
 				Block b;
 				if(d.equalsIgnoreCase("west")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 8, start.getBlockY() + i + 4, start.getBlockZ() - i_ - 3));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + i + 4, start.getBlockZ() - i_ - 8));
 				}else if(d.equalsIgnoreCase("east")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 8, start.getBlockY() + i + 4, start.getBlockZ() + i_ + 3));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + i + 4, start.getBlockZ() + i_ + 8));
 				}else if(d.equalsIgnoreCase("north")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + i_ + 3, start.getBlockY() + i + 4, start.getBlockZ() - 8));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + i_ - 8, start.getBlockY() + i + 4, start.getBlockZ() + 2));
 				}else if(d.equalsIgnoreCase("south")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - i_ - 3, start.getBlockY() + i + 4, start.getBlockZ() + 8));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - i_ + 8, start.getBlockY() + i + 4, start.getBlockZ() - 2));
 				}else{
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 8, start.getBlockY() + i + 4, start.getBlockZ() - i_ - 3));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + i + 4, start.getBlockZ() - i_ - 8));
 				}
 				b.setType(Material.WOOL);
 				b.setData((byte)13);
