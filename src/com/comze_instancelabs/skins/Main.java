@@ -18,7 +18,6 @@ import javax.imageio.ImageIO;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,9 +29,9 @@ import org.bukkit.scheduler.BukkitTask;
 import com.comze_instancelabs.skins.mobs.Chicken;
 import com.comze_instancelabs.skins.mobs.Creeper;
 import com.comze_instancelabs.skins.mobs.Enderman;
+import com.comze_instancelabs.skins.mobs.Pig;
 import com.comze_instancelabs.skins.utils.Metrics;
 import com.comze_instancelabs.skins.utils.Updater;
-import com.comze_instancelabs.skins.utils.Updater.UpdateType;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 //import org.bukkit.material.Sign;
 
@@ -200,6 +199,24 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undoloc.put(p, loc_);
 						mob_undomob.put(p, mob_);
 						mob_undodir.put(p, dir_);
+					}else if(action.equalsIgnoreCase("pig")){
+						sender.sendMessage("§3Building a §6Pig §3now.");
+						Pig.buildPig(p.getLocation(), look_direction);
+						sender.sendMessage("§aFinished!");
+						
+						if(mob_undoloc.containsKey(p)){
+							loc_ = mob_undoloc.get(p);
+							mob_ = mob_undomob.get(p);
+							dir_ = mob_undodir.get(p);
+						}
+						
+						loc_.add(p.getLocation());
+						mob_.add(action);
+						dir_.add(look_direction);
+
+						mob_undoloc.put(p, loc_);
+						mob_undomob.put(p, mob_);
+						mob_undodir.put(p, dir_);
 					}else if(action.equalsIgnoreCase("undo")){
 						//TODO undo
 						
@@ -216,6 +233,8 @@ public class Main extends JavaPlugin implements Listener {
 								Creeper.undoCreeper(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}else if(mob.equalsIgnoreCase("enderman")){
 								Enderman.undoEnderman(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
+							}else if(mob.equalsIgnoreCase("pig")){
+								Pig.undoPig(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}
 							
 							
@@ -235,10 +254,10 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§cSuccessfully removed " + mob);
 						}
 					}else{
-						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman");
+						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig");
 					}
 				}else{
-					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman");
+					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig");
 				}
 			}
 			return true;
