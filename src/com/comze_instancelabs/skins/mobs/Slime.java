@@ -85,9 +85,9 @@ public class Slime {
 				}else if(d.equalsIgnoreCase("east")){
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + i_ + 3, start.getBlockY() + i + 8, start.getBlockZ() + 1));
 				}else if(d.equalsIgnoreCase("north")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 1, start.getBlockY() + i + 8, start.getBlockZ() + i_ + 3));
-				}else if(d.equalsIgnoreCase("south")){
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 1, start.getBlockY() + i + 8, start.getBlockZ() - i_ - 3));
+				}else if(d.equalsIgnoreCase("south")){
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 1, start.getBlockY() + i + 8, start.getBlockZ() + i_ + 3));
 				}else{
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - i_ - 1, start.getBlockY() + i + 8, start.getBlockZ() - 2));
 				}
@@ -128,9 +128,9 @@ public class Slime {
 				}else if(d.equalsIgnoreCase("east")){
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + i_ + 3, start.getBlockY() + i + 8, start.getBlockZ() + 14));
 				}else if(d.equalsIgnoreCase("north")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 14, start.getBlockY() + i + 8, start.getBlockZ() + i_ + 3));
-				}else if(d.equalsIgnoreCase("south")){
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 14, start.getBlockY() + i + 8, start.getBlockZ() - i_ - 3));
+				}else if(d.equalsIgnoreCase("south")){
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 14, start.getBlockY() + i + 8, start.getBlockZ() + i_ + 3));
 				}else{
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - i_ - 1, start.getBlockY() + i + 8, start.getBlockZ() - 2));
 				}
@@ -150,9 +150,9 @@ public class Slime {
 				}else if(d.equalsIgnoreCase("east")){
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + 2, start.getBlockY() + i + 4, start.getBlockZ() + i_ + 8));
 				}else if(d.equalsIgnoreCase("north")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + i_ - 8, start.getBlockY() + i + 4, start.getBlockZ() + 2));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() + i_ + 8, start.getBlockY() + i + 4, start.getBlockZ() - 2));
 				}else if(d.equalsIgnoreCase("south")){
-					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - i_ + 8, start.getBlockY() + i + 4, start.getBlockZ() - 2));
+					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - i_ - 8, start.getBlockY() + i + 4, start.getBlockZ() + 2));
 				}else{
 					b = start.getWorld().getBlockAt(new Location(start.getWorld(), start.getBlockX() - 2, start.getBlockY() + i + 4, start.getBlockZ() - i_ - 8));
 				}
