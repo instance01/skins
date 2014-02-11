@@ -26,7 +26,6 @@ public class Blaze {
 			buildThingy(new Location(w, start.getBlockX() - 8, start.getBlockY() + 10, start.getBlockZ() + 5), direction);
 			buildThingy(new Location(w, start.getBlockX() - 4, start.getBlockY() + 16, start.getBlockZ() + 4), direction);
 			buildThingy(new Location(w, start.getBlockX() - 1, start.getBlockY() + 3, start.getBlockZ() + 3), direction);
-
 		}else if(direction.equalsIgnoreCase("east")){
 			buildThingy(new Location(w, start.getBlockX() - 2, start.getBlockY() + 8, start.getBlockZ()), direction);
 			buildThingy(new Location(w, start.getBlockX() - 4, start.getBlockY() + 13, start.getBlockZ() + 3), direction);
@@ -40,11 +39,32 @@ public class Blaze {
 			buildThingy(new Location(w, start.getBlockX() + 8, start.getBlockY() + 10, start.getBlockZ() - 5), direction);
 			buildThingy(new Location(w, start.getBlockX() + 4, start.getBlockY() + 16, start.getBlockZ() - 4), direction);
 			buildThingy(new Location(w, start.getBlockX() + 1, start.getBlockY() + 3, start.getBlockZ() - 3), direction);
-
 		}else if(direction.equalsIgnoreCase("north")){
-			//TODO north
+			buildThingy(new Location(w, start.getBlockX(), start.getBlockY() + 8, start.getBlockZ() + 2), direction);
+			buildThingy(new Location(w, start.getBlockX() + 3, start.getBlockY() + 13, start.getBlockZ() + 4), direction);
+			buildThingy(new Location(w, start.getBlockX() + 8, start.getBlockY() + 3, start.getBlockZ() + 1), direction);
+			buildThingy(new Location(w, start.getBlockX() + 12, start.getBlockY() + 11, start.getBlockZ() - 2), direction);
+			buildThingy(new Location(w, start.getBlockX() + 15, start.getBlockY() + 17, start.getBlockZ() - 3), direction);
+			buildThingy(new Location(w, start.getBlockX() + 10, start.getBlockY() + 4, start.getBlockZ() - 4), direction);
+			buildThingy(new Location(w, start.getBlockX() + 12, start.getBlockY() + 16, start.getBlockZ() - 5), direction);
+			buildThingy(new Location(w, start.getBlockX() + 7, start.getBlockY() + 16, start.getBlockZ() - 11), direction);
+			buildThingy(new Location(w, start.getBlockX(), start.getBlockY() + 13, start.getBlockZ() - 12), direction);
+			buildThingy(new Location(w, start.getBlockX() - 5, start.getBlockY() + 10, start.getBlockZ() - 8), direction);
+			buildThingy(new Location(w, start.getBlockX() - 4, start.getBlockY() + 16, start.getBlockZ() - 4), direction);
+			buildThingy(new Location(w, start.getBlockX() - 3, start.getBlockY() + 3, start.getBlockZ() - 1), direction);
 		}else if(direction.equalsIgnoreCase("south")){
-			//TODO south
+			buildThingy(new Location(w, start.getBlockX(), start.getBlockY() + 8, start.getBlockZ() - 2), direction);
+			buildThingy(new Location(w, start.getBlockX() - 3, start.getBlockY() + 13, start.getBlockZ() - 4), direction);
+			buildThingy(new Location(w, start.getBlockX() - 8, start.getBlockY() + 3, start.getBlockZ() - 1), direction);
+			buildThingy(new Location(w, start.getBlockX() - 12, start.getBlockY() + 11, start.getBlockZ() + 2), direction);
+			buildThingy(new Location(w, start.getBlockX() - 15, start.getBlockY() + 17, start.getBlockZ() + 3), direction);
+			buildThingy(new Location(w, start.getBlockX() - 10, start.getBlockY() + 4, start.getBlockZ() + 4), direction);
+			buildThingy(new Location(w, start.getBlockX() - 12, start.getBlockY() + 16, start.getBlockZ() + 5), direction);
+			buildThingy(new Location(w, start.getBlockX() - 7, start.getBlockY() + 16, start.getBlockZ() + 11), direction);
+			buildThingy(new Location(w, start.getBlockX(), start.getBlockY() + 13, start.getBlockZ() + 12), direction);
+			buildThingy(new Location(w, start.getBlockX() + 5, start.getBlockY() + 10, start.getBlockZ() + 8), direction);
+			buildThingy(new Location(w, start.getBlockX() + 4, start.getBlockY() + 16, start.getBlockZ() + 4), direction);
+			buildThingy(new Location(w, start.getBlockX() + 3, start.getBlockY() + 3, start.getBlockZ() + 1), direction);
 		}
 	}
 	
