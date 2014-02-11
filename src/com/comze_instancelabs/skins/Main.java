@@ -26,6 +26,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.comze_instancelabs.skins.mobs.Blaze;
 import com.comze_instancelabs.skins.mobs.Chicken;
 import com.comze_instancelabs.skins.mobs.Creeper;
 import com.comze_instancelabs.skins.mobs.Enderman;
@@ -236,6 +237,24 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undoloc.put(p, loc_);
 						mob_undomob.put(p, mob_);
 						mob_undodir.put(p, dir_);
+					}else if(action.equalsIgnoreCase("blaze")){
+						sender.sendMessage("§3Building a §6Blaze §3now.");
+						Blaze.buildBlaze(p.getLocation(), look_direction);
+						sender.sendMessage("§aFinished!");
+						
+						if(mob_undoloc.containsKey(p)){
+							loc_ = mob_undoloc.get(p);
+							mob_ = mob_undomob.get(p);
+							dir_ = mob_undodir.get(p);
+						}
+						
+						loc_.add(p.getLocation());
+						mob_.add(action);
+						dir_.add(look_direction);
+
+						mob_undoloc.put(p, loc_);
+						mob_undomob.put(p, mob_);
+						mob_undodir.put(p, dir_);
 					}else if(action.equalsIgnoreCase("undo")){
 						//TODO undo
 						
@@ -256,6 +275,8 @@ public class Main extends JavaPlugin implements Listener {
 								Pig.undoPig(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}else if(mob.equalsIgnoreCase("slime")){
 								Slime.undoSlime(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
+							}else if(mob.equalsIgnoreCase("blaze")){
+								Blaze.undoBlaze(loc_.get(loc_.size() - 1), dir_.get(dir_.size() - 1));
 							}
 							
 							
@@ -275,10 +296,10 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§cSuccessfully removed " + mob);
 						}
 					}else{
-						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime");
+						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
 					}
 				}else{
-					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime");
+					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
 				}
 			}
 			return true;
