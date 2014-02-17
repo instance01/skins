@@ -3765,11 +3765,11 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "RED";
 		}else if(h > 0.8 && h < 0.91666666 && s > 0.35 && v > 0.16 && v < 0.4){
 			ret = "PURPLE";
-		}else if(h > 0.3055555 && h < 0.3888888 && s < 0.35 && v > 0.6 && v < 0.8){
+		}else if(h > 0.3055555 && h < 0.3888888 && s > 0.05 && s < 0.35 && v > 0.6 && v < 0.8){
 			ret = "CYAN";
-		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.7 && v < 0.95){
+		}else if(h > 0.38 && h < 0.5833333 && s > 0.05 && s < 0.35 && v > 0.7 && v < 0.95){
 			ret = "LIGHT_BLUE";
-		}else if(h > 0.38 && h < 0.5833333 && s < 0.35 && v > 0.5 && v < 0.71){
+		}else if(h > 0.38 && h < 0.5833333 && s > 0.05 && s < 0.35 && v > 0.5 && v < 0.71){
 			ret = "BLUE";
 		}else if(h > 0.5 && h < 0.61 && s > 0.2 && v > 0.7){
 			ret = "LIGHT_BLUE";
@@ -3813,6 +3813,47 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "GREEN";
 		}else if(s < 0.114 && b < 0.71 && b > 0.15){
 			ret = "GRAY";
+		}
+		
+		// TODO NEW COLORS 4 [v1.7.6]
+		else if(h > 0.24 && h < 0.48 && s > 0.6 && v > 0.1 && v < 0.2){
+			ret = "GREEN";
+		}else if(h > 0.72 && h < 0.89 && s > 0.6 && v > 0.1 && v < 0.2){
+			ret = "MAGENTA";
+		}else if(h > 0.75 && h < 0.85 && s > 0.6 && v > 0.2 && v < 0.4){
+			ret = "MAGENTA";
+		}else if(h > 0.8 && h < 0.95 && s > 0.9 && v > 0.35 && v < 0.40){
+			ret = "MAGENTA";
+		}else if(h > 0.68 && h < 0.70 && s > 0.9 && v > 0.1 && v < 0.2){
+			ret = "BLUE";
+		}else if(h > 0.97 && s > 0.5 && v > 0.1 && v < 0.16){
+			ret = "BROWN";
+		}else if(h > 0.95 && s > 0.7 && v > 0.159){
+			ret = "RED";
+		}else if(h > 0.31 && h < 0.45 && s > 0.3 && s < 0.41 && v > 0.6 && v < 0.8){
+			ret = "LIME";
+		}else if(h > 0.45 && h < 0.5 && s > 0.3 && s < 0.41 && v > 0.55 && v < 0.7){
+			ret = "CYAN";
+		}else if(h > 0.58 && h < 0.75 && s > 0.2 && s < 0.31 && v > 0.6 && v < 0.7){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.12 && h < 0.17 && s > 0.1 && s < 0.25 && v > 0.95){
+			ret = "YELLOW";
+		}else if(h > 0.89 && s < 0.2 && s > 0.1 && v > 0.85){
+			ret = "PINK";
+		}else if(h > 0.79 && h < 0.88 && s < 0.2 && s > 0.1 && v < 0.86 && v > 0.6){
+			ret = "PURPLE";
+		}else if(h > 0.62 && h < 0.68 && s < 0.2 && s > 0.1 && v < 0.9 && v > 0.6){
+			ret = "BLUE";
+		}else if(h > 0.45 && h < 0.68 && s < 0.2 && s > 0.1 && v > 0.89){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.45 && h < 0.62 && s < 0.2 && s > 0.1 && v > 0.89){
+			ret = "CYAN";
+		}else if(h > 0.29 && h < 0.41 && s < 0.2 && s > 0.1 && v > 0.85){
+			ret = "LIME";
+		}else if(h > 0.29 && h < 0.41 && s < 0.2 && s > 0.1 && v > 0.5 && v < 0.86){
+			ret = "GREEN";
+		}else if(h < 0.05 && s < 0.39 && s > 0.22 && v > 0.85){
+			ret = "PINK";
 		}else{
 			ret = "WHITE"; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -4072,6 +4113,47 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(h > 0.222222 && h < 0.2777777777 && s > 0.2 && s > 0.4 && b > 0.4 && b < 0.8){
 			ret = true;
+		
+
+		// TODO NEW COLORS 4 [v1.7.6]	
+		}else if(h > 0.24 && h < 0.48 && s > 0.6 && v > 0.1 && v < 0.2){
+			ret = true;
+		}else if(h > 0.72 && h < 0.89 && s > 0.6 && v > 0.1 && v < 0.2){
+			ret = true;
+		}else if(h > 0.75 && h < 0.85 && s > 0.6 && v > 0.2 && v < 0.4){
+			ret = true;
+		}else if(h > 0.8 && h < 0.95 && s > 0.9 && v > 0.35 && v < 0.40){
+			ret = true;
+		}else if(h > 0.68 && h < 0.70 && s > 0.9 && v > 0.1 && v < 0.2){
+			ret = true;
+		}else if(h > 0.97 && s > 0.5 && v > 0.1 && v < 0.16){
+			ret = true;
+		}else if(h > 0.95 && s > 0.7 && v > 0.159){
+			ret = true;
+		}else if(h > 0.31 && h < 0.45 && s > 0.3 && s < 0.41 && v > 0.6 && v < 0.8){
+			ret = true;
+		}else if(h > 0.45 && h < 0.5 && s > 0.3 && s < 0.41 && v > 0.55 && v < 0.7){
+			ret = true;
+		}else if(h > 0.58 && h < 0.75 && s > 0.2 && s < 0.31 && v > 0.6 && v < 0.7){
+			ret = true;
+		}else if(h > 0.12 && h < 0.17 && s > 0.1 && s < 0.2 && v > 0.95){
+			ret = true;
+		}else if(h > 0.89 && s < 0.2 && s > 0.1 && v > 0.85){
+			ret = true;
+		}else if(h > 0.79 && h < 0.88 && s < 0.2 && s > 0.1 && v < 0.86 && v > 0.6){
+			ret = true;
+		}else if(h > 0.62 && h < 0.68 && s < 0.2 && s > 0.1 && v < 0.9 && v > 0.6){
+			ret = true;
+		}else if(h > 0.45 && h < 0.68 && s < 0.2 && s > 0.1 && v > 0.89){
+			ret = true;
+		}else if(h > 0.45 && h < 0.62 && s < 0.2 && s > 0.1 && v > 0.89){
+			ret = true;
+		}else if(h > 0.29 && h < 0.41 && s < 0.2 && s > 0.1 && v > 0.85){
+			ret = true;
+		}else if(h > 0.29 && h < 0.41 && s < 0.2 && s > 0.1 && v > 0.5 && v < 0.86){
+			ret = true;
+		}else if(h < 0.05 && s < 0.39 && s > 0.22 && v > 0.85){
+			ret = true;
 		}else{
 			ret = false; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -4110,7 +4192,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		
-		//TODO: TEST, REMOVE LATER
+
 		if(h > 0.03 && h < 0.1 && s > 0.3 && s < 0.7 && v > 0.6){ // NEW
 			ret = true;
 		}	
@@ -4173,7 +4255,6 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	//TODO: CHANGE COLORS
 	public String getStringFromColorClay(Color c){
 		String ret = "";
 
@@ -4360,6 +4441,46 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "SILVER";
 		}else if(s < 0.11 && b < 0.71 && b > 0.15){
 			ret = "GRAY";
+			
+			// TODO NEW COLORS 4 [v1.7.6]
+		}else if(h > 0.24 && h < 0.48 && s > 0.6 && v > 0.1 && v < 0.2){
+			ret = "GREEN";
+		}else if(h > 0.72 && h < 0.89 && s > 0.6 && v > 0.1 && v < 0.2){
+			ret = "MAGENTA";
+		}else if(h > 0.75 && h < 0.85 && s > 0.6 && v > 0.2 && v < 0.4){
+			ret = "MAGENTA";
+		}else if(h > 0.8 && h < 0.95 && s > 0.9 && v > 0.35 && v < 0.40){
+			ret = "MAGENTA";
+		}else if(h > 0.68 && h < 0.70 && s > 0.9 && v > 0.1 && v < 0.2){
+			ret = "BLUE";
+		}else if(h > 0.97 && s > 0.5 && v > 0.1 && v < 0.16){
+			ret = "BROWN";
+		}else if(h > 0.95 && s > 0.7 && v > 0.159){
+			ret = "RED";
+		}else if(h > 0.31 && h < 0.45 && s > 0.3 && s < 0.41 && v > 0.6 && v < 0.8){
+			ret = "LIME";
+		}else if(h > 0.45 && h < 0.5 && s > 0.3 && s < 0.41 && v > 0.55 && v < 0.7){
+			ret = "CYAN";
+		}else if(h > 0.58 && h < 0.75 && s > 0.2 && s < 0.31 && v > 0.6 && v < 0.7){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.12 && h < 0.17 && s > 0.1 && s < 0.25 && v > 0.95){
+			ret = "YELLOW";
+		}else if(h > 0.89 && s < 0.2 && s > 0.1 && v > 0.85){
+			ret = "PINK";
+		}else if(h > 0.79 && h < 0.88 && s < 0.2 && s > 0.1 && v < 0.86 && v > 0.6){
+			ret = "PURPLE";
+		}else if(h > 0.62 && h < 0.68 && s < 0.2 && s > 0.1 && v < 0.9 && v > 0.6){
+			ret = "BLUE";
+		}else if(h > 0.45 && h < 0.68 && s < 0.2 && s > 0.1 && v > 0.89){
+			ret = "LIGHT_BLUE";
+		}else if(h > 0.45 && h < 0.62 && s < 0.2 && s > 0.1 && v > 0.89){
+			ret = "CYAN";
+		}else if(h > 0.29 && h < 0.41 && s < 0.2 && s > 0.1 && v > 0.85){
+			ret = "LIME";
+		}else if(h > 0.29 && h < 0.41 && s < 0.2 && s > 0.1 && v > 0.5 && v < 0.86){
+			ret = "GREEN";
+		}else if(h < 0.05 && s < 0.39 && s > 0.22 && v > 0.85){
+			ret = "PINK";
 		}else{
 			ret = "WHITE"; // nothing matched
 			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
