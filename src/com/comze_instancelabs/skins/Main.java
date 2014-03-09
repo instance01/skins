@@ -49,7 +49,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 
 	//TODO:
-	// [HIGH] cover all colors (0.6 Mio to go)
+	// [HIGH] cover all colors (0.45 Mio to go)
 	
 	
 	private boolean skin_updating = false;
