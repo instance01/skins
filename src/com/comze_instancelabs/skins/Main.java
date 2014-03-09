@@ -3856,7 +3856,6 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PINK";
 		}else{
 			ret = "WHITE"; // nothing matched
-			//getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
 		}
 		
 		//getLogger().info(ret + " " + Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -4184,7 +4183,7 @@ public class Main extends JavaPlugin implements Listener {
 			ret = true;
 		}else if(h > 0.110 && h < 0.1389 && s < 0.6 && s > 0.3 && v > 0.74 && v < 0.91){ // NEW 2
 			ret = true;
-		}else if(h < 0.09722 && h > 0.0333333 && s > 0.25 && s < 0.41 && v > 0.95){ // NEW 3
+		}else if(h < 0.09722 && h > 0.0333333 && s > 0.21 && s < 0.41 && v > 0.95){ // NEW 3
 			ret = true;
 		}else{
 			ret = false; // nothing matched
