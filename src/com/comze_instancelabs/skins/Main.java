@@ -69,6 +69,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static HashMap<Player, ArrayList<String>> undoskin = new HashMap<Player, ArrayList<String>>();
 	public static HashMap<Player, ArrayList<String>> undodir = new HashMap<Player, ArrayList<String>>();
 	public static HashMap<Player, ArrayList<String>> undo_uuid = new HashMap<Player, ArrayList<String>>();
+	public static HashMap<Player, ArrayList<String>> undo_type = new HashMap<Player, ArrayList<String>>();
 	
 	
 	public static HashMap<Player, ArrayList<Location>> mob_undoloc = new HashMap<Player, ArrayList<Location>>();
@@ -339,11 +340,11 @@ public class Main extends JavaPlugin implements Listener {
 				String look_direction = getDirection(p.getLocation().getYaw());
 				if(look_direction != null){
 					if(canBuild(p, look_direction)){
-						build(p, Image1, args[0], look_direction); // builds in direction player is facing	
+						build(p.getLocation(), p, Image1, args[0], look_direction); // builds in direction player is facing	
 					}
 				}else{
 					if(canBuild(p, "east")){
-						build(p, Image1, args[0], "east");
+						build(p.getLocation(), p, Image1, args[0], "east");
 					}
 				}
 			}else{
@@ -475,11 +476,11 @@ public class Main extends JavaPlugin implements Listener {
 									String look_direction = getDirection(p.getLocation().getYaw());
 									if(look_direction != null){
 										if(canBuild(p, look_direction)){
-											buildclay(p, Image1, args[0], look_direction); // builds in direction player is facing
+											buildclay(p.getLocation(), p, Image1, args[0], look_direction); // builds in direction player is facing
 										}
 									}else{
 										if(canBuild(p, "east")){
-											buildclay(p, Image1, args[0], "east");
+											buildclay(p.getLocation(), p, Image1, args[0], "east");
 										}
 									}
 								}else{
@@ -515,11 +516,11 @@ public class Main extends JavaPlugin implements Listener {
 									String look_direction = getDirection(p.getLocation().getYaw());
 									if(look_direction != null){
 										if(canBuild(p, look_direction)){
-											buildglass(p, Image1, args[0], look_direction); // builds in direction player is facing
+											buildglass(p.getLocation(), p, Image1, args[0], look_direction); // builds in direction player is facing
 										}
 									}else{
 										if(canBuild(p, "east")){
-											buildglass(p, Image1, args[0], "east");
+											buildglass(p.getLocation(), p, Image1, args[0], "east");
 										}
 									}
 								}else{
@@ -555,11 +556,11 @@ public class Main extends JavaPlugin implements Listener {
 									String look_direction = getDirection(p.getLocation().getYaw());
 									if(look_direction != null){
 										if(canBuild(p, look_direction)){
-											buildall(p, Image1, args[0], look_direction); // builds in direction player is facing
+											buildall(p.getLocation(), p, Image1, args[0], look_direction); // builds in direction player is facing
 										}
 									}else{
 										if(canBuild(p, "east")){
-											buildall(p, Image1, args[0], "east");
+											buildall(p.getLocation(), p, Image1, args[0], "east");
 										}
 									}
 								}else{
@@ -598,7 +599,7 @@ public class Main extends JavaPlugin implements Listener {
 											List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 											if(places.contains(direction)){
 												if(canBuild(p, direction)){
-													buildclay(p, Image1, args[0], direction);
+													buildclay(p.getLocation(), p, Image1, args[0], direction);
 												}
 											}else{
 												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
@@ -636,7 +637,7 @@ public class Main extends JavaPlugin implements Listener {
 										if(cont){
 											List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 											if(places.contains(direction)){
-												buildglass(p, Image1, args[0], direction);
+												buildglass(p.getLocation(), p, Image1, args[0], direction);
 											}else{
 												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
 											}
@@ -675,7 +676,7 @@ public class Main extends JavaPlugin implements Listener {
 										List<String> places = Arrays.asList("east", "west", "south", "north", "e", "w", "s", "n");
 										if(places.contains(direction)){
 											if(canBuild(p, direction)){
-												build(p, Image1, args[0], direction);
+												build(p.getLocation(), p, Image1, args[0], direction);
 											}
 										}else{
 											sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
@@ -717,11 +718,11 @@ public class Main extends JavaPlugin implements Listener {
 								String look_direction = getDirection(p.getLocation().getYaw());
 								if(look_direction != null){
 									if(canBuild(p, look_direction)){
-										build(p, Image1, args[0], look_direction); // builds in direction player is facing	
+										build(p.getLocation(), p, Image1, args[0], look_direction); // builds in direction player is facing	
 									}
 								}else{
 									if(canBuild(p, "east")){
-										build(p, Image1, args[0], "east");
+										build(p.getLocation(), p, Image1, args[0], "east");
 									}
 								}
 							}else{
@@ -903,10 +904,8 @@ public class Main extends JavaPlugin implements Listener {
 		if(getConfig().isSet("skins")){
 			for(String uuid : getConfig().getConfigurationSection("skins.").getKeys(false)){
 				if(isValidSkin(uuid)){
-					String skin_ = getConfig().getString("skins." + uuid + ".name");
-					// remove skin, if duplicate location
 					if(isDuplicateLocation(uuid, t)){
-						removeSkin(skin_, uuid);
+						removeSkin(uuid);
 					}
 				}
 			}
@@ -950,9 +949,10 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	
-	public void removeSkin(String skin, String uuid){
+	public void removeSkin(String uuid){
 		try{
-			getConfig().set("skins." + uuid, null);	
+			getConfig().set("skins." + uuid, null);
+			this.saveConfig();
 		}catch(Exception e){
 			//
 		}
@@ -961,7 +961,6 @@ public class Main extends JavaPlugin implements Listener {
 		
 		try{
 			File outputfile = new File(this.getDataFolder().getPath() + "/" + uuid + ".png");
-			//File outputfile = new File(this.getDataFolder().getPath() + "/" + skin + ".png");
 			outputfile.delete();	
 		}catch(Exception e){
 			//
@@ -1193,34 +1192,39 @@ public class Main extends JavaPlugin implements Listener {
 	
 	private void undo(Player p, Location t, String direction){
 		if(skin_updating){
-			removeSkin(undoskin.get(p).get(undoskin.get(p).size() - 1), undo_uuid.get(p).get(undo_uuid.get(p).size() - 1));	
+			removeSkin(undo_uuid.get(p).get(undo_uuid.get(p).size() - 1));	
 		}
 		
 		ArrayList<Location> loc_ = new ArrayList<Location>();
 		ArrayList<String> skin_ = new ArrayList<String>();
 		ArrayList<String> dir_ = new ArrayList<String>();
 		ArrayList<String> uuid_ = new ArrayList<String>();
+		ArrayList<String> type_ = new ArrayList<String>();
 		if(undoloc.containsKey(p)){
 			loc_ = undoloc.get(p);
 			skin_ = undoskin.get(p);
 			dir_ = undodir.get(p);
 			uuid_ = undo_uuid.get(p);
+			type_ = undo_type.get(p);
 			
 			if(loc_.size() < 2){
 				undoloc.remove(p);
 				undoskin.remove(p);
 				undodir.remove(p);
 				undo_uuid.remove(p);
+				undo_type.remove(p);
 			}else{
 				loc_.remove(loc_.size() - 1);
 				skin_.remove(skin_.size() - 1);
 				dir_.remove(dir_.size() - 1);
 				uuid_.remove(uuid_.size() - 1);
+				type_.remove(type_.size() -1);
 				
 				undoloc.put(p, loc_);
 				undoskin.put(p, skin_);
 				undodir.put(p, dir_);
 				undo_uuid.put(p, uuid_);
+				undo_type.put(p, type_);
 			}
 		}
 		
@@ -1349,269 +1353,283 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	//TODO: ADD CLAY AND GLASS MODE AND SMOOTHING TO UPDATE MECHANISM
-	private void update(Location p, BufferedImage Image2, String skin, String direction, String mode){
+	private void update(Location p, BufferedImage Image2, String skin, String direction, String mode_){
 		if(skin_updating){
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-			saveSkin(p, skin, uuid, direction, mode);
+			saveSkin(p, skin, uuid, direction, mode_);
 		}
 		
 		Location c = p;
 		
+		String mode = mode_.toLowerCase();
+		
+		if(mode_.equalsIgnoreCase("default")){
+			mode = "normal";
+		}
+		
 		if(direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("e")){
 			// leg1_left
-			SkinUpdate.buildEastSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ()));
+			SkinBuild.buildEastSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ()), mode);
 			// leg1_front
-			SkinUpdate.buildEastFront(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY(), c.getBlockZ()));
+			SkinBuild.buildEastFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY(), c.getBlockZ()), mode);
 			// leg1_ behind
-			SkinUpdate.buildEastFrontInvert(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY(), c.getBlockZ() - 1));
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY(), c.getBlockZ() - 1), mode);
 			// leg2
-			//SkinUpdate.buildPartOfImageEast(this, p, Image2, 8, 12, 20, 32, "leg2_right");
+			//SkinBuild.buildPartOfImageEast(this, p, Image2, 8, 12, 20, 32, "leg2_right");
 			// leg2_right
-			SkinUpdate.buildEastSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 7));
+			SkinBuild.buildEastSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 7), mode);
 			// leg2_ front
-			SkinUpdate.buildEastFrontInvert(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY(), c.getBlockZ() + 3));
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY(), c.getBlockZ() + 3), mode);
 			// leg2_behind
-			SkinUpdate.buildEastFront(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY(), c.getBlockZ() + 4));
+			SkinBuild.buildEastFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY(), c.getBlockZ() + 4), mode);
 			// body
 			// body_front
-			SkinUpdate.buildEastFront(this, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ()));
+			SkinBuild.buildEastFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ()), mode);
 			// body_behind
-			SkinUpdate.buildEastFront(this, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ()));
+			SkinBuild.buildEastFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ()), mode);
 			// arm1
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm1_bottom", mode);
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 44, 48, 16, 20, "arm1_top", mode);
 			// arm1_left
-			SkinUpdate.buildEastSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() - 4));
+			SkinBuild.buildEastSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() - 4), mode);
 			// arm1_front
-			SkinUpdate.buildEastFront(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ() - 4));
+			SkinBuild.buildEastFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ() - 4), mode);
 			// arm1_right
-			SkinUpdate.buildEastSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinBuild.buildEastSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() - 1), mode);
 			// arm1_behind
-			SkinUpdate.buildEastFront(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ() - 4));
+			SkinBuild.buildEastFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ() - 4), mode);
 			// arm2
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 52, 16, 20, "arm2_bottom", mode);
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 44, 48, 16, 20, "arm2_top", mode);
 			// arm2_left
-			SkinUpdate.buildEastSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 11));
+			SkinBuild.buildEastSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 11), mode);
 			// arm2_front
-			SkinUpdate.buildEastFrontInvert(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ() + 7));
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 2, c.getBlockY() + 12, c.getBlockZ() + 7), mode);
 			// arm2_right
-			SkinUpdate.buildEastSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 8));
+			SkinBuild.buildEastSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 8), mode);
 			// arm2_behind
-			SkinUpdate.buildEastFrontInvert(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ() + 7));
+			SkinBuild.buildEastFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 5, c.getBlockY() + 12, c.getBlockZ() + 7), mode);
 			// head
 			// head_left
-			SkinUpdate.buildEastSide(this, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildEastSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ()), mode);
 			// head_right
-			SkinUpdate.buildEastSide(this, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 7));
+			SkinBuild.buildEastSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 7), mode);
 			// head_behind
-			SkinUpdate.buildEastFront(this, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ()));
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 8, 16, 0, 8, "head_top");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			SkinBuild.buildEastFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ()), mode);
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 8, 16, 0, 8, "head_top", mode);
+			SkinBuild.buildPartOfImageEast(this, p, Image2, 16, 24, 0, 8, "head_bottom", mode);
 			// head_front
-			SkinUpdate.buildEastFront(this, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildEastFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()), mode);
 			// hat layers
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front");
-			SkinUpdate.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top");
-			//SkinUpdate.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
+			if(!skin.equalsIgnoreCase("notch")){
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 32, 40, 8, 16, "hat_left", mode);
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 8, 16, "hat_right", mode);
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 56, 64, 8, 16, "hat_behind", mode);
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 8, 16, "hat_front", mode);
+				SkinBuild.buildPartOfImageEast(this, p, Image2, 40, 48, 0, 8, "hat_top", mode);	
+			}
+			//SkinBuild.buildPartOfImageEast(this, p, Image2, 48, 56, 0, 8, "hat_bottom");	// this looks like crap
 		}else if(direction.equalsIgnoreCase("south") || direction.equalsIgnoreCase("s")){
 			// leg1_left
-			SkinUpdate.buildSouthSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 1), mode);
 			// leg1_front
-			SkinUpdate.buildSouthFront(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 2));
+			SkinBuild.buildSouthFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 2), mode);
 			// leg1_ behind
-			SkinUpdate.buildSouthFrontInvert(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 5));
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 5), mode);
 			// leg2
 			// leg2_right
-			SkinUpdate.buildSouthSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY(), c.getBlockZ() + 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY(), c.getBlockZ() + 1), mode);
 			// leg2_ front
-			SkinUpdate.buildSouthFrontInvert(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 3, c.getBlockY(), c.getBlockZ() + 2));
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 3, c.getBlockY(), c.getBlockZ() + 2), mode);
 			// leg2_behind
-			SkinUpdate.buildSouthFront(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 4, c.getBlockY(), c.getBlockZ() + 5));
+			SkinBuild.buildSouthFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 4, c.getBlockY(), c.getBlockZ() + 5), mode);
 			// body
 			// body_front
-			SkinUpdate.buildSouthFront(this, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 2));
+			SkinBuild.buildSouthFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 2), mode);
 			// body_behind
-			SkinUpdate.buildSouthFront(this, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 5));
+			SkinBuild.buildSouthFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 5), mode);
 			// arm1
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom", mode);
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm1_top", mode);
 			// arm1_left
-			SkinUpdate.buildSouthSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 1), mode);
 			// arm1_front
-			SkinUpdate.buildSouthFront(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 2));
+			SkinBuild.buildSouthFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 2), mode);
 			// arm1_right
-			SkinUpdate.buildSouthSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 1), mode);
 			// arm1_behind
-			SkinUpdate.buildSouthFront(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 5));
+			SkinBuild.buildSouthFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 5), mode);
 			// arm2
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom", mode);
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 44, 48, 16, 20, "arm2_top", mode);
 			// arm2_left
-			SkinUpdate.buildSouthSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 11, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 11, c.getBlockY() + 12, c.getBlockZ() + 1), mode);
 			// arm2_front
-			SkinUpdate.buildSouthFrontInvert(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 2));
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 2), mode);
 			// arm2_right
-			SkinUpdate.buildSouthSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 12, c.getBlockZ() + 1), mode);
 			// arm2_behind
-			SkinUpdate.buildSouthFrontInvert(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 5));
+			SkinBuild.buildSouthFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 5), mode);
 			// head
 			// head_left
-			SkinUpdate.buildSouthSide(this, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1), mode);
 			// head_right
-			SkinUpdate.buildSouthSide(this, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1));
+			SkinBuild.buildSouthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() - 1), mode); 
 			// head_behind
-			SkinUpdate.buildSouthFront(this, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top");
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			SkinBuild.buildSouthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7), mode);
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 8, 16, 0, 8, "head_top", mode);
+			SkinBuild.buildPartOfImageSouth(this, p, Image2, 16, 24, 0, 8, "head_bottom", mode);
 			// head_front
-			SkinUpdate.buildSouthFront(this, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildSouthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()), mode);
 			// hat layers
-			// hat_left
-			SkinUpdate.buildSouthSideHAT(this, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1));
-			// hat_right
-			SkinUpdate.buildSouthSideHATInvert(this, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8));
-			// hat_behind
-			SkinUpdate.buildSouthFrontHAT(this, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8));
-			// hat_front
-			SkinUpdate.buildSouthFrontHAT(this, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
-			// hat_top
-			SkinUpdate.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left
+				SkinBuild.buildSouthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 1), mode);
+				// hat_right
+				SkinBuild.buildSouthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() + 8), mode);
+				// hat_behind
+				SkinBuild.buildSouthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 8), mode);
+				// hat_front
+				SkinBuild.buildSouthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1), mode);
+				// hat_top
+				SkinBuild.buildPartOfImageSouth(this, p, Image2, 40, 48, 0, 8, "hat_top", mode);	
+			}
 		}else if(direction.equalsIgnoreCase("west") || direction.equalsIgnoreCase("w")){
 			// leg1_left
-			SkinUpdate.buildWestSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
+			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()), mode);
 			// leg1_front
-			SkinUpdate.buildWestFront(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ()));
+			SkinBuild.buildWestFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ()), mode);
 			// leg1_ behind
-			SkinUpdate.buildWestFrontInvert(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() + 1));
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() + 1), mode);
 			// leg2
 			// leg2_right
-			SkinUpdate.buildWestSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 7));
+			SkinBuild.buildWestSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 7), mode);
 			// leg2_ front
-			SkinUpdate.buildWestFrontInvert(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ() - 3));
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ() - 3), mode);
 			// leg2_behind
-			SkinUpdate.buildWestFront(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() - 4));
+			SkinBuild.buildWestFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() - 4), mode);
 			// body
 			// body_front
-			SkinUpdate.buildWestFront(this, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 2, c.getBlockY() + 12, c.getBlockZ()));
+			SkinBuild.buildWestFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 2, c.getBlockY() + 12, c.getBlockZ()), mode);
 			// body_behind
-			SkinUpdate.buildWestFront(this, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 5, c.getBlockY() + 12, c.getBlockZ()));
+			SkinBuild.buildWestFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX() -+ 5, c.getBlockY() + 12, c.getBlockZ()), mode);
 			// arm1
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm1_bottom", mode);
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm1_top", mode);
 			// arm1_left
-			SkinUpdate.buildWestSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 4));
+			SkinBuild.buildWestSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 4), mode);
 			// arm1_front
-			SkinUpdate.buildWestFront(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() + 4));
+			SkinBuild.buildWestFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() + 4), mode);
 			// arm1_right
-			SkinUpdate.buildWestSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinBuild.buildWestSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 1), mode);
 			// arm1_behind
-			SkinUpdate.buildWestFront(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() + 4));
+			SkinBuild.buildWestFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() + 4), mode);
 			// arm2
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 48, 52, 16, 20, "arm2_bottom", mode);
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 44, 48, 16, 20, "arm2_top", mode);
 			// arm2_left
-			SkinUpdate.buildWestSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 11));
+			SkinBuild.buildWestSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 11), mode);
 			// arm2_front
-			SkinUpdate.buildWestFrontInvert(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() - 7));
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() - 7), mode);
 			// arm2_right
-			SkinUpdate.buildWestSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 8));
+			SkinBuild.buildWestSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 8), mode);
 			// arm2_behind
-			SkinUpdate.buildWestFrontInvert(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() - 7));
+			SkinBuild.buildWestFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() - 7), mode);
 			// head
 			// head_left
-			SkinUpdate.buildWestSide(this, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildWestSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()), mode);
 			// head_right
-			SkinUpdate.buildWestSide(this, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7));
+			SkinBuild.buildWestSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() - 7), mode); 
 			// head_behind
-			SkinUpdate.buildWestFront(this, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildWestFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()), mode);
 			// head_top and head_bottom
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 8, 16, 0, 8, "head_top");
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 16, 24, 0, 8, "head_bottom");
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 8, 16, 0, 8, "head_top", mode);
+			SkinBuild.buildPartOfImageWest(this, p, Image2, 16, 24, 0, 8, "head_bottom", mode);
 			// head_front
-			SkinUpdate.buildWestFront(this, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildWestFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()), mode);
 			// hat layers
-			// hat_left
-			SkinUpdate.buildWestSideHAT(this, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1));
-			// hat_right
-			SkinUpdate.buildWestSideHATInvert(this, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_behind
-			SkinUpdate.buildWestFrontHAT(this, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()));
-			// hat_front
-			SkinUpdate.buildWestFrontHAT(this, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
-			// hat_top
-			SkinUpdate.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left
+				SkinBuild.buildWestSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ() + 1), mode);
+				// hat_right
+				SkinBuild.buildWestSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 8), mode);
+				// hat_behind
+				SkinBuild.buildWestFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ()), mode);
+				// hat_front
+				SkinBuild.buildWestFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()), mode);
+				// hat_top
+				SkinBuild.buildPartOfImageWest(this, p, Image2, 40, 48, 0, 8, "hat_top", mode);	
+			}
 		}else if(direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("n")){
 			// leg1_left
-			SkinUpdate.buildNorthSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1), mode);
 			// leg1_front
-			SkinUpdate.buildNorthFront(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 2));
+			SkinBuild.buildNorthFront(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 2), mode);
 			// leg1_behind
-			SkinUpdate.buildNorthFrontInvert(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 5));
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 5), mode);
 			// leg2
 			// leg2_right
-			SkinUpdate.buildNorthSide(this, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY(), c.getBlockZ() - 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 0, 4, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY(), c.getBlockZ() - 1), mode);
 			// leg2_ front
-			SkinUpdate.buildNorthFrontInvert(this, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 3, c.getBlockY(), c.getBlockZ() - 2));
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 4, 8, 20, 32, new Location(p.getWorld(), c.getBlockX() + 3, c.getBlockY(), c.getBlockZ() - 2), mode);
 			// leg2_behind
-			SkinUpdate.buildNorthFront(this, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY(), c.getBlockZ() - 5));
+			SkinBuild.buildNorthFront(this, p, Image2, 12, 16, 20, 32, new Location(p.getWorld(), c.getBlockX() + 4, c.getBlockY(), c.getBlockZ() - 5), mode);
 			// body
 			// body_front
-			SkinUpdate.buildNorthFront(this, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 2));
+			SkinBuild.buildNorthFront(this, p, Image2, 20, 28, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 2), mode);
 			// body_behind
-			SkinUpdate.buildNorthFront(this, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 5));
+			SkinBuild.buildNorthFront(this, p, Image2, 32, 40, 20, 32, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 5), mode);
 			// arm1
 			// arm1_bottom and arm1_top
-			SkinUpdate.buildPartOfImageNorth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom");
-			SkinUpdate.buildPartOfImageNorth(this, p, Image2, 44, 48, 16, 20, "arm1_top");
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 52, 16, 20, "arm1_bottom", mode);
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 44, 48, 16, 20, "arm1_top", mode);
 			// arm1_left
-			SkinUpdate.buildNorthSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 4, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() - 4, c.getBlockY() + 12, c.getBlockZ() - 1), mode);
 			// arm1_front
-			SkinUpdate.buildNorthFront(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX()  - 4, c.getBlockY() + 12, c.getBlockZ() - 2));
+			SkinBuild.buildNorthFront(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX()  - 4, c.getBlockY() + 12, c.getBlockZ() - 2), mode);
 			// arm1_right
-			SkinUpdate.buildNorthSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 1), mode);
 			// arm1_behind
-			SkinUpdate.buildNorthFront(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX()  - 4, c.getBlockY() + 12, c.getBlockZ() - 5));
+			SkinBuild.buildNorthFront(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX()  - 4, c.getBlockY() + 12, c.getBlockZ() - 5), mode);
 			// arm2
 			// arm2_bottom and arm2_top
-			SkinUpdate.buildPartOfImageNorth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom");
-			SkinUpdate.buildPartOfImageNorth(this, p, Image2, 44, 48, 16, 20, "arm2_top");
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 52, 16, 20, "arm2_bottom", mode);
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 44, 48, 16, 20, "arm2_top", mode);
 			// arm2_left
-			SkinUpdate.buildNorthSide(this, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 11, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 40, 44, 20, 32, new Location(p.getWorld(), c.getBlockX() + 11, c.getBlockY() + 12, c.getBlockZ() - 1), mode);
 			// arm2_front
-			SkinUpdate.buildNorthFrontInvert(this, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 2));
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 44, 48, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 2), mode);
 			// arm2_right
-			SkinUpdate.buildNorthSide(this, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 48, 52, 20, 32, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 12, c.getBlockZ() - 1), mode);
 			// arm2_behind
-			SkinUpdate.buildNorthFrontInvert(this, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 5));
+			SkinBuild.buildNorthFrontInvert(this, p, Image2, 52, 56, 20, 32, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 5), mode);
 			// head
 			// head_left
-			SkinUpdate.buildNorthSide(this, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 0, 8, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1), mode);
 			// head_right
-			SkinUpdate.buildNorthSide(this, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1));
+			SkinBuild.buildNorthSide(this, p, Image2, 16, 24, 8, 16, new Location(p.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() + 1), mode); 
 			// head_behind
-			SkinUpdate.buildNorthFront(this, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
+			SkinBuild.buildNorthFront(this, p, Image2, 24, 32, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7), mode);
 			// head_top
-			SkinUpdate.buildPartOfImageNorth(this, p, Image2, 8, 16, 0, 8, "head_top");
+			SkinBuild.buildPartOfImageNorth(this, p, Image2, 8, 16, 0, 8, "head_top", mode);
 			// head_front
-			SkinUpdate.buildNorthFront(this, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinBuild.buildNorthFront(this, p, Image2, 8, 16, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()), mode);
 			// hat layers
-			// hat_left:
-			SkinUpdate.buildNorthSideHAT(this, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1));
-			// hat_right:
-			SkinUpdate.buildNorthSideHATInvert(this, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_behind:
-			SkinUpdate.buildNorthFrontHAT(this, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8));
-			// hat_front:
-			SkinUpdate.buildNorthFrontHAT(this, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
-			//SkinUpdate.buildPartOfImageNorth(this, Image2, 32, 40, 8, 16, "hat_left");
-			//SkinUpdate.buildPartOfImageNorth(this, Image2, 48, 56, 8, 16, "hat_right");
-			//SkinUpdate.buildPartOfImageNorth(this, Image2, 56, 64, 8, 16, "hat_behind");
-			//SkinUpdate.buildPartOfImageNorth(this, Image2, 40, 48, 8, 16, "hat_front");
-			SkinUpdate.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top");
+			if(!skin.equalsIgnoreCase("notch")){
+				// hat_left:
+				SkinBuild.buildNorthSideHAT(this, p, Image2, 32, 40, 8, 16, new Location(p.getWorld(), c.getBlockX() - 1, c.getBlockY() + 24, c.getBlockZ() + 1), mode);
+				// hat_right:
+				SkinBuild.buildNorthSideHATInvert(this, p, Image2, 48, 56, 8, 16, new Location(p.getWorld(), c.getBlockX() + 8, c.getBlockY() + 24, c.getBlockZ() - 8), mode);
+				// hat_behind:
+				SkinBuild.buildNorthFrontHAT(this, p, Image2, 56, 64, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 8), mode);
+				// hat_front:
+				SkinBuild.buildNorthFrontHAT(this, p, Image2, 40, 48, 8, 16, new Location(p.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1), mode);
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 32, 40, 8, 16, "hat_left");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 48, 56, 8, 16, "hat_right");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 56, 64, 8, 16, "hat_behind");
+				//SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 8, 16, "hat_front");
+				SkinBuild.buildPartOfImageNorth(this, p, Image2, 40, 48, 0, 8, "hat_top", mode);	
+			}
 		}
 	}
 	
@@ -1619,39 +1637,43 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	
-	private void buildclay(Player p, BufferedImage Image2, String skin, String direction){
+	private void buildclay(Location p, Player player, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
 		ArrayList<Location> loc_ = new ArrayList<Location>();
 		ArrayList<String> skin_ = new ArrayList<String>();
 		ArrayList<String> dir_ = new ArrayList<String>();
 		ArrayList<String> uuid_ = new ArrayList<String>();
-		if(undoloc.containsKey(p)){
-			loc_ = undoloc.get(p);
-			skin_ = undoskin.get(p);
-			dir_ = undodir.get(p);
-			uuid_ = undo_uuid.get(p);
+		ArrayList<String> type_ = new ArrayList<String>();
+		if(undoloc.containsKey(player)){
+			loc_ = undoloc.get(player);
+			skin_ = undoskin.get(player);
+			dir_ = undodir.get(player);
+			uuid_ = undo_uuid.get(player);
+			type_ = undo_type.get(player);
 		}
 		
-		loc_.add(p.getLocation());
+		loc_.add(player.getLocation());
 		skin_.add(skin);
 		dir_.add(direction);
 		uuid_.add(uuid);
+		type_.add("clay");
 		
 		//undoloc.put(p, p.getLocation());
 		//undoskin.put(p, skin);
 		//undodir.put(p, direction);
 		//undo_uuid.put(p, uuid);
 		
-		undoloc.put(p, loc_);
-		undoskin.put(p, skin_);
-		undodir.put(p, dir_);
-		undo_uuid.put(p, uuid_);
+		undoloc.put(player, loc_);
+		undoskin.put(player, skin_);
+		undodir.put(player, dir_);
+		undo_uuid.put(player, uuid_);
+		undo_type.put(player, type_);
 		
-		Location c = p.getLocation();
+		Location c = player.getLocation();
 		
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, uuid, direction, "clay");
+			saveSkin(player.getLocation(), skin, uuid, direction, "clay");
 		}
 		
 		// FIRST BUILD NORMAL WOOL:
@@ -2187,44 +2209,48 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 		
-		p.sendMessage("§2Finished building the skin!");
+		player.sendMessage("§2Finished building the skin!");
 	}
 	
 	
 	
-	private void buildglass(Player p, BufferedImage Image2, String skin, String direction){
+	private void buildglass(Location p, Player player, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		
 		ArrayList<Location> loc_ = new ArrayList<Location>();
 		ArrayList<String> skin_ = new ArrayList<String>();
 		ArrayList<String> dir_ = new ArrayList<String>();
 		ArrayList<String> uuid_ = new ArrayList<String>();
-		if(undoloc.containsKey(p)){
-			loc_ = undoloc.get(p);
-			skin_ = undoskin.get(p);
-			dir_ = undodir.get(p);
-			uuid_ = undo_uuid.get(p);
+		ArrayList<String> type_ = new ArrayList<String>();
+		if(undoloc.containsKey(player)){
+			loc_ = undoloc.get(player);
+			skin_ = undoskin.get(player);
+			dir_ = undodir.get(player);
+			uuid_ = undo_uuid.get(player);
+			type_ = undo_type.get(player);
 		}
 		
-		loc_.add(p.getLocation());
+		loc_.add(player.getLocation());
 		skin_.add(skin);
 		dir_.add(direction);
 		uuid_.add(uuid);
+		type_.add("glass");
 		
 		//undoloc.put(p, p.getLocation());
 		//undoskin.put(p, skin);
 		//undodir.put(p, direction);
 		//undo_uuid.put(p, uuid);
 		
-		undoloc.put(p, loc_);
-		undoskin.put(p, skin_);
-		undodir.put(p, dir_);
-		undo_uuid.put(p, uuid_);
+		undoloc.put(player, loc_);
+		undoskin.put(player, skin_);
+		undodir.put(player, dir_);
+		undo_uuid.put(player, uuid_);
+		undo_type.put(player, type_);
 		
-		Location c = p.getLocation();
+		Location c = player.getLocation();
 		
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, uuid, direction, "glass");
+			saveSkin(player.getLocation(), skin, uuid, direction, "glass");
 		}
 		
 		// FIRST BUILD NORMAL WOOL:
@@ -2760,44 +2786,48 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 		
-		p.sendMessage("§2Finished building the skin!");
+		player.sendMessage("§2Finished building the skin!");
 	}
 	
 	
 	
-	private void buildall(Player p, BufferedImage Image2, String skin, String direction){
+	private void buildall(Location p, Player player, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		
 		ArrayList<Location> loc_ = new ArrayList<Location>();
 		ArrayList<String> skin_ = new ArrayList<String>();
 		ArrayList<String> dir_ = new ArrayList<String>();
 		ArrayList<String> uuid_ = new ArrayList<String>();
-		if(undoloc.containsKey(p)){
-			loc_ = undoloc.get(p);
-			skin_ = undoskin.get(p);
-			dir_ = undodir.get(p);
-			uuid_ = undo_uuid.get(p);
+		ArrayList<String> type_ = new ArrayList<String>();
+		if(undoloc.containsKey(player)){
+			loc_ = undoloc.get(player);
+			skin_ = undoskin.get(player);
+			dir_ = undodir.get(player);
+			uuid_ = undo_uuid.get(player);
+			type_ = undo_type.get(player);
 		}
 		
-		loc_.add(p.getLocation());
+		loc_.add(player.getLocation());
 		skin_.add(skin);
 		dir_.add(direction);
 		uuid_.add(uuid);
+		type_.add("all");
 		
 		//undoloc.put(p, p.getLocation());
 		//undoskin.put(p, skin);
 		//undodir.put(p, direction);
 		//undo_uuid.put(p, uuid);
 		
-		undoloc.put(p, loc_);
-		undoskin.put(p, skin_);
-		undodir.put(p, dir_);
-		undo_uuid.put(p, uuid_);
+		undoloc.put(player, loc_);
+		undoskin.put(player, skin_);
+		undodir.put(player, dir_);
+		undo_uuid.put(player, uuid_);
+		undo_type.put(player, type_);
 		
-		Location c = p.getLocation();
+		Location c = player.getLocation();
 		
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, uuid, direction, "all");
+			saveSkin(player.getLocation(), skin, uuid, direction, "all");
 		}
 		
 		// FIRST BUILD NORMAL WOOL:
@@ -3333,45 +3363,49 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 		
-		p.sendMessage("§2Finished building the skin!");
+		player.sendMessage("§2Finished building the skin!");
 	}
 	
 	
 	
-	private void build(Player p, BufferedImage Image2, String skin, String direction){
+	private void build(Location p, Player player, BufferedImage Image2, String skin, String direction){
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		
 		ArrayList<Location> loc_ = new ArrayList<Location>();
 		ArrayList<String> skin_ = new ArrayList<String>();
 		ArrayList<String> dir_ = new ArrayList<String>();
 		ArrayList<String> uuid_ = new ArrayList<String>();
-		if(undoloc.containsKey(p)){
-			loc_ = undoloc.get(p);
-			skin_ = undoskin.get(p);
-			dir_ = undodir.get(p);
-			uuid_ = undo_uuid.get(p);
+		ArrayList<String> type_ = new ArrayList<String>();
+		if(undoloc.containsKey(player)){
+			loc_ = undoloc.get(player);
+			skin_ = undoskin.get(player);
+			dir_ = undodir.get(player);
+			uuid_ = undo_uuid.get(player);
+			type_ = undo_type.get(player);
 		}
 		
-		loc_.add(p.getLocation());
+		loc_.add(player.getLocation());
 		skin_.add(skin);
 		dir_.add(direction);
 		uuid_.add(uuid);
+		type_.add("normal");
 		
 		//undoloc.put(p, p.getLocation());
 		//undoskin.put(p, skin);
 		//undodir.put(p, direction);
 		//undo_uuid.put(p, uuid);
 		
-		undoloc.put(p, loc_);
-		undoskin.put(p, skin_);
-		undodir.put(p, dir_);
-		undo_uuid.put(p, uuid_);
+		undoloc.put(player, loc_);
+		undoskin.put(player, skin_);
+		undodir.put(player, dir_);
+		undo_uuid.put(player, uuid_);
+		undo_type.put(player, type_);
 
 		if(skin_updating){
-			saveSkin(p.getLocation(), skin, uuid, direction, "default");
+			saveSkin(player.getLocation(), skin, uuid, direction, "default");
 		}
 		
-		Location c = p.getLocation();
+		Location c = player.getLocation();
 		
 		if(direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("e")){
 			// leg1_left
@@ -3638,7 +3672,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 		
-		p.sendMessage("§2Finished building the skin!");
+		player.sendMessage("§2Finished building the skin!");
 	}
 	
 
@@ -3856,6 +3890,9 @@ public class Main extends JavaPlugin implements Listener {
 			ret = "PINK";
 		}else{
 			ret = "WHITE"; // nothing matched
+			/*if(!isHumanSkin(c)){
+				getLogger().info(Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
+			}*/
 		}
 		
 		//getLogger().info(ret + " " + Float.toString(h) + " " + Float.toString(s) + " " + Float.toString(v));
@@ -4645,7 +4682,6 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}
-
 
 		return true;
 	}
