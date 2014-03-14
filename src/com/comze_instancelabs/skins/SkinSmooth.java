@@ -712,8 +712,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -732,8 +731,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() - i + max_x, end.getBlockY(), start.getBlockZ() + j - max_y);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -800,8 +798,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() - i + max_x - 4);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -820,8 +817,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() - i + max_x - 4);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -842,8 +838,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y, end.getBlockY(), start.getBlockZ() - i + max_x);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -929,8 +924,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -949,8 +943,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() - j + max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
@@ -971,8 +964,7 @@ public class SkinSmooth {
 					Color c = new Color(bi.getRGB(i, j));
 
 					Block change = t.getWorld().getBlockAt(start.getBlockX() + j - max_y, end.getBlockY(), start.getBlockZ() + i - max_x);
-					
-					change.setType(Material.WOOL);
+
 					if (m.isHumanSkin(c)) {
 						change.setType(Material.WOOD);
 						change.setData((byte) 2);
