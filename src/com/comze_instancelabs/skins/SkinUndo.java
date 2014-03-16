@@ -15,7 +15,6 @@ public class SkinUndo {
 			Location current = t;
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 11, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t.getBlockZ());
-			;
 
 			int[] pixel;
 			for (int i = min_x; i < max_x; i++) {
@@ -43,7 +42,6 @@ public class SkinUndo {
 
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() - 11, t.getBlockZ() + 3);
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t.getBlockZ() + 3);
-			;
 
 			int[] pixel;
 			for (int i = min_x; i < max_x; i++) {
@@ -136,7 +134,6 @@ public class SkinUndo {
 
 			Location start = new Location(t.getWorld(), t.getBlockX() + 5, t.getBlockY() + 1, t.getBlockZ());
 			Location end = new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t.getBlockZ());
-			;
 
 			int[] pixel;
 			for (int i = min_x; i < max_x; i++) {
@@ -1347,7 +1344,7 @@ public class SkinUndo {
 	public static boolean containsMaterial(Material m) {
 		if (m == Material.WOOL || m == Material.WOOD || m == Material.STAINED_CLAY || m == Material.STAINED_GLASS || m == Material.STONE
 				|| m == Material.SANDSTONE || m == Material.IRON_BLOCK || m == Material.GOLD_BLOCK || m == Material.DIAMOND_BLOCK || m == Material.SNOW_BLOCK
-				|| m == Material.OBSIDIAN || m == Material.NETHERRACK) {
+				|| m == Material.OBSIDIAN || m == Material.NETHERRACK || m == Material.SOUL_SAND || m == Material.GRAVEL || m == Material.DOUBLE_STEP) {
 			return true;
 		}
 		return false;
