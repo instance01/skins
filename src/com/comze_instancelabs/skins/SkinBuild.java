@@ -1169,7 +1169,7 @@ public class SkinBuild {
 		if (component.equalsIgnoreCase("head_bottom")) {
 			Location current = p;
 
-			Location start = new Location(p.getWorld(), p.getBlockX(), p.getBlockY() + 25, p.getBlockZ());
+			Location start = new Location(p.getWorld(), p.getBlockX() - 1, p.getBlockY() + 25, p.getBlockZ() + 1);
 			Location end = new Location(p.getWorld(), p.getBlockX() + 6, p.getBlockY() + 25, p.getBlockZ() + 8);
 
 			for (int i = min_x; i < max_x; i++) {
@@ -1177,7 +1177,7 @@ public class SkinBuild {
 
 					Color c = new Color(bi.getRGB(i, j));
 
-					Block change = p.getWorld().getBlockAt(start.getBlockX() + j - max_y + 1, end.getBlockY(), start.getBlockZ() + i - min_x);
+					Block change = p.getWorld().getBlockAt(start.getBlockX() - i + max_x, end.getBlockY(), start.getBlockZ() + j - max_y);
 
 					if (type.equalsIgnoreCase("normal")) {
 						change.setType(Material.WOOL); //

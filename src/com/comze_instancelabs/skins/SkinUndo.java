@@ -1342,9 +1342,7 @@ public class SkinUndo {
 	}
 
 	public static boolean containsMaterial(Material m) {
-		if (m == Material.WOOL || m == Material.WOOD || m == Material.STAINED_CLAY || m == Material.STAINED_GLASS || m == Material.STONE
-				|| m == Material.SANDSTONE || m == Material.IRON_BLOCK || m == Material.GOLD_BLOCK || m == Material.DIAMOND_BLOCK || m == Material.SNOW_BLOCK
-				|| m == Material.OBSIDIAN || m == Material.NETHERRACK || m == Material.SOUL_SAND || m == Material.GRAVEL || m == Material.DOUBLE_STEP) {
+		if (m == Material.WOOL || m == Material.WOOD || m == Material.STAINED_CLAY || m == Material.STAINED_GLASS || m == Material.STONE || m == Material.SANDSTONE || m == Material.IRON_BLOCK || m == Material.GOLD_BLOCK || m == Material.DIAMOND_BLOCK || m == Material.SNOW_BLOCK || m == Material.OBSIDIAN || m == Material.NETHERRACK || m == Material.SOUL_SAND || m == Material.GRAVEL || m == Material.DOUBLE_STEP) {
 			return true;
 		}
 		return false;
