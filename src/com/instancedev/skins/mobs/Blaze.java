@@ -1,4 +1,4 @@
-package com.comze_instancelabs.skins.mobs;
+package com.instancedev.skins.mobs;
 
 import java.util.Random;
 

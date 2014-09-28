@@ -1,4 +1,4 @@
-package com.comze_instancelabs.skins.utils;
+package com.instancedev.skins.utils;
 
 /*
  * Updater for Bukkit.

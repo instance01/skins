@@ -1,4 +1,4 @@
-package com.comze_instancelabs.skins;
+package com.instancedev.skins;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

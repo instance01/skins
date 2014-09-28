@@ -1,4 +1,4 @@
-package com.comze_instancelabs.skins.mobs;
+package com.instancedev.skins.mobs;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
