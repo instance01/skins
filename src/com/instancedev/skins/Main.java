@@ -408,7 +408,7 @@ public class Main extends JavaPlugin implements Listener {
 									if (skin.equalsIgnoreCase("steve")) {
 										url = new URL("https://minecraft.net/images/char.png");
 									} else {
-										url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+										url = new URL(getURL(skin));
 									}
 									Image1 = ImageIO.read(url);
 								} catch (IOException e) {
@@ -473,7 +473,7 @@ public class Main extends JavaPlugin implements Listener {
 									if (name.equalsIgnoreCase("steve")) {
 										url = new URL("https://minecraft.net/images/char.png");
 									} else {
-										url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+										url = new URL(getURL(args[0]));
 									}
 
 									Image1 = ImageIO.read(url);
@@ -516,7 +516,7 @@ public class Main extends JavaPlugin implements Listener {
 											if (name.equalsIgnoreCase("steve")) {
 												url = new URL("https://minecraft.net/images/char.png");
 											} else {
-												url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+												url = new URL(getURL(args[0]));
 											}
 
 											Image1 = ImageIO.read(url);
@@ -555,7 +555,7 @@ public class Main extends JavaPlugin implements Listener {
 											if (name.equalsIgnoreCase("steve")) {
 												url = new URL("https://minecraft.net/images/char.png");
 											} else {
-												url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+												url = new URL(getURL(args[0]));
 											}
 
 											Image1 = ImageIO.read(url);
@@ -595,7 +595,7 @@ public class Main extends JavaPlugin implements Listener {
 										if (name.equalsIgnoreCase("steve")) {
 											url = new URL("https://minecraft.net/images/char.png");
 										} else {
-											url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+											url = new URL(getURL(args[0]));
 										}
 
 										Image1 = ImageIO.read(url);
@@ -715,19 +715,20 @@ public class Main extends JavaPlugin implements Listener {
 			}
 			in.close();
 
-			System.out.println(response.toString());
+			// System.out.println(response.toString());
 
 			String t = response.toString();
 			String t_ = t.substring(t.indexOf("\"textures\",\"value\":\"") + 20, t.indexOf("\"", t.indexOf("\"textures\",\"value\":\"") + 21));
 			// System.out.println(t_);
 			byte[] d = DatatypeConverter.parseBase64Binary(t_);
 			String raw = new String(d);
-			System.out.println(raw);
+			// System.out.println(raw);
 			String url = raw.substring(raw.indexOf("url\"") + 6, raw.indexOf("\"", raw.indexOf("url\"") + 7));
 			System.out.println(url);
 			return url;
 		} catch (Exception e) {
 			// e.printStackTrace();
+			System.out.println("Failed getting skin url, don't build more than one skin in a minute, because Mojangs API doesn't allow more queries! " + e.getMessage());
 		}
 		return "http://s3.amazonaws.com/MinecraftSkins/" + name + ".png";
 	}
