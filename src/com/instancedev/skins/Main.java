@@ -23,7 +23,6 @@ import javax.xml.bind.DatatypeConverter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,7 +30,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import com.instancedev.skins.mobs.Blaze;
 import com.instancedev.skins.mobs.Chicken;
@@ -42,6 +40,7 @@ import com.instancedev.skins.mobs.Slime;
 import com.instancedev.skins.utils.Metrics;
 import com.instancedev.skins.utils.PlotMeSupport;
 import com.instancedev.skins.utils.Updater;
+import com.instancedev.skins.utils.WGSupport;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 /**
@@ -75,6 +74,9 @@ public class Main extends JavaPlugin implements Listener {
 	public static HashMap<String, ArrayList<Location>> mob_undoloc = new HashMap<String, ArrayList<Location>>();
 	public static HashMap<String, ArrayList<String>> mob_undomob = new HashMap<String, ArrayList<String>>();
 	public static HashMap<String, ArrayList<String>> mob_undodir = new HashMap<String, ArrayList<String>>();
+
+	public boolean plotmeInstalled = false;
+	public boolean wgInstalled = false;
 
 	@Override
 	public void onEnable() {
@@ -112,16 +114,16 @@ public class Main extends JavaPlugin implements Listener {
 		if (skin_updating) {
 			update_skins();
 		}
-	}
 
-	private WorldGuardPlugin getWorldGuard() {
-		Plugin plugin = getServer().getPluginManager().getPlugin("WorldGuard");
+		Plugin wgplugin = Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+		Plugin plotmeplugin = Bukkit.getServer().getPluginManager().getPlugin("PlotMe");
 
-		if (plugin == null || !(plugin instanceof WorldGuardPlugin)) {
-			return null;
+		if (wgplugin == null) {
+			wgInstalled = false;
 		}
-
-		return (WorldGuardPlugin) plugin;
+		if (plotmeplugin == null) {
+			plotmeInstalled = false;
+		}
 	}
 
 	@Override
@@ -4519,12 +4521,18 @@ public class Main extends JavaPlugin implements Listener {
 	public boolean canBuild(Player p, String direction) {
 		boolean wg = false;
 		boolean plotme = false;
-		if ((!getConfig().getBoolean("config.use_worldguard") || getWorldGuard() == null) && (!getConfig().getBoolean("config.use_plotme") || PlotMeSupport.getPlotMe() == null)) {
-			return true;
-		} else {
-			if (getConfig().getBoolean("config.use_worldguard") && getWorldGuard() != null) {
+		if (wgInstalled && plotmeInstalled) {
+			if ((!getConfig().getBoolean("config.use_worldguard") || WGSupport.getWorldGuard() == null) && (!getConfig().getBoolean("config.use_plotme") || PlotMeSupport.getPlotMe() == null)) {
+				return true;
+			}
+		}
+
+		if (wgInstalled) {
+			if (getConfig().getBoolean("config.use_worldguard") && WGSupport.getWorldGuard() != null) {
 				wg = true;
 			}
+		}
+		if (plotmeInstalled) {
 			if (getConfig().getBoolean("config.use_plotme") || PlotMeSupport.getPlotMe() != null) {
 				plotme = true;
 			}
@@ -4541,7 +4549,7 @@ public class Main extends JavaPlugin implements Listener {
 					p.getLocation().getBlock().getRelative(+8, +33, -4).getLocation() // up
 					));
 			for (Location l : locs) {
-				if (wg && !getWorldGuard().canBuild(p, l)) {
+				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
 					p.sendMessage("§cYou don't have permission to build a skin here!");
 					return false;
 				}
@@ -4561,7 +4569,7 @@ public class Main extends JavaPlugin implements Listener {
 					p.getLocation().getBlock().getRelative(+4, +33, +8).getLocation() // up
 					));
 			for (Location l : locs) {
-				if (wg && !getWorldGuard().canBuild(p, l)) {
+				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
 					p.sendMessage("§cYou don't have permission to build a skin here!");
 					return false;
 				}
@@ -4581,7 +4589,7 @@ public class Main extends JavaPlugin implements Listener {
 					p.getLocation().getBlock().getRelative(-4, +33, -8).getLocation() // up
 					));
 			for (Location l : locs) {
-				if (wg && !getWorldGuard().canBuild(p, l)) {
+				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
 					p.sendMessage("§cYou don't have permission to build a skin here!");
 					return false;
 				}
@@ -4601,7 +4609,7 @@ public class Main extends JavaPlugin implements Listener {
 					p.getLocation().getBlock().getRelative(-8, +33, +4).getLocation() // up
 					));
 			for (Location l : locs) {
-				if (wg && !getWorldGuard().canBuild(p, l)) {
+				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
 					p.sendMessage("§cYou don't have permission to build a skin here!");
 					return false;
 				}
