@@ -4549,11 +4549,11 @@ public class Main extends JavaPlugin implements Listener {
 					));
 			for (Location l : locs) {
 				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 				if (plotme && !PlotMeSupport.canBuildPlotMe(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 			}
@@ -4569,11 +4569,11 @@ public class Main extends JavaPlugin implements Listener {
 					));
 			for (Location l : locs) {
 				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 				if (plotme && !PlotMeSupport.canBuildPlotMe(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 			}
@@ -4589,11 +4589,11 @@ public class Main extends JavaPlugin implements Listener {
 					));
 			for (Location l : locs) {
 				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 				if (plotme && !PlotMeSupport.canBuildPlotMe(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 			}
@@ -4609,11 +4609,11 @@ public class Main extends JavaPlugin implements Listener {
 					));
 			for (Location l : locs) {
 				if (wg && !WGSupport.getWorldGuard().canBuild(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 				if (plotme && !PlotMeSupport.canBuildPlotMe(p, l)) {
-					p.sendMessage("§cYou don't have permission to build a skin here!");
+					p.sendMessage(ChatColor.RED + "You don't have permission to build a skin here!");
 					return false;
 				}
 			}
