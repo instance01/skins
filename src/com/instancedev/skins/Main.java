@@ -41,7 +41,6 @@ import com.instancedev.skins.utils.Metrics;
 import com.instancedev.skins.utils.PlotMeSupport;
 import com.instancedev.skins.utils.Updater;
 import com.instancedev.skins.utils.WGSupport;
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 /**
  * 
