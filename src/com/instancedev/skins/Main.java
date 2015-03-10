@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +133,7 @@ public class Main extends JavaPlugin implements Listener {
 				if (args.length > 0) {
 					String action = args[0];
 					if (!(sender instanceof Player)) {
-						sender.sendMessage("§4Please execute this command ingame.");
+						sender.sendMessage("Â§4Please execute this command ingame.");
 						return true;
 					}
 					Player p = (Player) sender;
@@ -143,9 +144,9 @@ public class Main extends JavaPlugin implements Listener {
 					ArrayList<String> dir_ = new ArrayList<String>();
 
 					if (action.equalsIgnoreCase("chicken")) {
-						sender.sendMessage("§3Building a §6chicken §3now.");
+						sender.sendMessage("Â§3Building a Â§6chicken Â§3now.");
 						Chicken.buildChicken(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -161,9 +162,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("creeper")) {
-						sender.sendMessage("§3Building a §6Creeper §3now.");
+						sender.sendMessage("Â§3Building a Â§6Creeper Â§3now.");
 						Creeper.buildCreeper(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -179,9 +180,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("enderman")) {
-						sender.sendMessage("§3Building an §6Enderman §3now.");
+						sender.sendMessage("Â§3Building an Â§6Enderman Â§3now.");
 						Enderman.buildEnderman(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -197,9 +198,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("pig")) {
-						sender.sendMessage("§3Building a §6Pig §3now.");
+						sender.sendMessage("Â§3Building a Â§6Pig Â§3now.");
 						Pig.buildPig(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -215,9 +216,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("slime")) {
-						sender.sendMessage("§3Building a §6Slime §3now.");
+						sender.sendMessage("Â§3Building a Â§6Slime Â§3now.");
 						Slime.buildSlime(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -233,9 +234,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("blaze")) {
-						sender.sendMessage("§3Building a §6Blaze §3now.");
+						sender.sendMessage("Â§3Building a Â§6Blaze Â§3now.");
 						Blaze.buildBlaze(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -286,19 +287,19 @@ public class Main extends JavaPlugin implements Listener {
 								mob_undodir.put(p.getName(), dir_);
 							}
 
-							sender.sendMessage("§cSuccessfully removed " + mob);
+							sender.sendMessage("Â§cSuccessfully removed " + mob);
 						}
 					} else {
-						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
+						sender.sendMessage("Â§3Possible Mobs: Â§6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
 					}
 				} else {
-					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
+					sender.sendMessage("Â§3Possible Mobs: Â§6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
 				}
 			}
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("skinload")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("§4Please execute this command ingame.");
+				sender.sendMessage("Â§4Please execute this command ingame.");
 				return true;
 			}
 			Player p = (Player) sender;
@@ -314,7 +315,7 @@ public class Main extends JavaPlugin implements Listener {
 			if (!filename.contains(".png")) {
 				filename = filename + ".png";
 			}
-			sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+			sender.sendMessage("Â§3Please don't move for 3 seconds while the skin is being built.");
 			BufferedImage Image1 = null;
 			boolean cont = true;
 			try {
@@ -325,7 +326,7 @@ public class Main extends JavaPlugin implements Listener {
 
 			if (cont) {
 				if (Image1.getHeight() < 32 && Image1.getWidth() < 64) {
-					sender.sendMessage("§cThe file doesn't look like a valid skin.");
+					sender.sendMessage("Â§cThe file doesn't look like a valid skin.");
 					return true;
 				}
 
@@ -340,7 +341,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				}
 			} else {
-				sender.sendMessage("§cCould not find the file. Possible solutions: Assure that the file is in the /plugins/skins folder and that it's a PNG file.");
+				sender.sendMessage("Â§cCould not find the file. Possible solutions: Assure that the file is in the /plugins/skins folder and that it's a PNG file.");
 			}
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("skin")) {
@@ -352,78 +353,74 @@ public class Main extends JavaPlugin implements Listener {
 						try {
 							p = (Player) sender;
 						} catch (Exception e) {
-							sender.sendMessage("§4Please execute this command ingame.");
+							sender.sendMessage("Â§4Please execute this command ingame.");
 						}
 
-						if (p != null) {
-							if (undoloc.containsKey(p.getName())) {
-								// Location t = undoloc.get(p.getName());
-								// String direction = undodir.get(p.getName());
-								ArrayList<Location> t_ = undoloc.get(p.getName());
-								Location t = null;
-								ArrayList<String> dir_ = undodir.get(p.getName());
-								String direction = "";
-								if (!t_.isEmpty() && !dir_.isEmpty()) {
-									t = t_.get(t_.size() - 1);
-									direction = dir_.get(dir_.size() - 1);
-									undo(p, t, direction);
-								}
-							} else {
-								p.sendMessage("§4I don't have any skins you requested in memory!");
-							}
-						}
+						if (undoloc.containsKey(p.getName())) {
+                            // Location t = undoloc.get(p.getName());
+                            // String direction = undodir.get(p.getName());
+                            ArrayList<Location> t_ = undoloc.get(p.getName());
+                            Location t = null;
+                            ArrayList<String> dir_ = undodir.get(p.getName());
+                            String direction = "";
+                            if (!t_.isEmpty() && !dir_.isEmpty()) {
+                                t = t_.get(t_.size() - 1);
+                                direction = dir_.get(dir_.size() - 1);
+                                undo(p, t, direction);
+                            }
+                        } else {
+                            p.sendMessage("Â§4I don't have any skins you requested in memory!");
+                        }
 
 					} else if (action.equalsIgnoreCase("smooth")) { // /skin smooth
 						Player p = null;
 						try {
 							p = (Player) sender;
 						} catch (Exception e) {
-							sender.sendMessage("§4Please execute this command ingame.");
+							sender.sendMessage("Â§4Please execute this command ingame.");
 						}
 
-						if (p != null) {
-							if (undoloc.containsKey(p.getName())) {
-								// Location t = undoloc.get(p.getName());
-								// String skin = undoskin.get(p.getName());
-								// String dir = undodir.get(p.getName());
-								boolean cont = true;
+						if (undoloc.containsKey(p.getName())) {
+                            // Location t = undoloc.get(p.getName());
+                            // String skin = undoskin.get(p.getName());
+                            // String dir = undodir.get(p.getName());
+                            boolean cont = true;
 
-								ArrayList<Location> t_ = undoloc.get(p.getName());
-								Location t = null;
-								ArrayList<String> dir_ = undodir.get(p.getName());
-								String dir = "";
-								ArrayList<String> skin_ = undoskin.get(p.getName());
-								String skin = "";
-								if (!t_.isEmpty() && !dir_.isEmpty() && !skin_.isEmpty()) {
-									t = t_.get(t_.size() - 1);
-									dir = dir_.get(dir_.size() - 1);
-									skin = skin_.get(skin_.size() - 1);
+                            ArrayList<Location> t_ = undoloc.get(p.getName());
+                            Location t = null;
+                            ArrayList<String> dir_ = undodir.get(p.getName());
+                            String dir = "";
+                            ArrayList<String> skin_ = undoskin.get(p.getName());
+                            String skin = "";
+                            if (!t_.isEmpty() && !dir_.isEmpty() && !skin_.isEmpty()) {
+                                t = t_.get(t_.size() - 1);
+                                dir = dir_.get(dir_.size() - 1);
+                                skin = skin_.get(skin_.size() - 1);
 
-								} else {
-									cont = false;
-								}
+                            } else {
+                                cont = false;
+                            }
 
-								BufferedImage Image1 = null;
-								try {
-									URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
-									if (skin.equalsIgnoreCase("steve")) {
-										url = new URL("https://minecraft.net/images/char.png");
-									} else {
-										url = new URL(getURL(skin));
-									}
-									Image1 = ImageIO.read(url);
-								} catch (IOException e) {
-									cont = false;
-								}
+                            BufferedImage Image1 = null;
+                            try {
+                                URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+                                if (skin.equalsIgnoreCase("steve")) {
+                                    url = new URL("https://minecraft.net/images/char.png");
+                                } else {
+                                    url = new URL(getURL(skin));
+                                }
+                                Image1 = ImageIO.read(url);
+                            } catch (IOException e) {
+                                cont = false;
+                            }
 
-								if (cont) {
-									smooth(t, Image1, dir);
-								} else {
-									p.sendMessage("§4Playername not found!");
-								}
+                            if (cont) {
+                                smooth(t, Image1, dir);
+                            } else {
+                                p.sendMessage("Â§4Playername not found!");
+                            }
 
-							}
-						}
+                        }
 					} else if (action.equalsIgnoreCase("forceupdate")) {
 						if (skin_updating) {
 							sender.sendMessage(ChatColor.DARK_AQUA + "Forcing Skins update..");
@@ -443,7 +440,7 @@ public class Main extends JavaPlugin implements Listener {
 								try {
 									p = (Player) sender;
 								} catch (Exception e) {
-									sender.sendMessage("§4Please execute this command ingame.");
+									sender.sendMessage("Â§4Please execute this command ingame.");
 									return true;
 								}
 								buildCmd(p, args[0], "clay");
@@ -452,7 +449,7 @@ public class Main extends JavaPlugin implements Listener {
 								try {
 									p = (Player) sender;
 								} catch (Exception e) {
-									sender.sendMessage("§4Please execute this command ingame.");
+									sender.sendMessage("Â§4Please execute this command ingame.");
 									return true;
 								}
 								buildCmd(p, args[0], "glass");
@@ -461,12 +458,12 @@ public class Main extends JavaPlugin implements Listener {
 								try {
 									p = (Player) sender;
 								} catch (Exception e) {
-									sender.sendMessage("§4Please execute this command ingame.");
+									sender.sendMessage("Â§4Please execute this command ingame.");
 									return true;
 								}
 
 								String name = args[0];
-								sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+								sender.sendMessage("Â§3Please don't move for 3 seconds while the skin is being built.");
 								BufferedImage Image1 = null;
 								boolean cont = true;
 								try {
@@ -494,7 +491,7 @@ public class Main extends JavaPlugin implements Listener {
 										}
 									}
 								} else {
-									p.sendMessage("§4Playername not found!");
+									p.sendMessage("Â§4Playername not found!");
 								}
 							} else { // /skin [name] [direction]
 								if (args.length > 2) {
@@ -503,13 +500,13 @@ public class Main extends JavaPlugin implements Listener {
 										try {
 											p = (Player) sender;
 										} catch (Exception e) {
-											sender.sendMessage("§4Please execute this command ingame.");
+											sender.sendMessage("Â§4Please execute this command ingame.");
 											return true;
 										}
 
 										String direction = args[1];
 										String name = args[0];
-										sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+										sender.sendMessage("Â§3Please don't move forÂ§4 3 Â§3seconds while the skin is being built.");
 										BufferedImage Image1 = null;
 										boolean cont = true;
 										try {
@@ -532,23 +529,23 @@ public class Main extends JavaPlugin implements Listener {
 													buildclay(p.getLocation(), p, Image1, args[0], direction);
 												}
 											} else {
-												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+												sender.sendMessage("Â§2Usage: /skins [name] [direction: east, west, north, south]. Â§3Example: /skin InstanceLabs south");
 											}
 										} else {
-											p.sendMessage("§4Playername not found!");
+											p.sendMessage("Â§4Playername not found!");
 										}
 									} else if (args[2].equalsIgnoreCase("glass")) { // /skin [name] [direction] glass
 										Player p = null;
 										try {
 											p = (Player) sender;
 										} catch (Exception e) {
-											sender.sendMessage("§4Please execute this command ingame.");
+											sender.sendMessage("Â§4Please execute this command ingame.");
 											return true;
 										}
 
 										String direction = args[1];
 										String name = args[0];
-										sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+										sender.sendMessage("Â§3Please don't move forÂ§4 3 Â§3seconds while the skin is being built.");
 										BufferedImage Image1 = null;
 										boolean cont = true;
 										try {
@@ -571,10 +568,10 @@ public class Main extends JavaPlugin implements Listener {
 													buildglass(p.getLocation(), p, Image1, args[0], direction);
 												}
 											} else {
-												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+												sender.sendMessage("Â§2Usage: /skins [name] [direction: east, west, north, south]. Â§3Example: /skin InstanceLabs south");
 											}
 										} else {
-											p.sendMessage("§4Playername not found!");
+											p.sendMessage("Â§4Playername not found!");
 										}
 									}
 								} else { // /skin [name] [direction]
@@ -582,13 +579,13 @@ public class Main extends JavaPlugin implements Listener {
 									try {
 										p = (Player) sender;
 									} catch (Exception e) {
-										sender.sendMessage("§4Please execute this command ingame.");
+										sender.sendMessage("Â§4Please execute this command ingame.");
 										return true;
 									}
 
 									String direction = args[1];
 									String name = args[0];
-									sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+									sender.sendMessage("Â§3Please don't move forÂ§4 3 Â§3seconds while the skin is being built.");
 									BufferedImage Image1 = null;
 									boolean cont = true;
 									try {
@@ -611,10 +608,10 @@ public class Main extends JavaPlugin implements Listener {
 												build(p.getLocation(), p, Image1, args[0], direction);
 											}
 										} else {
-											sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+											sender.sendMessage("Â§2Usage: /skins [name] [direction: east, west, north, south]. Â§3Example: /skin InstanceLabs south");
 										}
 									} else {
-										p.sendMessage("§4Playername not found!");
+										p.sendMessage("Â§4Playername not found!");
 									}
 								}
 
@@ -625,22 +622,22 @@ public class Main extends JavaPlugin implements Listener {
 							try {
 								p = (Player) sender;
 							} catch (Exception e) {
-								sender.sendMessage("§4Please execute this command ingame.");
+								sender.sendMessage("Â§4Please execute this command ingame.");
 								return true;
 							}
 							buildCmd(p, args[0], "normal");
 						}
 					}
 				} else {
-					sender.sendMessage("§3 -- Skins Help --");
-					sender.sendMessage("§3 /skin [name] : §2Builds a skin in the direction you are looking");
-					sender.sendMessage("§3 /skin [name] [direction] : §2Builds a skin in the provided direction");
-					sender.sendMessage("§3 /skin smooth : §2Smoothes the skin with wood blocks");
-					sender.sendMessage("§3 /skin undo : §2Undoes the last skin");
-					sender.sendMessage("§3 /colortest [start/status] : §2Runs a colortest to determine all currently supported colors");
+					sender.sendMessage("Â§3 -- Skins Help --");
+					sender.sendMessage("Â§3 /skin [name] : Â§2Builds a skin in the direction you are looking");
+					sender.sendMessage("Â§3 /skin [name] [direction] : Â§2Builds a skin in the provided direction");
+					sender.sendMessage("Â§3 /skin smooth : Â§2Smoothes the skin with wood blocks");
+					sender.sendMessage("Â§3 /skin undo : Â§2Undoes the last skin");
+					sender.sendMessage("Â§3 /colortest [start/status] : Â§2Runs a colortest to determine all currently supported colors");
 				}
 			} else {
-				sender.sendMessage("§4You don't have permission.");
+				sender.sendMessage("Â§4You don't have permission.");
 			}
 
 			return true;
@@ -666,10 +663,10 @@ public class Main extends JavaPlugin implements Listener {
 						};
 						new Thread(r).start();
 					} else if (args[0].equalsIgnoreCase("status")) { // /colortest status
-						sender.sendMessage("§2Pos count: " + Integer.toString(poscount));
-						sender.sendMessage("§4Neg count: " + Integer.toString(negcount));
+						sender.sendMessage("Â§2Pos count: " + Integer.toString(poscount));
+						sender.sendMessage("Â§4Neg count: " + Integer.toString(negcount));
 					} else if (args[0].equalsIgnoreCase("punchcard")) { // /colortest punchcard
-						sender.sendMessage("§3Building Punchcard . . .");
+						sender.sendMessage("Â§3Building Punchcard . . .");
 						Runnable r = new Runnable() {
 							public void run() {
 								createPunchcard();
@@ -678,8 +675,8 @@ public class Main extends JavaPlugin implements Listener {
 						new Thread(r).start();
 					}
 				} else {
-					sender.sendMessage("§3/colortest start");
-					sender.sendMessage("§3/colortest status");
+					sender.sendMessage("Â§3/colortest start");
+					sender.sendMessage("Â§3/colortest status");
 				}
 			}
 			return true;
@@ -688,7 +685,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public String getURL(String name) {
-		UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(name));
+		UUIDFetcher fetcher = new UUIDFetcher(Collections.singletonList(name));
 		Map<String, UUID> response_ = null;
 		try {
 			response_ = fetcher.call();
@@ -735,7 +732,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void buildCmd(Player p, String name, String mode) {
-		p.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+		p.sendMessage("Â§3Please don't move for 3 seconds while the skin is being built.");
 		BufferedImage Image1 = null;
 		boolean cont = true;
 		String url_ = getURL(name);
@@ -785,7 +782,7 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		} else {
-			p.sendMessage("§4Playername not found!");
+			p.sendMessage("Â§4Playername not found!");
 		}
 	}
 
@@ -869,11 +866,8 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public boolean isValidSkin(String skin) {
-		if (getConfig().isSet("skins." + skin + ".name") && getConfig().isSet("skins." + skin + ".location") && getConfig().isSet("skins." + skin + ".direction")) {
-			return true;
-		} else {
-			return false;
-		}
+		return getConfig().isSet("skins." + skin + ".name") && getConfig().isSet("skins." + skin + ".location") && getConfig()
+				.isSet("skins." + skin + ".direction");
 	}
 
 	private boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
@@ -891,10 +885,10 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public boolean isDuplicateLocation(String skin1, Location l_skin2) {
-		if (getConfig().getInt("skins." + skin1 + ".location.x") == l_skin2.getBlockX() && getConfig().getInt("skins." + skin1 + ".location.y") == l_skin2.getBlockY() && getConfig().getInt("skins." + skin1 + ".location.z") == l_skin2.getBlockZ() && getConfig().getString("skins." + skin1 + ".location.world").equals(l_skin2.getWorld().getName())) {
-			return true;
-		}
-		return false;
+		return getConfig().getInt("skins." + skin1 + ".location.x") == l_skin2.getBlockX()
+				&& getConfig().getInt("skins." + skin1 + ".location.y") == l_skin2.getBlockY()
+				&& getConfig().getInt("skins." + skin1 + ".location.z") == l_skin2.getBlockZ() && getConfig()
+				.getString("skins." + skin1 + ".location.world").equals(l_skin2.getWorld().getName());
 	}
 
 	public void saveSkin(Location t, String skin, String uuid_, String direction, String mode) {
@@ -963,7 +957,6 @@ public class Main extends JavaPlugin implements Listener {
 
 	private void smooth(Location t, BufferedImage Image2, String direction) {
 
-		Location c = t;
 		// this function only builds skin blocks (wood instead of orange wool)
 		// needs the location of a skin
 
@@ -1007,172 +1000,233 @@ public class Main extends JavaPlugin implements Listener {
 			SkinSmooth.smoothPartOfImageEast(this, t, Image2, 40, 48, 8, 16, "hat_front");
 		} else if (direction.equalsIgnoreCase("west")) {
 			// leg1_left
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 0, 4, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ()));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 1, t.getBlockY(), t.getBlockZ()));
 			// leg1_front
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 4, 8, 20, 32, new Location(c.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ()));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 2, t.getBlockY(), t.getBlockZ()));
 			// leg1_ behind
-			SkinSmooth.smoothWestFrontInvert(this, c.getWorld(), Image2, 12, 16, 20, 32, new Location(c.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() + 1));
+			SkinSmooth.smoothWestFrontInvert(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), t.getBlockX() - 5, t.getBlockY(), t
+					.getBlockZ() + 1));
 			// leg2
 			// leg2_right
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 0, 4, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 7));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 1, t.getBlockY(), t.getBlockZ() - 7));
 			// leg2_ front
-			SkinSmooth.smoothWestFrontInvert(this, c.getWorld(), Image2, 4, 8, 20, 32, new Location(c.getWorld(), c.getBlockX() - 2, c.getBlockY(), c.getBlockZ() - 3));
+			SkinSmooth.smoothWestFrontInvert(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 2, t.getBlockY(), t.getBlockZ() - 3));
 			// leg2_behind
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 12, 16, 20, 32, new Location(c.getWorld(), c.getBlockX() - 5, c.getBlockY(), c.getBlockZ() - 4));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 5, t.getBlockY(), t.getBlockZ() - 4));
 			// body
 			// body_front
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 20, 28, 20, 32, new Location(c.getWorld(), c.getBlockX() - +2, c.getBlockY() + 12, c.getBlockZ()));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 20, 28, 20, 32, new Location(t.getWorld(), t.getBlockX() - +2, t.getBlockY() + 12, t
+					.getBlockZ()));
 			// body_behind
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 32, 40, 20, 32, new Location(c.getWorld(), c.getBlockX() - +5, c.getBlockY() + 12, c.getBlockZ()));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 32, 40, 20, 32, new Location(t.getWorld(), t.getBlockX() - +5, t.getBlockY() + 12, t
+					.getBlockZ()));
 			// arm1
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 48, 52, 16, 20, "arm1_bottom");
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 44, 48, 16, 20, "arm1_top");
 			// arm1_left
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 40, 44, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 4));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 12, t.getBlockZ() + 4));
 			// arm1_front
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 44, 48, 20, 32, new Location(c.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() + 4));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 2, t.getBlockY() + 12, t.getBlockZ() + 4));
 			// arm1_right
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 48, 52, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 12, t.getBlockZ() + 1));
 			// arm1_behind
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 52, 56, 20, 32, new Location(c.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() + 4));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 5, t.getBlockY() + 12, t.getBlockZ() + 4));
 			// arm2
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 48, 52, 16, 20, "arm2_bottom");
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 44, 48, 16, 20, "arm2_top");
 			// arm2_left
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 40, 44, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 11));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 12, t.getBlockZ() - 11));
 			// arm2_front
-			SkinSmooth.smoothWestFrontInvert(this, c.getWorld(), Image2, 44, 48, 20, 32, new Location(c.getWorld(), c.getBlockX() - 2, c.getBlockY() + 12, c.getBlockZ() - 7));
+			SkinSmooth.smoothWestFrontInvert(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), t.getBlockX() - 2, t.getBlockY() + 12, t
+					.getBlockZ() - 7));
 			// arm2_right
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 48, 52, 20, 32, new Location(c.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 8));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(
+					t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 12, t.getBlockZ() - 8));
 			// arm2_behind
-			SkinSmooth.smoothWestFrontInvert(this, c.getWorld(), Image2, 52, 56, 20, 32, new Location(c.getWorld(), c.getBlockX() - 5, c.getBlockY() + 12, c.getBlockZ() - 7));
+			SkinSmooth.smoothWestFrontInvert(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), t.getBlockX() - 5, t.getBlockY() + 12, t
+					.getBlockZ() - 7));
 			// head
 			// head_left
-			SkinSmooth.smoothWestSide(this, c.getWorld(), Image2, 0, 8, 8, 16, new Location(c.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+			SkinSmooth.smoothWestSide(this, t.getWorld(), Image2, 0, 8, 8, 16, new Location(
+					t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 24, t.getBlockZ()));
 			// head_right
-			SkinSmooth.smoothWestSideInvert(this, c.getWorld(), Image2, 16, 24, 8, 16, new Location(c.getWorld(), c.getBlockX() - 8, c.getBlockY() + 24, c.getBlockZ() - 7));
+			SkinSmooth.smoothWestSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), t.getBlockX() - 8, t.getBlockY() + 24, t
+					.getBlockZ() - 7));
 			// head_behind
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 24, 32, 8, 16, new Location(c.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ()));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 24, 32, 8, 16, new Location(
+					t.getWorld(), t.getBlockX() - 7, t.getBlockY() + 24, t.getBlockZ()));
 			// head_top and head_bottom
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 8, 16, 0, 8, "head_top");
 			SkinSmooth.smoothPartOfImageWest(this, t, Image2, 16, 24, 0, 8, "head_bottom");
 			// head_front
-			SkinSmooth.smoothWestFront(this, c.getWorld(), Image2, 8, 16, 8, 16, new Location(c.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinSmooth.smoothWestFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(
+					t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ()));
 
 			// hat_front
-			SkinSmooth.smoothWestFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), c.getBlockX() + 1, c.getBlockY() + 24, c.getBlockZ()));
+			SkinSmooth.smoothWestFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 24, t
+					.getBlockZ()));
 		} else if (direction.equalsIgnoreCase("south")) {
 			// leg1_left
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY(), t
+					.getBlockZ() + 1));
 			// leg1_front
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() + 2));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY(), t
+					.getBlockZ() + 2));
 			// leg1_ behind
-			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), c.getBlockX() + 1, c.getBlockY(), c.getBlockZ() + 5));
+			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY(), t
+					.getBlockZ() + 5));
 			// leg2
 			// leg2_right
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), c.getBlockX() - 7, c.getBlockY(), c.getBlockZ() + 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), t.getBlockX() - 7, t.getBlockY(), t
+					.getBlockZ() + 1));
 			// leg2_ front
-			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), c.getBlockX() - 3, c.getBlockY(), c.getBlockZ() + 2));
+			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), t.getBlockX() - 3, t.getBlockY(), t
+					.getBlockZ() + 2));
 			// leg2_behind
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), c.getBlockX() - 4, c.getBlockY(), c.getBlockZ() + 5));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), t.getBlockX() - 4, t.getBlockY(), t
+					.getBlockZ() + 5));
 			// body
 			// body_front
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 20, 28, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 2));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 20, 28, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t
+					.getBlockZ() + 2));
 			// body_behind
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 32, 40, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() + 5));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 32, 40, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t
+					.getBlockZ() + 5));
 			// arm1
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 48, 52, 16, 20, "arm1_bottom");
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 44, 48, 16, 20, "arm1_top");
 			// arm1_left
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), t.getBlockX() + 4, t.getBlockY() + 12, t
+					.getBlockZ() + 1));
 			// arm1_front
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 2));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), t.getBlockX() + 4, t.getBlockY() + 12, t
+					.getBlockZ() + 2));
 			// arm1_right
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), c.getBlockX() + 1, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), t.getBlockX() + 1, t.getBlockY() + 12, t
+					.getBlockZ() + 1));
 			// arm1_behind
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), c.getBlockX() + 4, c.getBlockY() + 12, c.getBlockZ() + 5));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), t.getBlockX() + 4, t.getBlockY() + 12, t
+					.getBlockZ() + 5));
 			// arm2
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 48, 52, 16, 20, "arm2_bottom");
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 44, 48, 16, 20, "arm2_top");
 			// arm2_left
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), c.getBlockX() - 11, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), t.getBlockX() - 11, t.getBlockY() + 12, t
+					.getBlockZ() + 1));
 			// arm2_front
-			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 2));
+			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), t.getBlockX() - 7, t.getBlockY() + 12, t
+					.getBlockZ() + 2));
 			// arm2_right
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), c.getBlockX() - 8, c.getBlockY() + 12, c.getBlockZ() + 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), t.getBlockX() - 8, t.getBlockY() + 12, t
+					.getBlockZ() + 1));
 			// arm2_behind
-			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), c.getBlockX() - 7, c.getBlockY() + 12, c.getBlockZ() + 5));
+			SkinSmooth.smoothSouthFrontInvert(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), t.getBlockX() - 7, t.getBlockY() + 12, t
+					.getBlockZ() + 5));
 			// head
 			// head_left
-			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 8, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+			SkinSmooth.smoothSouthSide(this, t.getWorld(), Image2, 0, 8, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t
+					.getBlockZ() - 1));
 			// head_right
-			SkinSmooth.smoothSouthSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), c.getBlockX() - 7, c.getBlockY() + 24, c.getBlockZ() + 8));
+			SkinSmooth.smoothSouthSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), t.getBlockX() - 7, t.getBlockY() + 24, t
+					.getBlockZ() + 8));
 			// head_behind
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 24, 32, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 7));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 24, 32, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t
+					.getBlockZ() + 7));
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 8, 16, 0, 8, "head_top");
 			SkinSmooth.smoothPartOfImageSouth(this, t, Image2, 16, 24, 0, 8, "head_bottom");
 			// head_front
-			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinSmooth.smoothSouthFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t
+					.getBlockZ()));
 
 			// hat_front
-			SkinSmooth.smoothSouthFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 1));
+			SkinSmooth.smoothSouthFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() - 1));
 		} else if (direction.equalsIgnoreCase("north")) {
 			// leg1_left
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY(), t
+					.getBlockZ() - 1));
 			// leg1_front
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY(), c.getBlockZ() - 2));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY(), t
+					.getBlockZ() - 2));
 			// leg1_behind
-			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), c.getBlockX() - 1, c.getBlockY(), c.getBlockZ() - 5));
+			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY(), t
+					.getBlockZ() - 5));
 			// leg2
 			// leg2_right
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), c.getBlockX() + 7, c.getBlockY(), c.getBlockZ() - 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 4, 20, 32, new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY(), t
+					.getBlockZ() - 1));
 			// leg2_ front
-			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), c.getBlockX() + 3, c.getBlockY(), c.getBlockZ() - 2));
+			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 4, 8, 20, 32, new Location(t.getWorld(), t.getBlockX() + 3, t.getBlockY(), t
+					.getBlockZ() - 2));
 			// leg2_behind
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), c.getBlockX() + 4, c.getBlockY(), c.getBlockZ() - 5));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 12, 16, 20, 32, new Location(t.getWorld(), t.getBlockX() + 4, t.getBlockY(), t
+					.getBlockZ() - 5));
 			// body
 			// body_front
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 20, 28, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 2));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 20, 28, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t
+					.getBlockZ() - 2));
 			// body_behind
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 32, 40, 20, 32, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 12, c.getBlockZ() - 5));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 32, 40, 20, 32, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 12, t
+					.getBlockZ() - 5));
 			// arm1
 			// arm1_bottom and arm1_top
 			SkinSmooth.smoothPartOfImageNorth(this, t, Image2, 48, 52, 16, 20, "arm1_bottom");
 			SkinSmooth.smoothPartOfImageNorth(this, t, Image2, 44, 48, 16, 20, "arm1_top");
 			// arm1_left
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), c.getBlockX() - 4, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), t.getBlockX() - 4, t.getBlockY() + 12, t
+					.getBlockZ() - 1));
 			// arm1_front
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), c.getBlockX() - 4, c.getBlockY() + 12, c.getBlockZ() - 2));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), t.getBlockX() - 4, t.getBlockY() + 12, t
+					.getBlockZ() - 2));
 			// arm1_right
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), c.getBlockX() - 1, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), t.getBlockX() - 1, t.getBlockY() + 12, t
+					.getBlockZ() - 1));
 			// arm1_behind
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), c.getBlockX() - 4, c.getBlockY() + 12, c.getBlockZ() - 5));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), t.getBlockX() - 4, t.getBlockY() + 12, t
+					.getBlockZ() - 5));
 			// arm2
 			// arm2_bottom and arm2_top
 			SkinSmooth.smoothPartOfImageNorth(this, t, Image2, 48, 52, 16, 20, "arm2_bottom");
 			SkinSmooth.smoothPartOfImageNorth(this, t, Image2, 44, 48, 16, 20, "arm2_top");
 			// arm2_left
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), c.getBlockX() + 11, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 40, 44, 20, 32, new Location(t.getWorld(), t.getBlockX() + 11, t.getBlockY() + 12, t
+					.getBlockZ() - 1));
 			// arm2_front
-			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 2));
+			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 44, 48, 20, 32, new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 12, t
+					.getBlockZ() - 2));
 			// arm2_right
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), c.getBlockX() + 8, c.getBlockY() + 12, c.getBlockZ() - 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 48, 52, 20, 32, new Location(t.getWorld(), t.getBlockX() + 8, t.getBlockY() + 12, t
+					.getBlockZ() - 1));
 			// arm2_behind
-			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), c.getBlockX() + 7, c.getBlockY() + 12, c.getBlockZ() - 5));
+			SkinSmooth.smoothNorthFrontInvert(this, t.getWorld(), Image2, 52, 56, 20, 32, new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 12, t
+					.getBlockZ() - 5));
 			// head
 			// head_left
-			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 8, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+			SkinSmooth.smoothNorthSide(this, t.getWorld(), Image2, 0, 8, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t
+					.getBlockZ() + 1));
 			// head_right
-			SkinSmooth.smoothNorthSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), c.getBlockX() + 7, c.getBlockY() + 24, c.getBlockZ() - 8));
+			SkinSmooth.smoothNorthSideInvert(this, t.getWorld(), Image2, 16, 24, 8, 16, new Location(t.getWorld(), t.getBlockX() + 7, t.getBlockY() + 24, t
+					.getBlockZ() - 8));
 			// head_behind
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 24, 32, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() - 7));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 24, 32, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t
+					.getBlockZ() - 7));
 			// head_top
 			SkinSmooth.smoothPartOfImageNorth(this, t, Image2, 8, 16, 0, 8, "head_top");
 			// head_front
-			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ()));
+			SkinSmooth.smoothNorthFront(this, t.getWorld(), Image2, 8, 16, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t
+					.getBlockZ()));
 
 			// hat_front
-			SkinSmooth.smoothNorthFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), c.getBlockX(), c.getBlockY() + 24, c.getBlockZ() + 1));
+			SkinSmooth.smoothNorthFrontHAT(this, t, Image2, 40, 48, 8, 16, new Location(t.getWorld(), t.getBlockX(), t.getBlockY() + 24, t.getBlockZ() + 1));
 		}
 	}
 
@@ -1305,7 +1359,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinUndo.undoFullSouth(t);
 		}
 
-		p.sendMessage("§2Undo successful.");
+		p.sendMessage("Â§2Undo successful.");
 	}
 
 	// TODO: ADD CLAY AND GLASS MODE AND SMOOTHING TO UPDATE MECHANISM
@@ -2160,7 +2214,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	private void buildglass(Location p, Player player, BufferedImage Image2, String skin, String direction) {
@@ -2734,7 +2788,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	private void buildall(Location p, Player player, BufferedImage Image2, String skin, String direction) {
@@ -3308,7 +3362,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	private void build(Location p, Player player, BufferedImage Image2, String skin, String direction) {
@@ -3616,7 +3670,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	public String getStringFromColor(Color c) {
@@ -4177,8 +4231,6 @@ public class Main extends JavaPlugin implements Listener {
 
 					if (getStringFromColorTEST(c)) {
 						newb.setRGB(r, g, c.getRGB());
-					} else {
-						// newb.setRGB(r, g, Color.WHITE.getRGB());
 					}
 				}
 			}
@@ -4499,9 +4551,6 @@ public class Main extends JavaPlugin implements Listener {
 
 	public static int[] getMaterialFromColor(Color col) {
 		int closestId = 0;
-
-		int closestBlock = 35;
-		int closestData = 0;
 
 		double d = colorDistance(col, new Color(255, 255, 255));
 
