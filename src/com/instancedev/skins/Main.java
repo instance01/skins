@@ -132,7 +132,7 @@ public class Main extends JavaPlugin implements Listener {
 				if (args.length > 0) {
 					String action = args[0];
 					if (!(sender instanceof Player)) {
-						sender.sendMessage("§4Please execute this command ingame.");
+						sender.sendMessage("Â§4Please execute this command ingame.");
 						return true;
 					}
 					Player p = (Player) sender;
@@ -143,9 +143,9 @@ public class Main extends JavaPlugin implements Listener {
 					ArrayList<String> dir_ = new ArrayList<String>();
 
 					if (action.equalsIgnoreCase("chicken")) {
-						sender.sendMessage("§3Building a §6chicken §3now.");
+						sender.sendMessage("Â§3Building a Â§6chicken Â§3now.");
 						Chicken.buildChicken(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -161,9 +161,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("creeper")) {
-						sender.sendMessage("§3Building a §6Creeper §3now.");
+						sender.sendMessage("Â§3Building a Â§6Creeper Â§3now.");
 						Creeper.buildCreeper(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -179,9 +179,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("enderman")) {
-						sender.sendMessage("§3Building an §6Enderman §3now.");
+						sender.sendMessage("Â§3Building an Â§6Enderman Â§3now.");
 						Enderman.buildEnderman(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -197,9 +197,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("pig")) {
-						sender.sendMessage("§3Building a §6Pig §3now.");
+						sender.sendMessage("Â§3Building a Â§6Pig Â§3now.");
 						Pig.buildPig(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -215,9 +215,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("slime")) {
-						sender.sendMessage("§3Building a §6Slime §3now.");
+						sender.sendMessage("Â§3Building a Â§6Slime Â§3now.");
 						Slime.buildSlime(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -233,9 +233,9 @@ public class Main extends JavaPlugin implements Listener {
 						mob_undomob.put(p.getName(), mob_);
 						mob_undodir.put(p.getName(), dir_);
 					} else if (action.equalsIgnoreCase("blaze")) {
-						sender.sendMessage("§3Building a §6Blaze §3now.");
+						sender.sendMessage("Â§3Building a Â§6Blaze Â§3now.");
 						Blaze.buildBlaze(p.getLocation(), look_direction);
-						sender.sendMessage("§aFinished!");
+						sender.sendMessage("Â§aFinished!");
 
 						if (mob_undoloc.containsKey(p.getName())) {
 							loc_ = mob_undoloc.get(p.getName());
@@ -286,19 +286,19 @@ public class Main extends JavaPlugin implements Listener {
 								mob_undodir.put(p.getName(), dir_);
 							}
 
-							sender.sendMessage("§cSuccessfully removed " + mob);
+							sender.sendMessage("Â§cSuccessfully removed " + mob);
 						}
 					} else {
-						sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
+						sender.sendMessage("Â§3Possible Mobs: Â§6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
 					}
 				} else {
-					sender.sendMessage("§3Possible Mobs: §6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
+					sender.sendMessage("Â§3Possible Mobs: Â§6Chicken, Creeper, Enderman, Pig, Slime, Blaze");
 				}
 			}
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("skinload")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("§4Please execute this command ingame.");
+				sender.sendMessage("Â§4Please execute this command ingame.");
 				return true;
 			}
 			Player p = (Player) sender;
@@ -314,7 +314,7 @@ public class Main extends JavaPlugin implements Listener {
 			if (!filename.contains(".png")) {
 				filename = filename + ".png";
 			}
-			sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+			sender.sendMessage("Â§3Please don't move for 3 seconds while the skin is being built.");
 			BufferedImage Image1 = null;
 			boolean cont = true;
 			try {
@@ -325,7 +325,7 @@ public class Main extends JavaPlugin implements Listener {
 
 			if (cont) {
 				if (Image1.getHeight() < 32 && Image1.getWidth() < 64) {
-					sender.sendMessage("§cThe file doesn't look like a valid skin.");
+					sender.sendMessage("Â§cThe file doesn't look like a valid skin.");
 					return true;
 				}
 
@@ -340,7 +340,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				}
 			} else {
-				sender.sendMessage("§cCould not find the file. Possible solutions: Assure that the file is in the /plugins/skins folder and that it's a PNG file.");
+				sender.sendMessage("Â§cCould not find the file. Possible solutions: Assure that the file is in the /plugins/skins folder and that it's a PNG file.");
 			}
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("skin")) {
@@ -352,7 +352,7 @@ public class Main extends JavaPlugin implements Listener {
 						try {
 							p = (Player) sender;
 						} catch (Exception e) {
-							sender.sendMessage("§4Please execute this command ingame.");
+							sender.sendMessage("Â§4Please execute this command ingame.");
 						}
 
 						if (p != null) {
@@ -369,7 +369,7 @@ public class Main extends JavaPlugin implements Listener {
 									undo(p, t, direction);
 								}
 							} else {
-								p.sendMessage("§4I don't have any skins you requested in memory!");
+								p.sendMessage("Â§4I don't have any skins you requested in memory!");
 							}
 						}
 
@@ -378,7 +378,7 @@ public class Main extends JavaPlugin implements Listener {
 						try {
 							p = (Player) sender;
 						} catch (Exception e) {
-							sender.sendMessage("§4Please execute this command ingame.");
+							sender.sendMessage("Â§4Please execute this command ingame.");
 						}
 
 						if (p != null) {
@@ -405,7 +405,7 @@ public class Main extends JavaPlugin implements Listener {
 
 								BufferedImage Image1 = null;
 								try {
-									URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+									URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 									if (skin.equalsIgnoreCase("steve")) {
 										url = new URL("https://minecraft.net/images/char.png");
 									} else {
@@ -419,7 +419,7 @@ public class Main extends JavaPlugin implements Listener {
 								if (cont) {
 									smooth(t, Image1, dir);
 								} else {
-									p.sendMessage("§4Playername not found!");
+									p.sendMessage("Â§4Playername not found!");
 								}
 
 							}
@@ -443,7 +443,7 @@ public class Main extends JavaPlugin implements Listener {
 								try {
 									p = (Player) sender;
 								} catch (Exception e) {
-									sender.sendMessage("§4Please execute this command ingame.");
+									sender.sendMessage("Â§4Please execute this command ingame.");
 									return true;
 								}
 								buildCmd(p, args[0], "clay");
@@ -452,7 +452,7 @@ public class Main extends JavaPlugin implements Listener {
 								try {
 									p = (Player) sender;
 								} catch (Exception e) {
-									sender.sendMessage("§4Please execute this command ingame.");
+									sender.sendMessage("Â§4Please execute this command ingame.");
 									return true;
 								}
 								buildCmd(p, args[0], "glass");
@@ -461,16 +461,16 @@ public class Main extends JavaPlugin implements Listener {
 								try {
 									p = (Player) sender;
 								} catch (Exception e) {
-									sender.sendMessage("§4Please execute this command ingame.");
+									sender.sendMessage("Â§4Please execute this command ingame.");
 									return true;
 								}
 
 								String name = args[0];
-								sender.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+								sender.sendMessage("Â§3Please don't move for 3 seconds while the skin is being built.");
 								BufferedImage Image1 = null;
 								boolean cont = true;
 								try {
-									URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+									URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 									if (name.equalsIgnoreCase("steve")) {
 										url = new URL("https://minecraft.net/images/char.png");
 									} else {
@@ -494,7 +494,7 @@ public class Main extends JavaPlugin implements Listener {
 										}
 									}
 								} else {
-									p.sendMessage("§4Playername not found!");
+									p.sendMessage("Â§4Playername not found!");
 								}
 							} else { // /skin [name] [direction]
 								if (args.length > 2) {
@@ -503,17 +503,17 @@ public class Main extends JavaPlugin implements Listener {
 										try {
 											p = (Player) sender;
 										} catch (Exception e) {
-											sender.sendMessage("§4Please execute this command ingame.");
+											sender.sendMessage("Â§4Please execute this command ingame.");
 											return true;
 										}
 
 										String direction = args[1];
 										String name = args[0];
-										sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+										sender.sendMessage("Â§3Please don't move forÂ§4 3 Â§3seconds while the skin is being built.");
 										BufferedImage Image1 = null;
 										boolean cont = true;
 										try {
-											URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+											URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 											if (name.equalsIgnoreCase("steve")) {
 												url = new URL("https://minecraft.net/images/char.png");
 											} else {
@@ -532,27 +532,27 @@ public class Main extends JavaPlugin implements Listener {
 													buildclay(p.getLocation(), p, Image1, args[0], direction);
 												}
 											} else {
-												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+												sender.sendMessage("Â§2Usage: /skins [name] [direction: east, west, north, south]. Â§3Example: /skin InstanceLabs south");
 											}
 										} else {
-											p.sendMessage("§4Playername not found!");
+											p.sendMessage("Â§4Playername not found!");
 										}
 									} else if (args[2].equalsIgnoreCase("glass")) { // /skin [name] [direction] glass
 										Player p = null;
 										try {
 											p = (Player) sender;
 										} catch (Exception e) {
-											sender.sendMessage("§4Please execute this command ingame.");
+											sender.sendMessage("Â§4Please execute this command ingame.");
 											return true;
 										}
 
 										String direction = args[1];
 										String name = args[0];
-										sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+										sender.sendMessage("Â§3Please don't move forÂ§4 3 Â§3seconds while the skin is being built.");
 										BufferedImage Image1 = null;
 										boolean cont = true;
 										try {
-											URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+											URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 											if (name.equalsIgnoreCase("steve")) {
 												url = new URL("https://minecraft.net/images/char.png");
 											} else {
@@ -571,10 +571,10 @@ public class Main extends JavaPlugin implements Listener {
 													buildglass(p.getLocation(), p, Image1, args[0], direction);
 												}
 											} else {
-												sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+												sender.sendMessage("Â§2Usage: /skins [name] [direction: east, west, north, south]. Â§3Example: /skin InstanceLabs south");
 											}
 										} else {
-											p.sendMessage("§4Playername not found!");
+											p.sendMessage("Â§4Playername not found!");
 										}
 									}
 								} else { // /skin [name] [direction]
@@ -582,17 +582,17 @@ public class Main extends JavaPlugin implements Listener {
 									try {
 										p = (Player) sender;
 									} catch (Exception e) {
-										sender.sendMessage("§4Please execute this command ingame.");
+										sender.sendMessage("Â§4Please execute this command ingame.");
 										return true;
 									}
 
 									String direction = args[1];
 									String name = args[0];
-									sender.sendMessage("§3Please don't move for§4 3 §3seconds while the skin is being built.");
+									sender.sendMessage("Â§3Please don't move forÂ§4 3 Â§3seconds while the skin is being built.");
 									BufferedImage Image1 = null;
 									boolean cont = true;
 									try {
-										URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+										URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 										if (name.equalsIgnoreCase("steve")) {
 											url = new URL("https://minecraft.net/images/char.png");
 										} else {
@@ -611,10 +611,10 @@ public class Main extends JavaPlugin implements Listener {
 												build(p.getLocation(), p, Image1, args[0], direction);
 											}
 										} else {
-											sender.sendMessage("§2Usage: /skins [name] [direction: east, west, north, south]. §3Example: /skin InstanceLabs south");
+											sender.sendMessage("Â§2Usage: /skins [name] [direction: east, west, north, south]. Â§3Example: /skin InstanceLabs south");
 										}
 									} else {
-										p.sendMessage("§4Playername not found!");
+										p.sendMessage("Â§4Playername not found!");
 									}
 								}
 
@@ -625,22 +625,22 @@ public class Main extends JavaPlugin implements Listener {
 							try {
 								p = (Player) sender;
 							} catch (Exception e) {
-								sender.sendMessage("§4Please execute this command ingame.");
+								sender.sendMessage("Â§4Please execute this command ingame.");
 								return true;
 							}
 							buildCmd(p, args[0], "normal");
 						}
 					}
 				} else {
-					sender.sendMessage("§3 -- Skins Help --");
-					sender.sendMessage("§3 /skin [name] : §2Builds a skin in the direction you are looking");
-					sender.sendMessage("§3 /skin [name] [direction] : §2Builds a skin in the provided direction");
-					sender.sendMessage("§3 /skin smooth : §2Smoothes the skin with wood blocks");
-					sender.sendMessage("§3 /skin undo : §2Undoes the last skin");
-					sender.sendMessage("§3 /colortest [start/status] : §2Runs a colortest to determine all currently supported colors");
+					sender.sendMessage("Â§3 -- Skins Help --");
+					sender.sendMessage("Â§3 /skin [name] : Â§2Builds a skin in the direction you are looking");
+					sender.sendMessage("Â§3 /skin [name] [direction] : Â§2Builds a skin in the provided direction");
+					sender.sendMessage("Â§3 /skin smooth : Â§2Smoothes the skin with wood blocks");
+					sender.sendMessage("Â§3 /skin undo : Â§2Undoes the last skin");
+					sender.sendMessage("Â§3 /colortest [start/status] : Â§2Runs a colortest to determine all currently supported colors");
 				}
 			} else {
-				sender.sendMessage("§4You don't have permission.");
+				sender.sendMessage("Â§4You don't have permission.");
 			}
 
 			return true;
@@ -666,10 +666,10 @@ public class Main extends JavaPlugin implements Listener {
 						};
 						new Thread(r).start();
 					} else if (args[0].equalsIgnoreCase("status")) { // /colortest status
-						sender.sendMessage("§2Pos count: " + Integer.toString(poscount));
-						sender.sendMessage("§4Neg count: " + Integer.toString(negcount));
+						sender.sendMessage("Â§2Pos count: " + Integer.toString(poscount));
+						sender.sendMessage("Â§4Neg count: " + Integer.toString(negcount));
 					} else if (args[0].equalsIgnoreCase("punchcard")) { // /colortest punchcard
-						sender.sendMessage("§3Building Punchcard . . .");
+						sender.sendMessage("Â§3Building Punchcard . . .");
 						Runnable r = new Runnable() {
 							public void run() {
 								createPunchcard();
@@ -678,8 +678,8 @@ public class Main extends JavaPlugin implements Listener {
 						new Thread(r).start();
 					}
 				} else {
-					sender.sendMessage("§3/colortest start");
-					sender.sendMessage("§3/colortest status");
+					sender.sendMessage("Â§3/colortest start");
+					sender.sendMessage("Â§3/colortest status");
 				}
 			}
 			return true;
@@ -688,7 +688,8 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public String getURL(String name) {
-		UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(name));
+    return "http://skins.minecraft.net/MinecraftSkins/" + name + ".png";
+		/*UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(name));
 		Map<String, UUID> response_ = null;
 		try {
 			response_ = fetcher.call();
@@ -731,23 +732,23 @@ public class Main extends JavaPlugin implements Listener {
 			// e.printStackTrace();
 			System.out.println("Failed getting skin url, don't build more than one skin in a minute, because Mojangs API doesn't allow more queries! " + e.getMessage());
 		}
-		return "http://s3.amazonaws.com/MinecraftSkins/" + name + ".png";
+		return "http://skins.minecraft.net/MinecraftSkins/" + name + ".png";*/
 	}
 
 	public void buildCmd(Player p, String name, String mode) {
-		p.sendMessage("§3Please don't move for 3 seconds while the skin is being built.");
+		p.sendMessage("Â§3Please don't move for 3 seconds while the skin is being built.");
 		BufferedImage Image1 = null;
 		boolean cont = true;
 		String url_ = getURL(name);
 		try {
-			URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+			URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 			if (name.equalsIgnoreCase("steve")) {
 				url = new URL("https://minecraft.net/images/char.png");
 			} else {
 				if (url_ != null && url_ != "") {
 					url = new URL(url_);
 				} else {
-					url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + name + ".png");
+					url = new URL("http://skins.minecraft.net/MinecraftSkins/" + name + ".png");
 				}
 			}
 
@@ -785,7 +786,7 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		} else {
-			p.sendMessage("§4Playername not found!");
+			p.sendMessage("Â§4Playername not found!");
 		}
 	}
 
@@ -829,7 +830,7 @@ public class Main extends JavaPlugin implements Listener {
 						BufferedImage Image1 = null;
 						BufferedImage local = null;
 						try {
-							URL url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin_ + ".png");
+							URL url = new URL("http://skins.minecraft.net/MinecraftSkins/" + skin_ + ".png");
 							Image1 = ImageIO.read(url);
 						} catch (IOException e) {
 							cont = false;
@@ -922,11 +923,11 @@ public class Main extends JavaPlugin implements Listener {
 		boolean cont = true;
 		BufferedImage Image1 = null;
 		try {
-			URL url; // = new URL("http://s3.amazonaws.com/MinecraftSkins/" + args[0] + ".png");
+			URL url; // = new URL("http://skins.minecraft.net/MinecraftSkins/" + args[0] + ".png");
 			if (skin.equalsIgnoreCase("steve")) {
 				url = new URL("https://minecraft.net/images/char.png");
 			} else {
-				url = new URL("http://s3.amazonaws.com/MinecraftSkins/" + skin + ".png");
+				url = new URL("http://skins.minecraft.net/MinecraftSkins/" + skin + ".png");
 			}
 
 			Image1 = ImageIO.read(url);
@@ -1305,7 +1306,7 @@ public class Main extends JavaPlugin implements Listener {
 			SkinUndo.undoFullSouth(t);
 		}
 
-		p.sendMessage("§2Undo successful.");
+		p.sendMessage("Â§2Undo successful.");
 	}
 
 	// TODO: ADD CLAY AND GLASS MODE AND SMOOTHING TO UPDATE MECHANISM
@@ -2160,7 +2161,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	private void buildglass(Location p, Player player, BufferedImage Image2, String skin, String direction) {
@@ -2734,7 +2735,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	private void buildall(Location p, Player player, BufferedImage Image2, String skin, String direction) {
@@ -3308,7 +3309,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	private void build(Location p, Player player, BufferedImage Image2, String skin, String direction) {
@@ -3616,7 +3617,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
-		player.sendMessage("§2Finished building the skin!");
+		player.sendMessage("Â§2Finished building the skin!");
 	}
 
 	public String getStringFromColor(Color c) {
